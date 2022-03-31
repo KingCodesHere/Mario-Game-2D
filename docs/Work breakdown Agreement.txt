@@ -1,10 +1,6 @@
 WORK BREAKDOWN AGREEMENT
 
 Task allocation: The process for allocating tasks was undertaken during the group meeting.
-Question 1: Completed it together as an example
-Question 2-3 Kenda Wan
-Question 4-5 Junhao Li
-Question 6-7 Ashton Sequeira
 
 Diagram developer: Designs diagram to satisfy features and stories from the tasks. They are
 responsible for their designed diagram that meets the requirements of the tasks appropriately.
