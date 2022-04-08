@@ -4,7 +4,7 @@ Task allocation: The process for allocating tasks was undertaken during the grou
 
 Diagram developer: Designs diagram to satisfy features and stories from the tasks. They are
 responsible for their designed diagram that meets the requirements of the tasks appropriately.
-They need to provide the reasons why they use Interface, Abstract, Class, and Emun under different
+They need to provide the reasons why they use Interface, Abstract, Class, and Enum under different
 situations. Attends group meetings in any forms to update the progress to team.
 
 Diagram reviewer: Reviews and checks the diagram that is designed for quality assurance. The
