@@ -18,4 +18,5 @@ diagram reviewer needs to review diagram designed by other diagram developer. He
 perspective will be likely discovered so that the diagram can be improved.
 Currently assigned to: Everyone (Each person responses to different questions)
 
-sign:
+sign here:
+Junhao Li
