@@ -1,4 +1,6 @@
-package game;
+package game.reset;
+
+import game.action.Resettable;
 
 import java.util.ArrayList;
 import java.util.List;
