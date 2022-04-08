@@ -222,6 +222,7 @@ public abstract class Actor implements Capable, Printable {
 	 * Creates and returns an intrinsic weapon.
 	 *
 	 * By default, the Actor 'punches' for 5 damage. Override this method to create
+	 * By default, the Actor 'punches' for 5 damage. Override this method to create
 	 * an Actor with more interesting descriptions and/or different damage.
 	 *
 	 * @return a freshly-instantiated IntrinsicWeapon
