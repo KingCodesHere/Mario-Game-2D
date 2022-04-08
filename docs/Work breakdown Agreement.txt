@@ -1,6 +1,8 @@
 WORK BREAKDOWN AGREEMENT
 
 Task allocation: The process for allocating tasks was undertaken during the group meeting.
+UML diagram will be discussed and completed together
+Sequence diagram and rationale
 Question 1: Completed it together as an example
 Question 2-3 Kenda Wan
 Question 4-5 Junhao Li
@@ -16,3 +18,4 @@ diagram reviewer needs to review diagram designed by other diagram developer. He
 perspective will be likely discovered so that the diagram can be improved.
 Currently assigned to: Everyone (Each person responses to different questions)
 
+sign:
