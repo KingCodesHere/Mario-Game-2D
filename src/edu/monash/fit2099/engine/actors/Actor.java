@@ -99,7 +99,7 @@ public abstract class Actor implements Capable, Printable {
 	 */
 	public void addItemToInventory(Item item) {
 		inventory.add(item);
-	}
+	
 
 	/**
 	 * Remove an item from this Actor's inventory.
