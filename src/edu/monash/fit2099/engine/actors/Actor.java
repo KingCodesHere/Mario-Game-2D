@@ -99,7 +99,7 @@ public abstract class Actor implements Capable, Printable {
 	 */
 	public void addItemToInventory(Item item) {
 		inventory.add(item);
-	}
+	
 
 	/**
 	 * Remove an item from this Actor's inventory.
@@ -221,6 +221,7 @@ public abstract class Actor implements Capable, Printable {
 	/**
 	 * Creates and returns an intrinsic weapon.
 	 *
+	 * By default, the Actor 'punches' for 5 damage. Override this method to create
 	 * By default, the Actor 'punches' for 5 damage. Override this method to create
 	 * an Actor with more interesting descriptions and/or different damage.
 	 *
