@@ -1,4 +1,4 @@
-package game.action;
+package game.reset;
 
 import game.reset.ResetManager;
 
