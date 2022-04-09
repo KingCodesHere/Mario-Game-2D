@@ -16,8 +16,9 @@ situations. Attends group meetings in any forms to update the progress to team.
 Diagram reviewer: Reviews and checks the diagram that is designed for quality assurance. The
 diagram reviewer needs to review diagram designed by other diagram developer. Hence, a new
 perspective will be likely discovered so that the diagram can be improved.
-Currently assigned to: Everyone (Each person responses to different questions)
+Currently, assigned to: Everyone (Each person responses to different questions)
 
 By signing below, we agree to the WBA stated above:
 Junhao Li
 Kenda Wan
+Ashton Sequeira
