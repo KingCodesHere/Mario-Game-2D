@@ -6,7 +6,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 /**
  * Base class for Actions. These represent things that the actor can do.
  */
-public abstract classAction {
+public abstract class Action {
 
 	/**
 	 * Perform the Action.

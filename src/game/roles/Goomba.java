@@ -9,7 +9,6 @@ import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.action.AttackAction;
 import game.behaviours.Behaviour;
-import game.enums.Status;
 import game.behaviours.WanderBehaviour;
 
 import java.util.HashMap;

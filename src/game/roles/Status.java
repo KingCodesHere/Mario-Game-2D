@@ -1,4 +1,4 @@
-package game.enums;
+package game.roles;
 
 /**
  * Use this enum class to give `buff` or `debuff`.
