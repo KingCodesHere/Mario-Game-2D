@@ -10,6 +10,14 @@ Question 6-7 Ashton Sequeira
 Sequence diagram
 Junhao Li, Kenda Wan
 
+Communication:
+We created a groupchat on FaceBook, we can discuss and update the problems and solutions among our team.
+
+Position assign:
+Junhao Li: Diagram developer, Diagram reviewer
+Kenda Wan: Diagram developer, Diagram reviewer
+Ashton Sequeira: Diagram developer, Diagram reviewer
+
 Diagram developer: Designs diagram to satisfy features and stories from the tasks. They are
 responsible for their designed diagram that meets the requirements of the tasks appropriately.
 They need to provide the reasons why they use Interface, Abstract, Class, and Enum under different
