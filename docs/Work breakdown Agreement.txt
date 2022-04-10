@@ -1,16 +1,21 @@
 WORK BREAKDOWN AGREEMENT
 
-Task allocation: The process for allocating tasks was undertaken during the group meeting.
-UML diagram will be discussed and completed together
-Rationale
-Question 1: Completed it together as an example, Ashton Sequeira
+# Task allocation:
+The process for allocating tasks was undertaken during the group meeting.
+
+# UML diagrams
+Discussed and completed together
+
+# Rationale
+Question 1: Ashton Sequeira
 Question 2-3 Kenda Wan
 Question 4-5 Junhao Li
 Question 6-7 Ashton Sequeira
-Sequence diagram
+
+# Sequence diagram
 Junhao Li, Kenda Wan
 
-Communication:
+@Communication:
 We created a groupchat on FaceBook, we can discuss and update the problems and solutions among our team.
 
 Position assign:
@@ -18,12 +23,14 @@ Junhao Li: Diagram developer, Diagram reviewer
 Kenda Wan: Diagram developer, Diagram reviewer
 Ashton Sequeira: Diagram developer, Diagram reviewer
 
-Diagram developer: Designs diagram to satisfy features and stories from the tasks. They are
+@Diagram developer:
+Designs diagram to satisfy features and stories from the tasks. They are
 responsible for their designed diagram that meets the requirements of the tasks appropriately.
 They need to provide the reasons why they use Interface, Abstract, Class, and Enum under different
 situations. Attends group meetings in any forms to update the progress to team.
 
-Diagram reviewer: Reviews and checks the diagram that is designed for quality assurance. The
+@Diagram reviewer:
+Reviews and checks the diagram that is designed for quality assurance. The
 diagram reviewer needs to review diagram designed by other diagram developer. Hence, a new
 perspective will be likely discovered so that the diagram can be improved.
 Currently, assigned to: Everyone (Each person responses to different questions)
