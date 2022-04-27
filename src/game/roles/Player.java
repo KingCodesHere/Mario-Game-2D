@@ -7,13 +7,14 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 
+
 /**
  * Class representing the Player.
  */
 public class Player extends Actor  {
 
 	private final Menu menu = new Menu();
-
+	private final Display display= new Display();
 	/**
 	 * Constructor.
 	 *
@@ -26,12 +27,20 @@ public class Player extends Actor  {
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 	}
 
+	public void Description(){
+		display.println("HP:"+super.printHp());
+
+	}
+
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+		this.Description();
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
-
+		if (this.hasCapability(Status.INVINCIBLE)){
+			display.println(this +" is invincible!" );
+		}
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);
 	}
@@ -40,4 +49,5 @@ public class Player extends Actor  {
 	public char getDisplayChar(){
 		return this.hasCapability(Status.TALL) ? Character.toUpperCase(super.getDisplayChar()): super.getDisplayChar();
 	}
+
 }
