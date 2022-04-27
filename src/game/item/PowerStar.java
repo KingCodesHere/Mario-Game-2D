@@ -9,11 +9,13 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.RandomRange;
 import game.action.ConsumeItemAction;
 import game.grounds.Dirt;
+import game.grounds.HigherGround;
 import game.roles.Status;
 
 
 public class PowerStar extends Item implements Consumable {
     private int count = 0;
+    private HigherGround higherGround;
     Display display = new Display();
     /***
      * Constructor.
@@ -27,6 +29,7 @@ public class PowerStar extends Item implements Consumable {
 
         return new ConsumeItemAction(this);
     }
+    //b public void destoryHighGround()
     // Dunno when to use this method yet or it might be an interface map.locationOf(actor)==map.locationOf(ground) call method
     public void convertToCoins(Ground ground,Location location){
         Dirt dirt = new Dirt();
@@ -47,14 +50,13 @@ public class PowerStar extends Item implements Consumable {
         display.println("Mario consumes Power Star -" +(10-this.count)+ "turns remaining");
         if (this.count == 10) {
             actor.removeCapability(Status.INVINCIBLE);
+            actor.removeItemFromInventory(this);
         }
     }
     public void addSampleAction(Action newAction){
         this.addAction(newAction);
     }
-    public int getCount(){
-        return this.count;
-    }
+
     /**
      * Inform an Item on the ground of the passage of time.
      * This method is called once per turn, if the item rests upon the ground.
@@ -76,4 +78,6 @@ public class PowerStar extends Item implements Consumable {
         actor.addCapability(Status.INVINCIBLE);
         display.println(actor +" becomes invincible" ); // printout the actor status
     }
+    public void removeConsumeItemAction(ConsumeItemAction action){
+        this.removeAction(action);}
 }

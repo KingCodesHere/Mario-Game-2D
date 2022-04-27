@@ -27,14 +27,14 @@ public class Player extends Actor  {
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 	}
 
-	public void Description(){
-		display.println("HP:"+super.printHp());
+	public String Description(){
+		return "Mario"+super.printHp();
 
 	}
 
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-		this.Description();
+		display.println(this.Description()+"("+map.locationOf(this).x()+","+map.locationOf(this).y()+")");
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();

@@ -11,8 +11,6 @@ import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.positions.World;
-import edu.monash.fit2099.engine.actors.ActorLocationsIterator;
-import game.action.ConsumeItemAction;
 import game.grounds.Dirt;
 import game.grounds.Floor;
 import game.grounds.Tree;

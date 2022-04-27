@@ -26,6 +26,11 @@ public class SuperMushroom extends Item implements Consumable {
     @Override
     public void itemFunction(Actor actor){
         actor.increaseMaxHp(50);
-        actor.addCapability(Status.TALL);
+        actor.addCapability(Status.TALL); // the capability of the actor
+
+    }
+
+    public void removeConsumeItemAction(ConsumeItemAction action){
+        this.removeAction(action);
     }
 }

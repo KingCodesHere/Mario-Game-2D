@@ -7,4 +7,6 @@ public interface Consumable {
     ConsumeItemAction consumeItem(Actor actor);
     void itemFunction(Actor actor);
 
+    void removeConsumeItemAction(ConsumeItemAction consumeItemAction);
+
 }

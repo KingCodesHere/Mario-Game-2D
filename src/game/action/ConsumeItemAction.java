@@ -1,13 +1,10 @@
 package game.action;
-
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.item.Consumable;
-import game.item.MagicalItem;
 
-import java.util.function.Consumer;
 
 public class ConsumeItemAction extends Action {
     /**
@@ -29,6 +26,7 @@ public class ConsumeItemAction extends Action {
         actor.addItemToInventory((Item) item);
         map.locationOf(actor).removeItem((Item) item);
         item.itemFunction(actor);
+        item.removeConsumeItemAction(this);
         return menuDescription(actor);
     }
 
