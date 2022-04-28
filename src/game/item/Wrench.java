@@ -2,7 +2,8 @@ package game.item;
 
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 
-public class Wrench extends WeaponItem {
+public class Wrench extends WeaponItem implements Purchasable{
+    private int price = 200;
     /**
      * Constructor.
      *
@@ -14,5 +15,10 @@ public class Wrench extends WeaponItem {
      */
     public Wrench(String name, char displayChar, int damage, String verb, int hitRate) {
         super("Wrench", 'w', 50, "hits", 80);
+    }
+
+    @Override
+    public int getPrice() {
+        return this.price;
     }
 }

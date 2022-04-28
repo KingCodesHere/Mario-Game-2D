@@ -10,7 +10,6 @@ import game.item.Coin;
 import game.roles.Status;
 
 public class Wall extends Ground implements HigherGround{
-	Boolean isTrue = false;
 	public Wall() {
 		super('#');
 	}
@@ -19,7 +18,6 @@ public class Wall extends Ground implements HigherGround{
 	@Override
 	public boolean canActorEnter(Actor actor) {
 		if (actor.hasCapability(Status.INVINCIBLE)){
-			isTrue = true;
 			return true;
 		}
 		else{
@@ -27,7 +25,7 @@ public class Wall extends Ground implements HigherGround{
 		}
 	}
 	public void tick(Location location){
-		if (isTrue == true){
+		if (location.containsAnActor()){
 		convertToCoins(location);}
 	}
 	@Override
@@ -35,12 +33,7 @@ public class Wall extends Ground implements HigherGround{
 		return true;
 	}
 
-	@Override
-	public void convertToCoins(Location location) {
-		Dirt dirt = new Dirt();
-		Coin coin = new Coin(RandomRange.cashValue());
-		location.setGround(dirt);
-		location.addItem(coin);
-	}
+
+
 
 }

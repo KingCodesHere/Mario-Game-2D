@@ -7,4 +7,8 @@ public class RandomRange {
         int high = 100;
         return (r.nextInt(high - low) + low);
     }
+    public static int RandRange(int low, int high){
+        Random r = new Random();
+        return (r.nextInt(high - low) + low);
+    }
 }

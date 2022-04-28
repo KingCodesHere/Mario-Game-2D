@@ -13,8 +13,9 @@ import game.grounds.HigherGround;
 import game.roles.Status;
 
 
-public class PowerStar extends Item implements Consumable {
+public class PowerStar extends Item implements Consumable, Purchasable {
     private int count = 0;
+    private int price = 600;
     private HigherGround higherGround;
     Display display = new Display();
     /***
@@ -29,14 +30,7 @@ public class PowerStar extends Item implements Consumable {
 
         return new ConsumeItemAction(this);
     }
-    //b public void destoryHighGround()
-    // Dunno when to use this method yet or it might be an interface map.locationOf(actor)==map.locationOf(ground) call method
-    public void convertToCoins(Ground ground,Location location){
-        Dirt dirt = new Dirt();
-        Coin coin = new Coin(RandomRange.cashValue());
-        location.setGround(dirt);
-        location.addItem(coin);
-    }
+
     @Override
     /**
      * Inform a carried Item of the passage of time.
@@ -80,4 +74,9 @@ public class PowerStar extends Item implements Consumable {
     }
     public void removeConsumeItemAction(ConsumeItemAction action){
         this.removeAction(action);}
+
+    @Override
+    public int getPrice() {
+        return this.price;
+    }
 }

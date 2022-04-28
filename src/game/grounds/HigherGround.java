@@ -1,7 +1,13 @@
 package game.grounds;
 import edu.monash.fit2099.engine.positions.Location;
+import game.item.Coin;
 
 public interface HigherGround {
-    void convertToCoins(Location location);
+    default void convertToCoins(Location location) {
+        Dirt dirt = new Dirt();
+        Coin coin = new Coin();
+        location.setGround(dirt);
+        location.addItem(coin);
+    }
 
 }
