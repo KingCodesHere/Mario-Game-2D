@@ -1,28 +1,11 @@
 package game.grounds;
 
-import edu.monash.fit2099.engine.positions.Ground;
-import edu.monash.fit2099.engine.positions.Location;
-
-public abstract class Tree extends Ground implements HigherGround{
-    private int age = 0;
+public abstract class Tree extends HighGround {
     /**
      * Constructor.
      *
      */
     public Tree(char displayChar) {
-
-        super('+');
-
+        super(displayChar);
     }
-
-    @Override
-    public void tick(Location location) {
-        super.tick(location);
-        age++;
-        if (age == 10)
-            setDisplayChar('t');
-        if (age == 20)
-            setDisplayChar('T');
-    }
-
 }
