@@ -57,8 +57,9 @@ public class Application {
 
 			GameMap gameMap = new GameMap(groundFactory, map);
 			world.addGameMap(gameMap);
-		    Wallet wallet = new Wallet();
-			Actor mario = new Player("Player", 'm', 100,wallet);
+		    //Wallet wallet = new Wallet();
+			Actor mario = new Player("Player", 'm', 100);
+			((Player) mario).addWallet(mario);
 
 			world.addPlayer(mario, gameMap.at(42, 10));
 			// FIXME: the Goomba should be generated from the Tree
@@ -73,9 +74,9 @@ public class Application {
 
 
 			Coin coin = new Coin();
-			coin.addSampleAction(coin.getPickUp(coin,wallet));
+			coin.addSampleAction(coin.getPickUp(coin, (Player) mario));
 			gameMap.at(42,11).addItem(coin);
-			//superMushroom.addSampleAction(new ConsumeItemAction(superMushroom));
+
 			world.run();
 
 
