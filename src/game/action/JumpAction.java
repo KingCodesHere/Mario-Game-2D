@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
+import game.RandomRange;
 import game.grounds.High;
 import game.grounds.HighGround;
 import game.roles.Status;
@@ -29,7 +30,7 @@ public class JumpAction extends Action {
             statement=actor + " jumped and is standing on top of " + highGround.getName();
         }
         else if(jumpToLocation.getGround().hasCapability(High.SPROUT)) {
-            if (random.nextInt(1, 101) <= 90) {
+            if (RandomRange.RandRange(1, 101) <= 90) {
                 map.moveActor(actor, jumpToLocation);
                 statement= actor + " jumped and is standing on top of " + highGround.getName();
             } else {
@@ -39,7 +40,7 @@ public class JumpAction extends Action {
             }
         }
         else if(jumpToLocation.getGround().hasCapability(High.SAPLING)) {
-            if (random.nextInt(1, 101) <= 80) {
+            if (RandomRange.RandRange(1, 101) <= 80) {
                 map.moveActor(actor, jumpToLocation);
                 statement= actor + " jumped and is standing on top of " + highGround.getName();
             } else {
@@ -48,7 +49,7 @@ public class JumpAction extends Action {
             }
         }
         else if(jumpToLocation.getGround().hasCapability(High.MATURE)) {
-            if (random.nextInt(1, 101) <= 70) {
+            if (RandomRange.RandRange(1, 101) <= 70) {
                 map.moveActor(actor, jumpToLocation);
                 statement= actor + " jumped and is standing on top of " + highGround.getName();
             } else {
@@ -58,7 +59,7 @@ public class JumpAction extends Action {
             }
         }
         else if(jumpToLocation.getGround().hasCapability(High.WALL)) {
-            if (random.nextInt(1, 101) <= 80) {
+            if (RandomRange.RandRange(1, 101) <= 80) {
                 map.moveActor(actor, jumpToLocation);
                 statement= actor + " jumped and is standing on top of " + highGround.getName();
             } else {

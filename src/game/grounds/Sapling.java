@@ -1,6 +1,7 @@
 package game.grounds;
 
 import edu.monash.fit2099.engine.positions.Location;
+import game.RandomRange;
 import game.item.Coin;
 
 import java.util.Random;
@@ -24,7 +25,7 @@ Sapling extends Tree{
         Random random = new Random();
         if (count == 10) {
             location.setGround(new Mature()); //Every 10 turns ,sapling turns to mature
-        } else if (random.nextInt(1, 101) <= 10) {
+        } else if (RandomRange.RandRange(1, 101) <= 10) {
             location.addItem(new Coin("Coin", '$', true)); //10% chance to drop coin
         }
     }
