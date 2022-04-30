@@ -20,21 +20,20 @@ public class SpeakAction extends Action{
         statement.add("Being imprisoned in these walls can drive a fungus crazy :( ");
 
         Random random = new Random();
-        int index = 0;
+        int i = random.nextInt(statement.size());
+
             if (actor.hasCapability(Status.WRENCH)) {
                 statement.add("You better get back to finding the Power Stars.");
-                index = random.nextInt(statement.size());
-                return statement.get(index);
+                return statement.get(i);
 
-            } else if (actor.hasCapability(Status.INVINCIBLE)) {
+            }else if (actor.hasCapability(Status.INVINCIBLE)) {
                 statement.add("You might need a wrench to smash Koopa's hard shells.");
-                index = random.nextInt(statement.size());
-                return statement.get(index);
+                return statement.get(i);
+
             }else {
                 statement.add("You better get back to finding the Power Stars.");
                 statement.add("You might need a wrench to smash Koopa's hard shells.");
-                index = random.nextInt(statement.size());
-                return statement.get(index);
+                return statement.get(i);
             }
     }
 
