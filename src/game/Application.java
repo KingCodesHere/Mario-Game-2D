@@ -12,6 +12,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.positions.World;
 import game.balance.Wallet;
+import game.balance.WalletsManager;
 import game.grounds.Dirt;
 import game.grounds.Floor;
 import game.grounds.Tree;
@@ -59,22 +60,18 @@ public class Application {
 			world.addGameMap(gameMap);
 		    //Wallet wallet = new Wallet();
 			Actor mario = new Player("Player", 'm', 100);
-			((Player) mario).addWallet(mario);
-
+			//((Player) mario).addWallet(mario);
+			WalletsManager.getInstance().appendWalletItem((Player) mario,new Wallet());
 			world.addPlayer(mario, gameMap.at(42, 10));
 			// FIXME: the Goomba should be generated from the Tree
 			gameMap.at(35, 10).addActor(new Goomba());
 			SuperMushroom superMushroom = new SuperMushroom();
-			superMushroom.addSampleAction(superMushroom.consumeItem(mario));
 			gameMap.at(42, 10).addItem(superMushroom);
 
 			PowerStar powerStar = new PowerStar();
-			powerStar.addSampleAction(powerStar.consumeItem(mario));
 			gameMap.at(43, 10).addItem(powerStar);
 
-
 			Coin coin = new Coin();
-			coin.addSampleAction(coin.getPickUp(coin, (Player) mario));
 			gameMap.at(42,11).addItem(coin);
 
 			world.run();

@@ -1,17 +1,24 @@
 package game.balance;
-
-import edu.monash.fit2099.engine.actors.Actor;
 import java.util.HashMap;
 
 public class WalletsManager {
-    private HashMap<Actor, Wallet> wallets = new HashMap<>();
+    private HashMap<ActorWallets,Wallet> walletHashMap;
 
-    public WalletsManager(){}
+    private static WalletsManager instance;
+    public WalletsManager(){walletHashMap = new HashMap<>();}
 
-    public void addWallet(Actor actor){
-        wallets.put(actor,new Wallet());
+    public static WalletsManager getInstance(){
+        if(instance == null){
+            instance = new WalletsManager();
+        }
+        return instance;
     }
-    public Wallet getValue(Actor actor){
-        return wallets.get(actor);
+
+    public void appendWalletItem(ActorWallets actor,Wallet wallet){
+        this.walletHashMap.put(actor,wallet);
+    }
+
+    public  HashMap<ActorWallets,Wallet> getWalletHashMap(){
+        return new  HashMap<ActorWallets,Wallet>(this.walletHashMap);
     }
 }

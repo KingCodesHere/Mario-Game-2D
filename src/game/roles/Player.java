@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import game.RandomRange;
+import game.balance.ActorWallets;
 import game.balance.ConvertCoinToWallet;
 import game.balance.Wallet;
 import game.balance.WalletsManager;
@@ -18,7 +19,7 @@ import game.item.Coin;
 /**
  * Class representing the Player.
  */
-public class Player extends Actor implements ConvertCoinToWallet {
+public class Player extends Actor implements ActorWallets {
     private WalletsManager wallets = new WalletsManager();
     private final Menu menu = new Menu();
     private Coin coin;
@@ -33,6 +34,7 @@ public class Player extends Actor implements ConvertCoinToWallet {
     public Player(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
         this.addCapability(Status.HOSTILE_TO_ENEMY);
+        this.addToWalletsManager();
     }
 
     public String Description() {
@@ -40,27 +42,24 @@ public class Player extends Actor implements ConvertCoinToWallet {
 
     }
 
-    public void addWallet(Actor actor) {
-        this.wallets.addWallet(actor);
-    }
-
+//    public void addWallet(Actor actor) {
+//        this.wallets.addWallet(actor);
+//    }
+//
     public Wallet getPlayerWallet() {
-        return wallets.getValue(this);
+        return WalletsManager.getInstance().getWalletHashMap().get(this);
     }
 
-    public void addCoinToWallet() {
-        getPlayerWallet().depositBalance(RandomRange.cashValue());
-    }
+//    public void addCoinToWallet() {
+//        getPlayerWallet().depositBalance(RandomRange.cashValue());
+//    }
 
 
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-        if (this.hasCapability(Status.COIN) ) {
-            checkCoin();
-            //coin.removeDropItemAction((DropItemAction) lastAction);
-        }
+
         display.println(this.Description() + " at (" + map.locationOf(this).x() + "," + map.locationOf(this).y() + ")");
-        display.println("wallet: $" + getPlayerWallet().getBalance() + "\n" + this.getInventory());
+        display.println("wallet: $" + getPlayerWallet().getBalance()+ "\n" + this.getInventory());
         // Handle multi-turn Actions
         if (lastAction.getNextAction() != null)
             return lastAction.getNextAction();
@@ -77,16 +76,24 @@ public class Player extends Actor implements ConvertCoinToWallet {
         return this.hasCapability(Status.TALL) ? Character.toUpperCase(super.getDisplayChar()) : super.getDisplayChar();
     }
 
-    @Override
-    public void checkCoin() {
+//    @Override
+//    public void checkCoin() {
+//
+//        for (Item item : this.getInventory()) {
+//            if (item.toString().equals("Coin")) {
+//                addCoinToWallet();
+//                item.removeCapability(Status.COIN);
+//                //item.togglePortability();
+//                //this.removeItemFromInventory(item);
+//            }
+//        }
+//    }
 
-        for (Item item : this.getInventory()) {
-            if (item.toString().equals("Coin")) {
-                addCoinToWallet();
-                item.removeCapability(Status.COIN);
-                //item.togglePortability();
-                //this.removeItemFromInventory(item);
-            }
-        }
-    }
+//    @Override
+//    public void setWallet(double price) {
+//        if (price< 0){
+//
+//        }
+//
+//    }
 }

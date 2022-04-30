@@ -26,7 +26,6 @@ public class ConsumeItemAction extends Action {
         actor.addItemToInventory((Item) item);
         map.locationOf(actor).removeItem((Item) item);
         item.itemFunction(actor);
-        item.removeConsumeItemAction(this);
         return menuDescription(actor);
     }
 

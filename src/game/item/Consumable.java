@@ -4,9 +4,8 @@ import edu.monash.fit2099.engine.actors.Actor;
 import game.action.ConsumeItemAction;
 
 public interface Consumable {
-    ConsumeItemAction consumeItem(Actor actor);
+    ConsumeItemAction consumeItem();
     void itemFunction(Actor actor);
 
-    void removeConsumeItemAction(ConsumeItemAction consumeItemAction);
 
 }

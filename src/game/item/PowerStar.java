@@ -12,11 +12,13 @@ import game.grounds.Dirt;
 import game.grounds.HigherGround;
 import game.roles.Status;
 
+import java.util.List;
+
 
 public class PowerStar extends Item implements Consumable, Purchasable {
     private int count = 0;
     private int price = 600;
-    private HigherGround higherGround;
+    private int lifetime = 1;
     Display display = new Display();
     /***
      * Constructor.
@@ -26,7 +28,7 @@ public class PowerStar extends Item implements Consumable, Purchasable {
         this.addCapability(Status.INVINCIBLE);
     }
 
-    public ConsumeItemAction consumeItem(Actor actor){
+    public ConsumeItemAction consumeItem(){
 
         return new ConsumeItemAction(this);
     }
@@ -41,11 +43,12 @@ public class PowerStar extends Item implements Consumable, Purchasable {
      */
     public void tick(Location currentLocation, Actor actor) {
         this.count += 1;
-        display.println("Mario consumes Power Star -" +(10-this.count)+ "turns remaining");
+        display.println("Mario consumes Power Star - " +(10-this.count)+ "turns remaining");
         if (this.count == 10) {
             actor.removeCapability(Status.INVINCIBLE);
             actor.removeItemFromInventory(this);
         }
+
     }
     public void addSampleAction(Action newAction){
         this.addAction(newAction);
@@ -72,11 +75,18 @@ public class PowerStar extends Item implements Consumable, Purchasable {
         actor.addCapability(Status.INVINCIBLE);
         display.println(actor +" becomes invincible" ); // printout the actor status
     }
-    public void removeConsumeItemAction(ConsumeItemAction action){
-        this.removeAction(action);}
 
     @Override
     public int getPrice() {
         return this.price;
+    }
+
+    @Override
+    public List<Action> getAllowableActions() {
+        if (lifetime ==1){
+            this.addSampleAction(this.consumeItem());
+            this.lifetime -= 1;
+        }
+        return super.getAllowableActions();
     }
 }

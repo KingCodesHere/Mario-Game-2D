@@ -96,9 +96,6 @@ public abstract class Item implements Printable, Capable {
 		this.portable = !this.portable;
 	}
 
-	public boolean getPortable(){
-		return this.portable;
-	}
 	/**
 	 * Upcast item to Weapon if it is possible
 	 * @return Weapon instance or null if it cannot be upcasted

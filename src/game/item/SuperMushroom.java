@@ -3,11 +3,16 @@ package game.item;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
+import edu.monash.fit2099.engine.items.PickUpItemAction;
 import game.action.ConsumeItemAction;
+import game.action.PickUpCoinAction;
 import game.roles.Status;
+
+import java.util.List;
 
 public class SuperMushroom extends Item implements Consumable, Purchasable {
     private int price = 400;
+    private int lifetime = 1;
     /***
      * Constructor.
      */
@@ -21,7 +26,7 @@ public class SuperMushroom extends Item implements Consumable, Purchasable {
     }
 
     @Override
-    public ConsumeItemAction consumeItem(Actor actor) {
+    public ConsumeItemAction consumeItem() {
         return new ConsumeItemAction(this);
     }
 
@@ -30,6 +35,14 @@ public class SuperMushroom extends Item implements Consumable, Purchasable {
         actor.increaseMaxHp(50);
         actor.addCapability(Status.TALL); // the capability of the actor
 
+    }
+    @Override
+    public List<Action> getAllowableActions() {
+        if (lifetime ==1){
+            this.addSampleAction(this.consumeItem());
+            this.lifetime -= 1;
+        }
+        return super.getAllowableActions();
     }
 
     public void removeConsumeItemAction(ConsumeItemAction action){
