@@ -13,6 +13,7 @@ import game.grounds.Sprout;
 import game.grounds.Wall;
 import game.roles.Goomba;
 import game.roles.Player;
+import game.roles.Toad;
 
 /**
  * The main class for the Mario World game.
@@ -53,7 +54,7 @@ public class Application {
 			Actor mario = new Player("Player", 'm', 100);
 			world.addPlayer(mario, gameMap.at(42, 10));
 
-
+			gameMap.addActor(new Toad(),gameMap.at(43,11));
 
 			world.run();
 

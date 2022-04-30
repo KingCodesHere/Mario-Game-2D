@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-abstract public class Enemy extends Actor {
+public abstract class Enemy extends Actor {
     private final Map<Integer, Behaviour> behaviours = new HashMap<>();
     /**
      * Constructor.
