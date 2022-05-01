@@ -10,8 +10,7 @@ import java.util.List;
 
 public class SuperMushroom extends Item implements Consumable, Purchasable {
     private int price = 400;
-    private boolean consumeable = true;
-    private int consumeTime = 1;
+    private int lifetime = 1;
     /***
      * Constructor.
      */
@@ -24,9 +23,6 @@ public class SuperMushroom extends Item implements Consumable, Purchasable {
         this.addAction(newAction);
     }
 
-    public void consumeTime(){
-        this.consumeable = false;
-    }
 
     @Override
     public ConsumeItemAction consumeItem() {
@@ -42,16 +38,9 @@ public class SuperMushroom extends Item implements Consumable, Purchasable {
     }
     @Override
     public List<Action> getAllowableActions() {
-        if (this.consumeable && this.consumeTime ==1 ){
+        if (lifetime ==1){
             this.addSampleAction(this.consumeItem());
-            this.consumeTime -=1;
-            System.out.println("sb");
-
-        }
-        else{
-            System.out.println("why");
-            this.removeAction(this.consumeItem());
-
+            this.lifetime -= 1;
         }
         return super.getAllowableActions();
     }

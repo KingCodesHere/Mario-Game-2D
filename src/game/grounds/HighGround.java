@@ -42,7 +42,7 @@ public abstract class HighGround extends Ground {
     }
     public void convertToCoins(Location location) {
         Dirt dirt = new Dirt();
-        Coin coin = new Coin();
+        Coin coin = new Coin(5);
         //coin.addSampleAction(new PickUpCoinAction(coin, new Player("Player", 'm', 100)));
         location.setGround(dirt);
         location.addItem(coin);

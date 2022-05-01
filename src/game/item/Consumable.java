@@ -6,7 +6,7 @@ import game.action.ConsumeItemAction;
 public interface Consumable {
     ConsumeItemAction consumeItem();
     void itemFunction(Actor actor);
-    public void consumeTime();
+
 
 
 }

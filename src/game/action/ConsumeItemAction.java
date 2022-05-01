@@ -33,15 +33,14 @@ public class ConsumeItemAction extends Action {
         }
         if (isExist) {
             item.itemFunction(actor);
-            item.consumeTime();
+            actor.removeItemFromInventory((Item) item);
             System.out.println("sb");
             return menuDescription(actor);
 
         } else {
-            actor.addItemToInventory((Item) item);
             map.locationOf(actor).removeItem((Item) item);
             item.itemFunction(actor);
-            item.consumeTime();
+
             System.out.println("whyy");
             return menuDescription(actor);
         }

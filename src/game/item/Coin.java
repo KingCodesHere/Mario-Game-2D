@@ -20,6 +20,12 @@ public class Coin extends Item {
         this.addCapability(Status.COIN);
 
     }
+    public Coin(int price) {
+        super("Coin", '$', false);
+        this.value = price;
+        this.addCapability(Status.COIN);
+
+    }
 
     public int getValue() {
         return this.value;

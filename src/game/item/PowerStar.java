@@ -72,10 +72,6 @@ public class PowerStar extends Item implements Consumable, Purchasable {
         display.println(actor +" becomes invincible" ); // printout the actor status
     }
 
-    @Override
-    public void consumeTime() {
-
-    }
 
     @Override
     public int getPrice() {
