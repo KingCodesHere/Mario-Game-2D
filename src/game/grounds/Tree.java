@@ -8,4 +8,5 @@ public abstract class Tree extends HighGround {
     public Tree(char displayChar) {
         super(displayChar);
     }
+
 }

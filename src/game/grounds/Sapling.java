@@ -21,6 +21,9 @@ Sapling extends Tree{
 
     @Override
     public void tick(Location location) {
+        if (location.containsAnActor()) {
+            convertToCoins(location);
+        }
         count += 1;
         Random random = new Random();
         if (count == 10) {
@@ -29,4 +32,5 @@ Sapling extends Tree{
             location.addItem(new Coin()); //10% chance to drop coin
         }
     }
+
 }

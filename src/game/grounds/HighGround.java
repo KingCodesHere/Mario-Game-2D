@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 import game.action.JumpAction;
 import game.item.Coin;
+import game.roles.Status;
 
 public abstract class HighGround extends Ground {
     private String name;
@@ -23,14 +24,15 @@ public abstract class HighGround extends Ground {
         return name;
     }
 
-    @Override
-    public boolean canActorEnter(Actor actor) {
-        return false;
+    public void tick(Location location) {
+        if (location.containsAnActor()) {
+            convertToCoins(location);
+        }
     }
+
 
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction) {
-        //convertToCoins(location);
         if(location.containsAnActor()){
             return new ActionList();
         }
@@ -44,5 +46,19 @@ public abstract class HighGround extends Ground {
         //coin.addSampleAction(new PickUpCoinAction(coin, new Player("Player", 'm', 100)));
         location.setGround(dirt);
         location.addItem(coin);
+    }
+    @Override
+    public boolean canActorEnter(Actor actor) {
+        if (actor.hasCapability(Status.INVINCIBLE)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    @Override
+    public boolean blocksThrownObjects() {
+        return true;
     }
 }

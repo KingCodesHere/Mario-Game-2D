@@ -29,4 +29,5 @@ public class Sprout extends Tree{
             location.addActor(new Goomba()); //After every turn,10% chance for Goomba to spawn and doesn't spawn if actor stands on it
         }
     }
+
 }
