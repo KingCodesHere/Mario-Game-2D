@@ -1,5 +1,4 @@
 package game.roles;
-
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
@@ -9,16 +8,14 @@ import edu.monash.fit2099.engine.displays.Menu;
 import game.balance.ActorWallets;
 import game.balance.Wallet;
 import game.balance.WalletsManager;
-import game.item.Coin;
+
 
 
 /**
  * Class representing the Player.
  */
 public class Player extends Actor implements ActorWallets {
-    private WalletsManager wallets = new WalletsManager();
     private final Menu menu = new Menu();
-    private Coin coin;
 
     /**
      * Constructor.
@@ -38,17 +35,9 @@ public class Player extends Actor implements ActorWallets {
 
     }
 
-//    public void addWallet(Actor actor) {
-//        this.wallets.addWallet(actor);
-//    }
-//
     public Wallet getPlayerWallet() {
         return WalletsManager.getInstance().getWalletHashMap().get(this);
     }
-
-//    public void addCoinToWallet() {
-//        getPlayerWallet().depositBalance(RandomRange.cashValue());
-//    }
 
 
     @Override
@@ -72,24 +61,5 @@ public class Player extends Actor implements ActorWallets {
         return this.hasCapability(Status.TALL) ? Character.toUpperCase(super.getDisplayChar()) : super.getDisplayChar();
     }
 
-//    @Override
-//    public void checkCoin() {
-//
-//        for (Item item : this.getInventory()) {
-//            if (item.toString().equals("Coin")) {
-//                addCoinToWallet();
-//                item.removeCapability(Status.COIN);
-//                //item.togglePortability();
-//                //this.removeItemFromInventory(item);
-//            }
-//        }
-//    }
 
-//    @Override
-//    public void setWallet(double price) {
-//        if (price< 0){
-//
-//        }
-//
-//    }
 }

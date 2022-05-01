@@ -1,9 +1,11 @@
 package game.action;
+
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.item.Consumable;
+import game.roles.Status;
 
 
 public class ConsumeItemAction extends Action {
@@ -11,6 +13,7 @@ public class ConsumeItemAction extends Action {
      * Current item
      */
     private final Consumable item;
+    private boolean isExist = false;
 
     /**
      * Constructor.
@@ -23,14 +26,28 @@ public class ConsumeItemAction extends Action {
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        actor.addItemToInventory((Item) item);
-        map.locationOf(actor).removeItem((Item) item);
-        item.itemFunction(actor);
-        return menuDescription(actor);
+        for (Item items : actor.getInventory()) {
+            if (items == this.item) {
+                isExist = true;
+            }
+        }
+        if (isExist) {
+            item.itemFunction(actor);
+            item.consumeTime();
+            System.out.println("FUCKk");
+            return menuDescription(actor);
+        } else {
+            actor.addItemToInventory((Item) item);
+            map.locationOf(actor).removeItem((Item) item);
+            item.itemFunction(actor);
+            item.consumeTime();
+            System.out.println("whyy");
+            return menuDescription(actor);
+        }
     }
 
     @Override
     public String menuDescription(Actor actor) {
-        return  actor + " consumes the " + item;
+        return actor + " consumes the " + item;
     }
 }

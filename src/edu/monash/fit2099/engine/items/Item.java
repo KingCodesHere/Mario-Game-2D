@@ -15,7 +15,7 @@ import java.util.List;
  * Abstract base class representing a physical object in the game world.
  *
  */
-public abstract class Item implements Printable, Capable {
+public abstract class  Item implements Printable, Capable {
 
 	private final String name;
 	private char displayChar;

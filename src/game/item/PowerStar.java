@@ -4,12 +4,8 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.items.Item;
-import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
-import game.RandomRange;
 import game.action.ConsumeItemAction;
-import game.grounds.Dirt;
-import game.grounds.HigherGround;
 import game.roles.Status;
 
 import java.util.List;
@@ -25,7 +21,7 @@ public class PowerStar extends Item implements Consumable, Purchasable {
      */
     public PowerStar() {
         super("Power Star", 'p', false);
-        this.addCapability(Status.INVINCIBLE);
+
     }
 
     public ConsumeItemAction consumeItem(){
@@ -74,6 +70,11 @@ public class PowerStar extends Item implements Consumable, Purchasable {
         actor.heal(200);
         actor.addCapability(Status.INVINCIBLE);
         display.println(actor +" becomes invincible" ); // printout the actor status
+    }
+
+    @Override
+    public void consumeTime() {
+
     }
 
     @Override

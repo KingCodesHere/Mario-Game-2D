@@ -1,5 +1,4 @@
 package game.action;
-
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
@@ -24,8 +23,9 @@ public class BuyAction extends Action {
     public String execute(Actor actor, GameMap map) {
         int valueOfWallet =  WalletsManager.getInstance().getWalletHashMap().get(actor).getBalance();
         int purchasedItemPrice = item.getPrice();
-        if(purchasedItemPrice >= valueOfWallet){
+        if(purchasedItemPrice <= valueOfWallet){
             actor.addItemToInventory((Item) item);
+            WalletsManager.getInstance().getWalletHashMap().get(actor).withdrawBalance(purchasedItemPrice);
             return actor +" purchased "+item;}
         else{
             return  "You don't have enough coins! and so you cannot get the " + item+".";
@@ -33,6 +33,6 @@ public class BuyAction extends Action {
     }
     @Override
     public String menuDescription(Actor actor) {
-        return actor +" buys "+"item";
+        return actor +" buys "+item +" $"+item.getPrice();
     }
 }
