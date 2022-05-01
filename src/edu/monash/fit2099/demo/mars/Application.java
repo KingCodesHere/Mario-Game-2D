@@ -52,7 +52,7 @@ public class Application {
 
         MartianItem rocket = new MartianItem("Rocket", '^', false);
         rocket.addSampleAction(new MoveActorAction(mars.at(7, 2), "to Mars!"));
-        gameMap.at(1, 1).addItem(rocket);
+        gameMap.at(6, 1).addItem(rocket);
 
         Item spaceSuit = new MartianItem("space suit", '[', true);
         spaceSuit.addCapability(DemoCapabilities.SPACETRAVELLER);
