@@ -1,5 +1,6 @@
 package game.roles;
 
+import edu.monash.fit2099.demo.conwayslife.Player;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
@@ -31,18 +32,36 @@ public class Toad extends Actor {
 
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        return new IdleAction();
+    }
 
-
-        return new DoNothingAction();
-
+    class IdleAction extends Action{
+        @Override
+        public String execute(Actor actor, GameMap map) {
+            return "\r";
+        }
+        @Override
+        public String menuDescription(Actor actor) {
+            return "\r";
+        }
     }
 
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
+
         ActionList actions = new ActionList();
-        actions.add(new SpeakAction());
-        items(actions,new Wrench(),new SuperMushroom(),new PowerStar());
-        return actions;
+
+
+        for (Exit exit : map.locationOf(otherActor).getExits()) {
+            Location destination = exit.getDestination();
+            if (destination.containsAnActor()) {
+                actions.add(new SpeakAction());
+                items(actions,new Wrench(),new SuperMushroom(),new PowerStar());
+                return actions;
+            }
+
+        }
+        return new ActionList();
     }
 
     public void items(ActionList actions, Purchasable... itemTypes) {

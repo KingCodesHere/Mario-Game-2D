@@ -47,6 +47,7 @@ public abstract class HighGround extends Ground {
         location.setGround(dirt);
         location.addItem(coin);
     }
+
     @Override
     public boolean canActorEnter(Actor actor) {
         if (actor.hasCapability(Status.INVINCIBLE)) {

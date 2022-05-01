@@ -18,22 +18,5 @@ public class Koopa extends Enemy{
         super("Koopa", 'K',50);
         this.behaviours.put(10,new WanderBehaviour());
     }
-    @Override
-    public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
-        ActionList actions = new ActionList();
-        // it can be attacked only by the HOSTILE opponent, and this action will not attack the HOSTILE enemy back.
-        if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
-            actions.add(new AttackAction(this,direction));
-        }
-        return actions;
-    }
-    @Override
-    public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-        for(Behaviour Behaviour: behaviours.values()) {
-            Action action = Behaviour.getAction(this, map);
-            if (action != null)
-                return action;
-        }
-        return new DoNothingAction();
-    }
+
 }

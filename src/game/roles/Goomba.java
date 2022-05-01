@@ -46,18 +46,5 @@ public class Goomba extends Enemy {
 		return actions;
 	}
 
-	/**
-	 * Figure out what to do next.
-	 * @see Actor#playTurn(ActionList, Action, GameMap, Display)
-	 */
-	@Override
-	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-		for(Behaviour Behaviour : behaviours.values()) {
-			Action action = Behaviour.getAction(this, map);
-			if (action != null)
-				return action;
-		}
-		return new DoNothingAction();
-	}
 
 }

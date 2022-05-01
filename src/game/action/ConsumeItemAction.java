@@ -36,6 +36,7 @@ public class ConsumeItemAction extends Action {
             item.consumeTime();
             System.out.println("sb");
             return menuDescription(actor);
+
         } else {
             actor.addItemToInventory((Item) item);
             map.locationOf(actor).removeItem((Item) item);
