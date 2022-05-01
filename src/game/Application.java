@@ -13,10 +13,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
 import game.balance.Wallet;
 import game.balance.WalletsManager;
-import game.grounds.Dirt;
-import game.grounds.Floor;
-import game.grounds.Tree;
-import game.grounds.Wall;
+import game.grounds.*;
 import game.item.Coin;
 import game.item.PowerStar;
 import game.item.SuperMushroom;
@@ -34,7 +31,7 @@ public class Application {
 
 			World world = new World(new Display());
 
-			FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Tree());
+			FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Sprout());
 
 			List<String> map = Arrays.asList(
 				"..........................................##..........+.........................",
@@ -65,7 +62,7 @@ public class Application {
 			WalletsManager.getInstance().appendWalletItem((Player) mario,new Wallet());
 			world.addPlayer(mario, gameMap.at(42, 10));
 			// FIXME: the Goomba should be generated from the Tree
-			gameMap.at(35, 10).addActor(new Goomba());
+			//gameMap.at(35, 10).addActor(new Goomba());
 			SuperMushroom superMushroom = new SuperMushroom();
 			gameMap.at(42, 10).addItem(superMushroom);
 

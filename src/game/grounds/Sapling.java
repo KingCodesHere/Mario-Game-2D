@@ -26,7 +26,7 @@ Sapling extends Tree{
         if (count == 10) {
             location.setGround(new Mature()); //Every 10 turns ,sapling turns to mature
         } else if (RandomRange.RandRange(1, 101) <= 10) {
-            location.addItem(new Coin("Coin", '$', true)); //10% chance to drop coin
+            location.addItem(new Coin()); //10% chance to drop coin
         }
     }
 }
