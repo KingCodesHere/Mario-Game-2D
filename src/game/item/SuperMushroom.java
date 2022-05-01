@@ -45,7 +45,7 @@ public class SuperMushroom extends Item implements Consumable, Purchasable {
         if (this.consumeable && this.consumeTime ==1 ){
             this.addSampleAction(this.consumeItem());
             this.consumeTime -=1;
-            System.out.println("FUCK");
+            System.out.println("sb");
 
         }
         else{

@@ -34,7 +34,7 @@ public class ConsumeItemAction extends Action {
         if (isExist) {
             item.itemFunction(actor);
             item.consumeTime();
-            System.out.println("FUCKk");
+            System.out.println("sb");
             return menuDescription(actor);
         } else {
             actor.addItemToInventory((Item) item);
