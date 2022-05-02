@@ -73,6 +73,11 @@ public class Toad extends Actor {
         return new ActionList();
     }
 
+    /**
+     * For loop to loop through all the items that have been added into the action
+     * @param actions   action
+     * @param itemTypes Purchasable
+     */
     public void items(ActionList actions, Purchasable... itemTypes) {
         for (Purchasable item : itemTypes) {
             try {
