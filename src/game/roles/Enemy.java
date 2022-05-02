@@ -25,9 +25,9 @@ import java.util.Random;
 
 public abstract class Enemy extends Actor {
     private final Map<Integer, Behaviour> behaviours = new HashMap<>();
-    private Actor actor;
     private String verb;
     private int attackDamage;
+
 
     public String getVerb() {
         return verb;
@@ -43,14 +43,13 @@ public abstract class Enemy extends Actor {
         this.verb=verb;
         this.addCapability(Status.HOSTILE_TO_PLAYER);
         this.behaviours.put(3, new WanderBehaviour());
-        this.behaviours.put(2, new FollowBehaviour(actor));
         this.behaviours.put(1, new AttackBehaviour());
     }
 
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
         if (!this.isConscious() || this.getMaxHp() <= 0) {
-            return
+            map.removeActor(this);
         } else {
             for (Behaviour behaviour : behaviours.values()) {
                 Action action = behaviour.getAction(this, map);

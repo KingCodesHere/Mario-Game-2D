@@ -21,28 +21,24 @@ public class Koopa extends Enemy{
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions=super.allowableActions(otherActor,direction,map);
-        if(!super.isConscious()){
+        if(this.hasCapability(Status.DORMANT)) {
             actions.clear();
-            if
         }
+        if(otherActor.hasCapability(Status.WRENCH) && this.hasCapability(Status.DORMANT)){
+            actions.add(new DestroyShellAction(this));
+        }
+        return actions;
     }
 
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-        if(super.getMaxHp()<=0){
-            map.removeActor(this);
+        if(!super.isConscious()){
+            this.setDisplayChar('D');
+            this.addCapability(Status.DORMANT);
         }
-        else{
-            return super.playTurn(actions,lastAction,map,display);
-        }
-        return new DoNothingAction();
+        return super.playTurn(actions,lastAction,map,display);
+
     }
 
-    @Override
-    public char getDisplayChar() {
-        if(this.hasCapability(Status.TALL)){
-            return 'D';
-        }
-        return super.getDisplayChar();
-    }
+
 }

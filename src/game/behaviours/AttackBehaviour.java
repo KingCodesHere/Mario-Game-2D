@@ -26,12 +26,14 @@ public class AttackBehaviour extends Action implements Behaviour  {
         Location actorLocation = map.locationOf(actor);
         for (Exit exit : actorLocation.getExits()) {
             Location destination = exit.getDestination();
-            if (destination.containsAnActor()) {
+            if (destination.containsAnActor() && destination.getActor().hasCapability(Status.HOSTILE_TO_ENEMY)) {
                 return new AttackAction(destination.getActor(), exit.getName());
             }
         }
-        return new DoNothingAction();
+        return new WanderBehaviour();
+
     }
+
 
 
 

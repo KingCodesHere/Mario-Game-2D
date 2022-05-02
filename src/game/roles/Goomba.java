@@ -24,7 +24,7 @@ public class Goomba extends Enemy {
 	 * Constructor.
 	 */
 	public Goomba() {
-		super("Goomba", 'g', 50,10,"kicks");
+		super("Goomba", 'g', 20,10,"kicks");
 
 	}
 

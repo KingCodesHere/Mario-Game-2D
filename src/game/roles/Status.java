@@ -12,5 +12,6 @@ public enum Status {
     INVINCIBLE,
     NPC,
     WRENCH,
-    COIN
+    COIN,
+    DORMANT
 }
