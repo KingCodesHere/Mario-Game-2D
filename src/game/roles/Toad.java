@@ -47,7 +47,7 @@ public class Toad extends Actor {
         for (Exit exit : map.locationOf(otherActor).getExits()) {
             Location destination = exit.getDestination();
             if (destination.containsAnActor()) {
-                actions.add(new SpeakAction());
+                actions.add(new SpeakAction("Toad"));
                 items(actions,new Wrench(),new SuperMushroom(),new PowerStar());
                 return actions;
             }
