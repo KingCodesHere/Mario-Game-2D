@@ -8,10 +8,10 @@ public enum Status {
     HOSTILE_TO_ENEMY,// use this status to be considered hostile towards enemy (e.g., to be attacked by enemy)
     HOSTILE_TO_PLAYER,// use this status to be considered hostile towards player (e.g., to be attacked by player)
     TALL, // use this status to tell that current instance has "grown".
-    FERTILE,
-    INVINCIBLE,
-    NPC,
-    WRENCH,
-    COIN,
-    DORMANT
+    FERTILE, // ground that grow
+    INVINCIBLE, // powerstar
+    NPC, // toad
+    WRENCH, //wrench
+    COIN, //coin
+    DORMANT // dormant status of koopa
 }

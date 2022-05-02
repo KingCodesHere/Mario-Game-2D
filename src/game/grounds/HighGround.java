@@ -7,7 +7,11 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.action.JumpAction;
 import game.item.Coin;
 import game.roles.Status;
-
+/**
+ * HighGround class is an abstract class that extend Ground
+ * @author Junhao Li, Ashston Sequira
+ * @version 1.0.0
+ */
 public abstract class HighGround extends Ground {
     private String name;
 
@@ -45,6 +49,11 @@ public abstract class HighGround extends Ground {
         location.addItem(coin);
     }
 
+    /**
+     * canActorEnter return true if the actor is invincible
+     * @param actor the Actor to check
+     * @return
+     */
     @Override
     public boolean canActorEnter(Actor actor) {
         if (actor.hasCapability(Status.INVINCIBLE)) {

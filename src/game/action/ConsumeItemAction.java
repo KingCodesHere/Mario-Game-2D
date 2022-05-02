@@ -5,14 +5,21 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.item.Consumable;
-import game.roles.Status;
 
+/**
+ * ConsumeItemAction class is a base class that allow the actor to consume item
+ * @author Junhao Li
+ * @version 1.0.0
+ */
 
 public class ConsumeItemAction extends Action {
     /**
-     * Current item
+     * Consumable item
      */
     private final Consumable item;
+    /**
+     * Checking if the item checks in actor inventory
+     */
     private boolean isExist = false;
 
     /**
@@ -24,6 +31,12 @@ public class ConsumeItemAction extends Action {
         this.item = item;
     }
 
+    /**
+     * Executing the consuming action for the particular item
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         for (Item items : actor.getInventory()) {
@@ -32,20 +45,24 @@ public class ConsumeItemAction extends Action {
             }
         }
         if (isExist) {
+
             item.itemFunction(actor);
-            actor.removeItemFromInventory((Item) item);
-            System.out.println("sb");
+            item.removeConsumableAction(this);
             return menuDescription(actor);
 
         } else {
+            actor.addItemToInventory((Item) this.item);
             map.locationOf(actor).removeItem((Item) item);
             item.itemFunction(actor);
-
-            System.out.println("whyy");
+            item.removeConsumableAction(this);
             return menuDescription(actor);
         }
     }
-
+    /**
+     * return the actor consumes item sentence
+     * @param actor The actor performing the action.
+     * @return
+     */
     @Override
     public String menuDescription(Actor actor) {
         return actor + " consumes the " + item;

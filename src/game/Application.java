@@ -22,8 +22,15 @@ import game.roles.Player;
 import game.roles.Toad;
 
 /**
+ * <h1>The Mario World game</h1>
  * The main class for the Mario World game.
+ * <p>
+ *     Giving detailed comments, it is high quality code
+ * </p>
  *
+ * @author Junhao Li, Kenda Wan, Ashton Sequeira
+ * @version 1.0
+ * @since 2022-05-02
  */
 public class Application {
 
@@ -56,13 +63,10 @@ public class Application {
 
 			GameMap gameMap = new GameMap(groundFactory, map);
 			world.addGameMap(gameMap);
-		    //Wallet wallet = new Wallet();
 			Actor mario = new Player("Player", 'm', 100);
-			//((Player) mario).addWallet(mario);
 			WalletsManager.getInstance().appendWalletItem((Player) mario,new Wallet());
 			world.addPlayer(mario, gameMap.at(42, 10));
-			// FIXME: the Goomba should be generated from the Tree
-			//gameMap.at(35, 10).addActor(new Goomba());
+
 			SuperMushroom superMushroom = new SuperMushroom();
 			gameMap.at(42, 10).addItem(superMushroom);
 

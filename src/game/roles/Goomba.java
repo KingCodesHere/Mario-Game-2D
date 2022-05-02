@@ -38,7 +38,14 @@ public class Goomba extends Enemy {
 	}
 
 
-
+	/**
+	 * Returns a new collection of the Actions that the otherActor can do to the current Actor.
+	 *
+	 * @param otherActor the Actor that might be performing attack
+	 * @param direction  String representing the direction of the other Actor
+	 * @param map        current GameMap
+	 * @return A collection of Actions.
+	 */
 	@Override
 	public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
 		ActionList actions = new ActionList();

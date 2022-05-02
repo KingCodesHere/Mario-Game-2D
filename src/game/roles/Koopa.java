@@ -20,6 +20,14 @@ public class Koopa extends Enemy{
         super("Koopa", 'K',100,30,"punches");
     }
 
+    /**
+     * Returns a new collection of the Actions that the otherActor can do to the current Actor.
+     *
+     * @param otherActor the Actor that might be performing attack
+     * @param direction  String representing the direction of the other Actor
+     * @param map        current GameMap
+     * @return A collection of Actions.
+     */
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions=super.allowableActions(otherActor,direction,map);
