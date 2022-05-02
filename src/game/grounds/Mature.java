@@ -7,23 +7,37 @@ import game.roles.Koopa;
 import game.roles.Status;
 import java.util.ArrayList;
 import java.util.Random;
-
+/**
+ * @author  Ashton Sequeira
+ * Tree ground of Mature type
+ */
 public class Mature extends Tree {
     private int count=0;
+    /**
+     * Constructor
+     */
     public Mature() {
         super('T');
         this.addCapability(High.MATURE);
     }
 
+    /**
+     *
+     * @return String with Mature
+     */
     @Override
     public String getName() {
         return "Mature";
     }
 
+    /**
+     *
+     * Ground can also experience the joy of time.
+     * @param location The location of the Ground
+     */
     @Override
     public void tick(Location location) {
         this.count += 1;
-        ActorLocationsIterator actorLocationsIterator = new ActorLocationsIterator();
         Random random = new Random();
         ArrayList<Location> locationArrayList=new ArrayList<>();
         if (this.count >= 5 && this.count%5==0) { // setGround

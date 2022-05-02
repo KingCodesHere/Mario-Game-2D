@@ -5,20 +5,32 @@ import game.RandomRange;
 import game.item.Coin;
 
 import java.util.Random;
-public class
-Sapling extends Tree{
+/**
+ * @author  Ashton Sequeira
+ * Tree ground of Sprout type
+ */
+public class Sapling extends Tree{
     private int count=0;
-
+    /**
+     * Constructor
+     */
     public Sapling() {
         super('t');
         this.addCapability(High.SAPLING);
-    } //Constructor
-
+    }
+    /**
+     *
+     * @return String with Sapling
+     */
     @Override
     public String getName() {
         return "Sapling";
     }
-
+    /**
+     *
+     * Ground can also experience the joy of time.
+     * @param location The location of the Ground
+     */
     @Override
     public void tick(Location location) {
         if (location.containsAnActor()) {

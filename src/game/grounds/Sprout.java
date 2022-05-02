@@ -5,23 +5,39 @@ import game.RandomRange;
 import game.roles.Goomba;
 
 import java.util.Random;
+/**
+ * @author  Ashton Sequeira
+ * Tree ground of Sprout type
+ */
 public class Sprout extends Tree{
     private int count=0;
 
+    /**
+     * Constructor
+     */
     public Sprout() {
         super('+');
         this.addCapability(High.SPROUT);
-    } //Constructor
+    }
+
+    /**
+     *
+     * @return String with Sprout
+     */
 
     @Override
     public String getName() {
         return "Sprout";
     }
+    /**
+     *
+     * Ground can also experience the joy of time.
+     * @param location The location of the Ground
+     */
 
     @Override
     public void tick(Location location) {
         this.count += 1;
-        Random random= new Random();
         if (this.count == 10) {  //After every 10 turns sprout grows to sapling
             location.setGround(new Sapling());
         }
