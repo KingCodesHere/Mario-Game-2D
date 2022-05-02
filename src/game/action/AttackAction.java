@@ -40,8 +40,11 @@ public class AttackAction extends Action {
 		this.direction = direction;
 	}
 
+
+
 	@Override
 	public String execute(Actor actor, GameMap map) {
+
 
 		Weapon weapon = actor.getWeapon();
 

@@ -24,16 +24,13 @@ public abstract class HighGround extends Ground {
         return name;
     }
 
-    public void tick(Location location) {
-        if (location.containsAnActor()) {
-            convertToCoins(location);
-        }
-    }
 
 
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction) {
         if(location.containsAnActor()){
+            if(actor.hasCapability(Status.INVINCIBLE)){
+            convertToCoins(location);}
             return new ActionList();
         }
         else {
@@ -57,9 +54,4 @@ public abstract class HighGround extends Ground {
         }
     }
 
-
-    @Override
-    public boolean blocksThrownObjects() {
-        return true;
-    }
 }

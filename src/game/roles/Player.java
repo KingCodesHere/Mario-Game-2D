@@ -17,6 +17,7 @@ import game.balance.WalletsManager;
 public class Player extends Actor implements ActorWallets {
     private final Menu menu = new Menu();
 
+
     /**
      * Constructor.
      *
@@ -32,8 +33,9 @@ public class Player extends Actor implements ActorWallets {
 
     public String Description() {
         return "Mario" + super.printHp();
-
     }
+
+
 
     public Wallet getPlayerWallet() {
         return WalletsManager.getInstance().getWalletHashMap().get(this);
