@@ -6,11 +6,12 @@ JavaDoc:
 Q1~Q2 Ashton Sequeira
 Q4~Q5 Junhao Li
 
-#Rationale
+#UML and Rationale
 Q1~Q2 Ashton Sequeira
 Q4~Q5 Junhao Li
 
 #Code
+Ashton Sequeira: Q1~Q2 abstract Tree,Sprout,Sapling,Mature,abstract HighGround,JumpAction
 Junhao Li: Q4~Q5 Player,SuperMushroom, PowerStar,Wrench, Coin, BuyAction, Building Wallet System, Consumable.
 
 Diagram developer: Designs diagram to satisfy features and stories from the tasks. They are
@@ -26,3 +27,4 @@ Currently, assigned to: Everyone (Each person responses to different questions)
 By signing below, we agree to the WBA stated above:
 Junhao Li
 Kenda Wan
+Ashton Sequeira

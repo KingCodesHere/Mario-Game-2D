@@ -10,16 +10,41 @@ import game.grounds.HighGround;
 import game.roles.Status;
 import java.util.Random;
 
+/**
+ *
+ * @author Ashton Sequeira
+ */
 public class JumpAction extends Action {
+    /**
+     * One of the 8-d navigation
+     */
     protected String direction;
+    /**
+     * Target location
+     */
     protected Location jumpToLocation;
 
+    /**
+     *
+     * Constructor
+     * @param direction direction of the jump
+     * @param jumpToLocation location to jump to
+     */
 
     public JumpAction(String direction, Location jumpToLocation) {
         this.direction = direction;
         this.jumpToLocation = jumpToLocation;
     }
-
+    /**
+     * Allow the Actor to jump
+     *
+     * Overrides Action.execute()
+     *
+     * @see Action#execute(Actor, GameMap)
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return a description of the Action suitable for the menu
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         String statement = "";
@@ -69,7 +94,12 @@ public class JumpAction extends Action {
         }
         return statement;
     }
-
+    /**
+     * Returns a description of this movement suitable to display in the menu.
+     *
+     * @param actor The actor performing the action.
+     * @return a String, e.g. "Player jumps to the east Wall"
+     */
     @Override
     public String menuDescription(Actor actor) {
         HighGround highGround= (HighGround) jumpToLocation.getGround();
