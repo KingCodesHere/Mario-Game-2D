@@ -57,6 +57,11 @@ public class Player extends Actor implements ActorWallets {
     }
 
     @Override
+    public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
+        return super.allowableActions(otherActor, direction, map);
+    }
+
+    @Override
     public char getDisplayChar() {
         return this.hasCapability(Status.TALL) ? Character.toUpperCase(super.getDisplayChar()) : super.getDisplayChar();
     }

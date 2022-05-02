@@ -25,7 +25,7 @@ public class Sprout extends Tree{
         if (this.count == 10) {  //After every 10 turns sprout grows to sapling
             location.setGround(new Sapling());
         }
-        else if((RandomRange.RandRange(1,101)<=10) && location.containsAnActor()==false) {
+        else if((RandomRange.RandRange(100)<=10) && location.containsAnActor()==false) {
             location.addActor(new Goomba()); //After every turn,10% chance for Goomba to spawn and doesn't spawn if actor stands on it
         }
     }

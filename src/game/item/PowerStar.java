@@ -20,7 +20,7 @@ public class PowerStar extends Item implements Consumable, Purchasable {
      * Constructor.
      */
     public PowerStar() {
-        super("Power Star", 'p', false);
+        super("Power Star", '*', false);
 
     }
 

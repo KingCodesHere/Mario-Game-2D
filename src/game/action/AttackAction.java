@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.weapons.Weapon;
+import game.roles.Status;
 
 /**
  * Special Action for attacking other Actors.
@@ -47,8 +48,13 @@ public class AttackAction extends Action {
 		if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
 			return actor + " misses " + target + ".";
 		}
-
-		int damage = weapon.damage();
+		int damage;
+		if (target.hasCapability(Status.INVINCIBLE)){
+			damage=0;
+		}
+		else{
+			damage = weapon.damage();
+		}
 		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 		target.hurt(damage);
 		if (!target.isConscious()) {

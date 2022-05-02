@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.RandomRange;
 import game.action.AttackAction;
 import game.behaviours.Behaviour;
 import game.behaviours.WanderBehaviour;
@@ -23,8 +24,16 @@ public class Goomba extends Enemy {
 	 * Constructor.
 	 */
 	public Goomba() {
-		super("Goomba", 'g', 50);
-		this.behaviours.put(10, new WanderBehaviour());
+		super("Goomba", 'g', 50,10,"kicks");
+
+	}
+
+	@Override
+	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+		if(RandomRange.RandRange(100)<=10){
+			map.removeActor(this);
+		}
+		return super.playTurn(actions, lastAction, map, display);
 	}
 
 	/**
@@ -36,6 +45,7 @@ public class Goomba extends Enemy {
 	 * @return list of actions
 	 * @see Status#HOSTILE_TO_ENEMY
 	 */
+
 	@Override
 	public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
 		ActionList actions = new ActionList();
@@ -45,6 +55,8 @@ public class Goomba extends Enemy {
 		}
 		return actions;
 	}
+
+
 
 
 }

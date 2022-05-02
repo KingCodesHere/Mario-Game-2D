@@ -13,6 +13,7 @@ import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 import game.action.AttackAction;
 import game.action.BuyAction;
+import game.action.IdleAction;
 import game.action.SpeakAction;
 import game.item.PowerStar;
 import game.item.Purchasable;
@@ -35,16 +36,7 @@ public class Toad extends Actor {
         return new IdleAction();
     }
 
-    class IdleAction extends Action{
-        @Override
-        public String execute(Actor actor, GameMap map) {
-            return "\r";
-        }
-        @Override
-        public String menuDescription(Actor actor) {
-            return "\r";
-        }
-    }
+
 
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {

@@ -37,9 +37,9 @@ public class Mature extends Tree {
             Location newSproutLocation=locationArrayList.get(index);  //randomly chooses a fertile ground location
             newSproutLocation.setGround(new Sprout());
 
-        } else if ((RandomRange.RandRange(1,101)) <= 15 && !location.containsAnActor()) {
+        } else if ((RandomRange.RandRange(100)) <= 15 && !location.containsAnActor()) {
             location.addActor(new Koopa()); //After every turn,15% chance for Koopa to spawn and doesn't spawn if actor stands on it
-        } else if (RandomRange.RandRange(1, 101) <= 20) { //20% chance for Mature to turn to Dirt
+        } else if (RandomRange.RandRange(100) <= 20) { //20% chance for Mature to turn to Dirt
             location.setGround(new Dirt());
         }
     }

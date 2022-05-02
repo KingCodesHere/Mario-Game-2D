@@ -10,9 +10,8 @@ public class RandomRange {
         return (r.nextInt(high-low)+low);
     }
 
-    public static int RandRange (int low, int high){
+    public static int RandRange (int high){
         Random r = new Random();
-        return (r.nextInt(high-low)+low);
+        return (r.nextInt(high+1));
     }
-
 }
