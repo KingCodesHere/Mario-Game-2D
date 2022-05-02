@@ -16,19 +16,36 @@ import game.item.Purchasable;
 import game.item.SuperMushroom;
 import game.item.Wrench;
 
+/**
+ * Toad class: friendly guy who speaks to Mario and sells items
+ *
+ * @author Kenda Wan
+ * @version 1.0.0
+ */
+
 public class Toad extends Actor {
 
 
+    /**
+     * The player's name via the Actor super class.
+     */
     public Toad() {
         super("Toad", 'O', 99999999);
         this.addCapability(Status.NPC);
     }
 
+    /**
+     * This playturn overrites the parent class
+     * @param actions    collection of possible Actions for this Actor
+     * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+     * @param map        the map containing the Actor
+     * @param display    the I/O object to which messages may be written
+     * @return the do nothing as a result of not gaining interaction with other player
+     */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
         return new DoNothingAction();
     }
-
 
     /**
      * Returns a new collection of the Actions that the otherActor can do to the current Actor.

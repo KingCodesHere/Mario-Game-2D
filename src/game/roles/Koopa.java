@@ -13,9 +13,25 @@ import game.behaviours.WanderBehaviour;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Koopa Troopa
+ * Turtle guy that punches and Hides in shell for protection.
+ * @author Kenda Wan
+ * @version 1.0.0
+ *
+ */
 public class Koopa extends Enemy{
+
+    /**
+     * List of behaviours in hashmap, organising the priority level
+     */
     private final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour
 
+
+    /**
+     * Constructor
+     * returning super class: Enemy
+     */
     public Koopa() {
         super("Koopa", 'K',100,30,"punches");
     }
@@ -39,6 +55,15 @@ public class Koopa extends Enemy{
         }
         return actions;
     }
+
+    /**
+     * This playTurn override the parent class
+     * @param actions    collection of possible Actions for this Actor
+     * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+     * @param map        the map containing the Actor
+     * @param display    the I/O object to which messages may be written
+     * @return the parent class: Enemy playTurn
+     */
 
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {

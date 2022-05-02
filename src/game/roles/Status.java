@@ -5,13 +5,13 @@ package game.roles;
  * It is also useful to give a `state` to abilities or actions that can be attached-detached.
  */
 public enum Status {
-    HOSTILE_TO_ENEMY,// use this status to be considered hostile towards enemy (e.g., to be attacked by enemy)
-    HOSTILE_TO_PLAYER,// use this status to be considered hostile towards player (e.g., to be attacked by player)
+    HOSTILE_TO_ENEMY,// use this status to be considered hostile towards enemy (e.g., to be attacked by enemy).
+    HOSTILE_TO_PLAYER,// use this status to be considered hostile towards player (e.g., to be attacked by player).
     TALL, // use this status to tell that current instance has "grown".
-    FERTILE, // ground that grow
-    INVINCIBLE, // powerstar
-    NPC, // toad
-    WRENCH, //wrench
-    COIN, //coin
-    DORMANT // dormant status of koopa
+    FERTILE, // use this status for ground that grow on.
+    INVINCIBLE, // use this status when player consumes PowerStar as upgrade.
+    NPC, // use this status for Actors that are non playable characters, likely to be friendly.
+    WRENCH, // use this status for Player when the item Wrench is able for this player when the Item Wrench is usable.
+    COIN, //use this status for Wallet to identify the Item type.
+    DORMANT // use this status for the Dormant State of Koopa, when it is Hiding in its shell.
 }
