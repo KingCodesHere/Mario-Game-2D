@@ -24,15 +24,14 @@ public class JumpAction extends Action {
     public String execute(Actor actor, GameMap map) {
         String statement = "";
         HighGround highGround= (HighGround) jumpToLocation.getGround();
-        Random random=new Random();
         if(actor.hasCapability(Status.TALL)){
             map.moveActor(actor, jumpToLocation);
-            statement=actor + " jumped and is standing on top of " + highGround.getName();
+            statement=actor + " jumped and is standing on top of " + highGround.getName()+" (" +jumpToLocation.x()+","+jumpToLocation.y()+")";
         }
         else if(jumpToLocation.getGround().hasCapability(High.SPROUT)) {
             if (RandomRange.RandRange(100) <= 90) {
                 map.moveActor(actor, jumpToLocation);
-                statement= actor + " jumped and is standing on top of " + highGround.getName();
+                statement= actor + " jumped and is standing on top of " + highGround.getName()+" (" +jumpToLocation.x()+","+jumpToLocation.y()+")";
             } else {
                 actor.hurt(10);
                 statement=actor+ " misses jump and gets hurt";
@@ -42,7 +41,7 @@ public class JumpAction extends Action {
         else if(jumpToLocation.getGround().hasCapability(High.SAPLING)) {
             if (RandomRange.RandRange(100) <= 80) {
                 map.moveActor(actor, jumpToLocation);
-                statement= actor + " jumped and is standing on top of " + highGround.getName();
+                statement= actor + " jumped and is standing on top of " + highGround.getName()+" (" +jumpToLocation.x()+","+jumpToLocation.y()+")";
             } else {
                 actor.hurt(20);
                 statement= actor+ " misses jump and gets hurt";
@@ -51,7 +50,7 @@ public class JumpAction extends Action {
         else if(jumpToLocation.getGround().hasCapability(High.MATURE)) {
             if (RandomRange.RandRange( 100) <= 70) {
                 map.moveActor(actor, jumpToLocation);
-                statement= actor + " jumped and is standing on top of " + highGround.getName();
+                statement= actor + " jumped and is standing on top of " + highGround.getName()+" (" +jumpToLocation.x()+","+jumpToLocation.y()+")";
             } else {
                 actor.hurt(30);
                 statement= actor+ " misses jump and gets hurt";
@@ -61,7 +60,7 @@ public class JumpAction extends Action {
         else if(jumpToLocation.getGround().hasCapability(High.WALL)) {
             if (RandomRange.RandRange(100) <= 80) {
                 map.moveActor(actor, jumpToLocation);
-                statement= actor + " jumped and is standing on top of " + highGround.getName();
+                statement= actor + " jumped and is standing on top of " + highGround.getName()+" (" +jumpToLocation.x()+","+jumpToLocation.y()+")";
             } else {
                 actor.hurt(20);
                 statement= actor+ " misses jump and gets hurt";
@@ -74,7 +73,7 @@ public class JumpAction extends Action {
     @Override
     public String menuDescription(Actor actor) {
         HighGround highGround= (HighGround) jumpToLocation.getGround();
-        return actor + " jumps to the " + direction + " " + highGround.getName();
+        return actor + " jumps to the " + direction + " " + highGround.getName()+" (" +jumpToLocation.x()+","+jumpToLocation.y()+")";
     }
 
 }
