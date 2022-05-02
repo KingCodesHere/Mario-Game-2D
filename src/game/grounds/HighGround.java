@@ -54,14 +54,14 @@ public abstract class HighGround extends Ground {
     }
 
     /**
+     * Convert the HighGround to coin.
      * @author Junhao Li
-     * @param location
+     * @param location Location of highground
      */
 
     public void convertToCoins(Location location) {
         Dirt dirt = new Dirt();
         Coin coin = new Coin(5);
-        //coin.addSampleAction(new PickUpCoinAction(coin, new Player("Player", 'm', 100)));
         location.setGround(dirt);
         location.addItem(coin);
     }
