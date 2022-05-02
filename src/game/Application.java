@@ -66,16 +66,6 @@ public class Application {
 			Actor mario = new Player("Player", 'm', 100);
 			WalletsManager.getInstance().appendWalletItem((Player) mario,new Wallet());
 			world.addPlayer(mario, gameMap.at(42, 10));
-
-			SuperMushroom superMushroom = new SuperMushroom();
-			gameMap.at(42, 10).addItem(superMushroom);
-
-			PowerStar powerStar = new PowerStar();
-			gameMap.at(43, 10).addItem(powerStar);
-
-			Coin coin = new Coin();
-			gameMap.at(42,11).addItem(coin);
-
 			gameMap.addActor(new Toad(),gameMap.at(43,11));
 
 			world.run();
