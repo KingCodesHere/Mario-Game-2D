@@ -4,15 +4,24 @@ Task allocation: The process for allocating tasks was undertaken during the grou
 Requirements 1-7:
 JavaDoc:
 Q1~Q2 Ashton Sequeira
+Q3: Kenda Wan (Special Consideration:12th May 11:55 pm)
 Q4~Q5 Junhao Li
+Q6: Team Task(Ashton Sequeira,Kenda Wan,Junhao Li)(Special Consideration:12th May 11:55 pm)
+Q7: Kenda Wan (Special Consideration:12th May 11:55 pm)
+Kenda responses to generate the Javadoc once everything has been completed.
 
 #UML and Rationale
 Q1~Q2 Ashton Sequeira
+Q3:Kenda Wan (Special Consideration:12th May 11:55 pm)
 Q4~Q5 Junhao Li
+Q6:Team Task(Ashton Sequeira,Kenda Wan, Junhao Li) (Special Consideration:12th May 11:55 pm)
+Q7:Kenda Wan (Special Consideration:12th May 11:55 pm)
 
 #Code
 Ashton Sequeira: Q1~Q2 abstract Tree,Sprout,Sapling,Mature,abstract HighGround,JumpAction
 Junhao Li: Q4~Q5 Player,SuperMushroom, PowerStar,Wrench, Coin, BuyAction, Building Wallet System, Consumable.
+Kenda: Q3,Q7 (Special Consideration:12th May 11:55 pm)
+Team Task: Q6 (Special Consideration:12th May 11:55 pm)
 
 Diagram developer: Designs diagram to satisfy features and stories from the tasks. They are
 responsible for their designed diagram that meets the requirements of the tasks appropriately.
