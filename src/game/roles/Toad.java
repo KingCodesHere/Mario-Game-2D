@@ -1,27 +1,20 @@
 package game.roles;
 
-import edu.monash.fit2099.demo.conwayslife.Player;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
-import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
-import game.action.AttackAction;
 import game.action.BuyAction;
-import game.action.IdleAction;
+
 import game.action.SpeakAction;
 import game.item.PowerStar;
 import game.item.Purchasable;
 import game.item.SuperMushroom;
 import game.item.Wrench;
-import game.roles.Status;
-
-import java.lang.reflect.Constructor;
 
 public class Toad extends Actor {
 
@@ -33,7 +26,7 @@ public class Toad extends Actor {
 
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-        return new IdleAction();
+        return new DoNothingAction();
     }
 
 
