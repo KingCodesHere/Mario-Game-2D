@@ -24,7 +24,7 @@ public class Goomba extends Enemy {
 	 */
 	public Goomba() {
 		super("Goomba", 'g', 50);
-		this.behaviours.put(10, new WanderBehaviour());
+
 	}
 
 	/**
