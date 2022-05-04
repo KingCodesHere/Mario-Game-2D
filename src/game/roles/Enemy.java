@@ -119,11 +119,11 @@ public abstract class Enemy extends Actor implements Resettable {
 
         if (!this.isConscious() || this.getMaxHp() <= 0) {
             map.removeActor(this);
-        } else {
-            for (Behaviour behaviour : behaviours.values()) {
-                Action action = behaviour.getAction(this, map);
-                return action;
-            }
+        }
+
+        for (Behaviour behaviour : behaviours.values()) {
+            Action action = behaviour.getAction(this, map);
+            return action;
         }
         return new WanderBehaviour();
     }
