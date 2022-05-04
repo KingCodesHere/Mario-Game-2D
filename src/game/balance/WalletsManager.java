@@ -1,5 +1,6 @@
 package game.balance;
 import java.util.HashMap;
+
 /**
  * WalletsManager stores all the actor and
  * @author Junhao Li

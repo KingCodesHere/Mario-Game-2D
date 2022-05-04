@@ -11,6 +11,8 @@ import game.behaviours.AttackBehaviour;
 import game.behaviours.Behaviour;
 import game.behaviours.FollowBehaviour;
 import game.behaviours.WanderBehaviour;
+import game.reset.Resettable;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,7 +22,7 @@ import java.util.Map;
  * @author Kenda Wan
  * @version 1.0.0
  */
-public abstract class Enemy extends Actor {
+public abstract class Enemy extends Actor implements Resettable {
     /**
      * List of behaviours in hashmap, organising the priority level
      */
@@ -35,6 +37,16 @@ public abstract class Enemy extends Actor {
      * Int damage for attack as the attackDamage towards player
      */
     private int attackDamage;
+
+    /**
+     * Checking if the resetAction has execute yet
+     */
+    private boolean checkStatus = false;
+
+    /**
+     * only can be reset for one time
+     */
+    private int resetTime = 1;
 
     /**
      *  Getter for returning verb
@@ -52,6 +64,27 @@ public abstract class Enemy extends Actor {
         return attackDamage;
     }
 
+    /**
+     * Getter for checkStatus
+     * @return checkStatus boolean
+     */
+    public boolean getCheckStatus(){
+        return this.checkStatus;
+    }
+    /**
+     * Getter for Resettime
+     * @return Resettime int
+     */
+    public int getResetTime() {
+        return resetTime;
+    }
+    /**
+     * Setter for Resettime
+     */
+    public void setResetTime(int resetTime) {
+        this.resetTime = resetTime;
+    }
+
 
     /**
      * Constructor
@@ -61,6 +94,7 @@ public abstract class Enemy extends Actor {
         super(name, displayChar, hitPoints);
         this.attackDamage=attackDamage;
         this.verb=verb;
+        this.registerInstance();
 
         super.addCapability(Status.HOSTILE_TO_PLAYER);
         this.behaviours.put(3, new WanderBehaviour());
@@ -77,6 +111,12 @@ public abstract class Enemy extends Actor {
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        // reset
+        if(this.checkStatus && this.resetTime==1){
+            map.removeActor(this);
+            this.resetTime = 0;
+        }
+
         if (!this.isConscious() || this.getMaxHp() <= 0) {
             map.removeActor(this);
         } else {
@@ -113,6 +153,11 @@ public abstract class Enemy extends Actor {
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
         return new IntrinsicWeapon(attackDamage,verb);
+    }
+
+    @Override
+    public void resetInstance() {
+        this.checkStatus = true;
     }
 }
 

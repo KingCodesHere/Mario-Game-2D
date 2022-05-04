@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.action.JumpAction;
 import game.item.Coin;
 import game.roles.Status;
+
 /**
  * HighGround class is an abstract class that extend Ground
  * @author Ashton Sequeira,Junhao Li
@@ -60,10 +61,8 @@ public abstract class HighGround extends Ground {
      */
 
     public void convertToCoins(Location location) {
-        Dirt dirt = new Dirt();
-        Coin coin = new Coin(5);
-        location.setGround(dirt);
-        location.addItem(coin);
+        location.setGround(new Dirt());
+        location.addItem(new Coin(5));
     }
 
     /**

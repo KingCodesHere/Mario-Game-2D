@@ -1,25 +1,19 @@
 package game;
 
-import java.util.Arrays;
-import java.util.List;
-
-
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
-
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
-
 import edu.monash.fit2099.engine.positions.World;
-import game.balance.Wallet;
-import game.balance.WalletsManager;
-import game.grounds.*;
-import game.item.Coin;
-import game.item.PowerStar;
-import game.item.SuperMushroom;
-import game.roles.Goomba;
+import game.grounds.Dirt;
+import game.grounds.Floor;
+import game.grounds.Sprout;
+import game.grounds.Wall;
 import game.roles.Player;
 import game.roles.Toad;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * <h1>The Mario World game</h1>
@@ -64,9 +58,9 @@ public class Application {
 			GameMap gameMap = new GameMap(groundFactory, map);
 			world.addGameMap(gameMap);
 			Actor mario = new Player("Player", 'm', 100);
-			WalletsManager.getInstance().appendWalletItem((Player) mario,new Wallet());
 			world.addPlayer(mario, gameMap.at(42, 10));
 			gameMap.addActor(new Toad(),gameMap.at(43,11));
+
 
 			world.run();
 

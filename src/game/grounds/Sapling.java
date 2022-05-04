@@ -5,6 +5,7 @@ import game.RandomRange;
 import game.item.Coin;
 
 import java.util.Random;
+
 /**
  * @author  Ashton Sequeira
  * Tree ground of Sprout type
@@ -33,6 +34,10 @@ public class Sapling extends Tree{
      */
     @Override
     public void tick(Location location) {
+        if(super.getCheckStatus()&& super.getResetTime()==1){
+            super.setTreeToDirt(location);
+            super.setResetTime(0);
+        }
         if (location.containsAnActor()) {
             convertToCoins(location);
         }
@@ -40,7 +45,8 @@ public class Sapling extends Tree{
         Random random = new Random();
         if (count == 10) {
             location.setGround(new Mature()); //Every 10 turns ,sapling turns to mature
-        } else if (RandomRange.RandRange(100) <= 10) {
+        }
+        if (RandomRange.RandRange(100) <= 10) {
             location.addItem(new Coin(20)); //10% chance to drop coin
         }
     }

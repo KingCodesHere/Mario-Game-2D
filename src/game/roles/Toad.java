@@ -9,7 +9,6 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.action.BuyAction;
-
 import game.action.SpeakAction;
 import game.item.PowerStar;
 import game.item.Purchasable;

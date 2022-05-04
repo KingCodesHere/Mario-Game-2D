@@ -1,7 +1,5 @@
 package game.reset;
 
-import game.reset.ResetManager;
-
 public interface Resettable {
     /**
      * Allows any classes that use this interface to reset abilities, attributes, and/or items.

@@ -2,6 +2,7 @@ package game.item;
 
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.roles.Status;
+
 /**
  * HighGround class is an abstract class that extend Ground
  * @author Junhao Li, Ashston Sequira

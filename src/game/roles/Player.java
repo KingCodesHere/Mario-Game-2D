@@ -1,13 +1,16 @@
 package game.roles;
+
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
-import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
+import edu.monash.fit2099.engine.positions.GameMap;
+import game.action.ResetAction;
 import game.balance.ActorWallets;
 import game.balance.Wallet;
 import game.balance.WalletsManager;
+import game.reset.Resettable;
 
 
 /**
@@ -15,10 +18,19 @@ import game.balance.WalletsManager;
  * @author Junhao Li, Ashston Sequira
  * @version 1.0.0
  */
-public class Player extends Actor implements ActorWallets {
+public class Player extends Actor implements ActorWallets, Resettable {
     private final Menu menu = new Menu();
+    /**
+     * Checking if the resetAction has execute yet
+     */
+    private boolean checkStatus = false;
 
+    /**
+     * only can be reset for one time
+     */
+    private int resetTime = 1;
 
+    private boolean allowReset = true;
     /**
      * Constructor.
      *
@@ -30,13 +42,14 @@ public class Player extends Actor implements ActorWallets {
         super(name, displayChar, hitPoints);
         super.addCapability(Status.HOSTILE_TO_ENEMY);
         this.addToWalletsManager();
+        this.registerInstance();
     }
 
     /**
      * String of the HP
      * @return mario Hp
      */
-    public String Description() {
+    public String description() {
         return "Mario" + super.printHp();
     }
 
@@ -59,8 +72,17 @@ public class Player extends Actor implements ActorWallets {
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        // Only reset for one time
+        if(allowReset){
+            actions.add(new ResetAction());
+        }
+        if(this.checkStatus && this.resetTime==1){
+            super.resetMaxHp(super.getMaxHp());
+//            resetCapability(capabilitiesList());
+            this.resetTime = 0;
+        }
 
-        display.println(this.Description() + " at (" + map.locationOf(this).x() + "," + map.locationOf(this).y() + ")");
+        display.println(this.description() + " at (" + map.locationOf(this).x() + "," + map.locationOf(this).y() + ")");
         display.println("wallet: $" + getPlayerWallet().getBalance()+ "\n" +"Inventory: " +this.getInventory());
         // Handle multi-turn Actions
         if (lastAction.getNextAction() != null)
@@ -82,5 +104,12 @@ public class Player extends Actor implements ActorWallets {
         return this.hasCapability(Status.TALL) ? Character.toUpperCase(super.getDisplayChar()) : super.getDisplayChar();
     }
 
-
+    /**
+     * call the resetInstance method the change the current status
+     */
+    @Override
+    public void resetInstance() {
+        checkStatus = true;
+        allowReset = false;
+    }
 }

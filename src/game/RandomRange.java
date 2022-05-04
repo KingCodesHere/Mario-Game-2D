@@ -15,7 +15,7 @@ public class RandomRange {
     public static int cashValue(){
         Random r = new Random();
         int low = 5;
-        int high = 100;
+        int high = 1000;
         return (r.nextInt(high-low)+low);
     }
     /**

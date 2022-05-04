@@ -1,20 +1,16 @@
 package game.item;
-
-import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.Location;
 import game.action.ConsumeItemAction;
 import game.roles.Status;
-import java.util.List;
 
 /**
  * Power star one of the item
  * @author Junhao Li, Ashston Sequira
  * @version 1.0.0
  */
-public class PowerStar extends Item implements Consumable, Purchasable {
+public class PowerStar extends MagicalItem {
     private int count = 0;
     private int price = 600;
     private int lifetime = 1;
@@ -46,6 +42,11 @@ public class PowerStar extends Item implements Consumable, Purchasable {
      * @param actor The actor carrying this Item.
      */
     public void tick(Location currentLocation, Actor actor) {
+        if(super.isCheckStatus() && super.getResetTime()==1){
+            actor.removeItemFromInventory(this);
+            actor.removeCapability(Status.INVINCIBLE);
+            super.setResetTime(0);
+        }
         if(lifetime != 1 && renewTime == true ){
             this.count = 0;
         }
@@ -58,14 +59,6 @@ public class PowerStar extends Item implements Consumable, Purchasable {
     }
 
     /**
-     * Adding the action to the actionlist
-     * @param newAction
-     */
-    public void addSampleAction(Action newAction){
-        this.addAction(newAction);
-    }
-
-    /**
      * Inform an Item on the ground of the passage of time.
      * This method is called once per turn, if the item rests upon the ground.
      * @param currentLocation The location of the ground on which we lie.
@@ -73,6 +66,10 @@ public class PowerStar extends Item implements Consumable, Purchasable {
 
     @Override
     public void tick(Location currentLocation){
+        if(super.isCheckStatus() && super.getResetTime()==1){
+            currentLocation.removeItem(this);
+            super.setResetTime(0);
+        }
         this.count +=1;
         display.println("Power Star - " +(10-this.count)+ " turns remaining");
         if(this.count == 10) {
@@ -91,11 +88,6 @@ public class PowerStar extends Item implements Consumable, Purchasable {
         display.println(actor +" becomes invincible" ); // printout the actor status
     }
 
-    @Override
-    public void removeConsumableAction(Action action) {
-        this.removeAction(action);
-    }
-
     /**
      * Overwrite the method from purchasable method
      * @return
@@ -105,17 +97,6 @@ public class PowerStar extends Item implements Consumable, Purchasable {
         return this.price;
     }
 
-    /**
-     * Adding the consumeAction if actor press the consume hotkey
-     * @return
-     */
-    @Override
-    public List<Action> getAllowableActions() {
-        if (lifetime ==1){
-            this.addSampleAction(this.consumeItem());
-            this.lifetime -= 1;
-        }
 
-        return super.getAllowableActions();
-    }
+
 }

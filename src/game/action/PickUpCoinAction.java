@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.balance.WalletsManager;
 import game.item.Coin;
+
 /**
  * PickUpCoinAction class is a base class that allow the actor to pick up the coin
  * @author Junhao Li

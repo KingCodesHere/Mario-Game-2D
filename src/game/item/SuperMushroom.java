@@ -1,26 +1,19 @@
 package game.item;
-
-import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.items.Item;
-import game.action.ConsumeItemAction;
+import edu.monash.fit2099.engine.positions.Location;
 import game.roles.Status;
 
-import java.util.List;
 /**
  * SuperMushroom item that extends the item class
  * @author Junhao Li, Ashston Sequira
  * @version 1.0.0
  */
-public class SuperMushroom extends Item implements Consumable, Purchasable {
+public class SuperMushroom extends MagicalItem {
     /**
      * price of the item
      */
     private int price = 400;
-    /**
-     * Consumable time
-     */
-    private int lifetime = 1;
+
     /***
      * Constructor.
      */
@@ -29,22 +22,6 @@ public class SuperMushroom extends Item implements Consumable, Purchasable {
 
     }
 
-    /**
-     * add the action
-     * @param newAction action
-     */
-    public void addSampleAction(Action newAction){
-        this.addAction(newAction);
-    }
-
-    /**
-     * method from the interface to be overwritten
-     * @return
-     */
-    @Override
-    public ConsumeItemAction consumeItem() {
-        return new ConsumeItemAction(this);
-    }
 
     /**
      * This item's function
@@ -54,23 +31,7 @@ public class SuperMushroom extends Item implements Consumable, Purchasable {
     public void itemFunction(Actor actor){
         actor.increaseMaxHp(50);
         actor.addCapability(Status.TALL); // the capability of the actor
-        this.addCapability(Status.TALL);
 
-    }
-    /**
-     * Getter.
-     *
-     * Returns an unmodifiable copy of the actions list so that calling methods won't
-     * be able to change what this Item can do without the Item checking.
-     * @return an unmodifiable list of Actions
-     */
-    @Override
-    public List<Action> getAllowableActions() {
-        if (lifetime ==1){
-            this.addSampleAction(this.consumeItem());
-            this.lifetime -= 1;
-        }
-        return super.getAllowableActions();
     }
 
     /**
@@ -82,12 +43,20 @@ public class SuperMushroom extends Item implements Consumable, Purchasable {
         return this.price;
     }
 
-    /**
-     * Adding the consumeAction if actor press the consume hotkey
-     * @return
-     */
+
     @Override
-    public void removeConsumableAction(Action action) {
-        this.removeAction(action);
+    /**
+     * Inform a carried Item of the passage of time.
+     *
+     * This method is called once per turn, if the Item is being carried.
+     * @param currentLocation The location of the actor carrying this Item.
+     * @param actor The actor carrying this Item.
+     */
+    public void tick(Location currentLocation, Actor actor) {
+        if(super.isCheckStatus() && super.getResetTime()==1){
+            actor.removeItemFromInventory(this);
+            actor.removeCapability(Status.TALL);
+            super.setResetTime(0);
+        }
     }
 }
