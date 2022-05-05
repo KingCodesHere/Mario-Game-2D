@@ -8,7 +8,10 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.RandomRange;
 import game.action.AttackAction;
+import game.behaviours.AttackBehaviour;
 import game.behaviours.Behaviour;
+import game.behaviours.FollowBehaviour;
+import game.behaviours.WanderBehaviour;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -49,29 +52,14 @@ public class Goomba extends Enemy {
 		if(RandomRange.RandRange(100)<=10){
 			map.removeActor(this);
 		}
+
 		return super.playTurn(actions, lastAction, map, display);
 	}
 
-
-	/**
-	 * Returns a new collection of the Actions that the otherActor can do to the current Actor.
-	 *
-	 * @param otherActor the Actor that might be performing attack
-	 * @param direction  String representing the direction of the other Actor
-	 * @param map        current GameMap
-	 * @return A collection of Actions.
-	 */
 	@Override
 	public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
-		ActionList actions = new ActionList();
-
-		if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
-			actions.add(new AttackAction(this,direction));
-		}
-
-		return actions;
+		this.behaviours.put(1, new AttackBehaviour(otherActor,direction));
+		this.behaviours.put(2, new FollowBehaviour(otherActor));
+		return super.allowableActions(otherActor, direction, map);
 	}
-
-
-
 }

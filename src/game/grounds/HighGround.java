@@ -2,6 +2,7 @@ package game.grounds;
 
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 import game.action.JumpAction;
@@ -49,6 +50,7 @@ public abstract class HighGround extends Ground {
             convertToCoins(location);}
             return new ActionList();
         }
+
         else {
             return new ActionList(new JumpAction(direction, location));
         }

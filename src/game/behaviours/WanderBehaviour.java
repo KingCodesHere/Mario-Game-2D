@@ -1,10 +1,13 @@
 package game.behaviours;
 
 import edu.monash.fit2099.engine.actions.Action;
+import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
+import game.grounds.HighGround;
+import game.roles.Status;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -12,6 +15,8 @@ import java.util.Random;
 public class WanderBehaviour extends Action implements Behaviour {
 	
 	private final Random random = new Random();
+
+	public WanderBehaviour() {	}
 
 	/**
 	 * Returns a MoveAction to wander to a random location, if possible.  

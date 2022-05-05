@@ -43,6 +43,7 @@ public class Toad extends Actor {
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+
         return new DoNothingAction();
     }
 
@@ -65,6 +66,7 @@ public class Toad extends Actor {
             if (destination.containsAnActor()) {
                 actions.add(new SpeakAction("Toad"));
                 items(actions,new Wrench(),new SuperMushroom(),new PowerStar());
+
                 return actions;
             }
 

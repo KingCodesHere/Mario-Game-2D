@@ -32,6 +32,7 @@ public class Koopa extends Enemy{
      */
     public Koopa() {
         super("Koopa", 'K',100,30,"punches");
+
     }
 
     /**
