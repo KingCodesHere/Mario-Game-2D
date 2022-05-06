@@ -51,15 +51,9 @@ public class AttackBehaviour extends Action implements Behaviour  {
             Location destination = exit.getDestination();
             if (destination.canActorEnter(actor)) {
                 actions.add(new AttackAction(target,direction));
-//                if (newDistance < currentDistance) {
-//                    return new MoveActorAction(destination, exit.getName());
-//                }
 
             }
 
-        }
-        if (!actions.isEmpty()) {
-            return actions.get(random.nextInt(actions.size()));
         }
         return null;
     }

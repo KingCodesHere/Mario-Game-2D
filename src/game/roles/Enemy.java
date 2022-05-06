@@ -96,7 +96,6 @@ public abstract class Enemy extends Actor implements Resettable {
         this.attackDamage=attackDamage;
         this.verb=verb;
         this.registerInstance();
-        this.behaviours.put(10, new WanderBehaviour());
     }
 
     /**
@@ -109,7 +108,7 @@ public abstract class Enemy extends Actor implements Resettable {
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-        super.addCapability(Status.HOSTILE_TO_PLAYER);
+        this.addCapability(Status.HOSTILE_TO_PLAYER);
         for (Behaviour behaviour : behaviours.values()) {
             Action action = behaviour.getAction(this, map);
             // reset
@@ -141,8 +140,13 @@ public abstract class Enemy extends Actor implements Resettable {
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions=new ActionList();
+        this.behaviours.put(10,new WanderBehaviour());
+
         if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
+            this.behaviours.put(2,new AttackBehaviour(otherActor,direction));
+            this.behaviours.put(2,new FollowBehaviour(otherActor));
             actions.add(new AttackAction(this,direction));
+
             return actions;
         }
         if (otherActor.hasCapability(Status.HOSTILE_TO_PLAYER)) {
@@ -152,7 +156,7 @@ public abstract class Enemy extends Actor implements Resettable {
 
         for (Exit exit : map.locationOf(this).getExits()) {
             Location destination = exit.getDestination();
-            if (destination.canActorEnter(this)) {
+            if (destination.canActorEnter(this) ) {
                 return actions;
             }
         }

@@ -46,6 +46,7 @@ public class Koopa extends Enemy{
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions=super.allowableActions(otherActor,direction,map);
+
         if(this.hasCapability(Status.DORMANT)) {
             actions.clear();
         }
@@ -69,6 +70,7 @@ public class Koopa extends Enemy{
         if(!super.isConscious()){
             this.setDisplayChar('D');
             this.addCapability(Status.DORMANT);
+
         }
         return super.playTurn(actions,lastAction,map,display);
 

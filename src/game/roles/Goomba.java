@@ -36,7 +36,6 @@ public class Goomba extends Enemy {
 	 */
 	public Goomba() {
 		super("Goomba", 'g', 20,10,"kicks");
-
 	}
 	/**
 	 * This playTurn override the parent class
@@ -49,17 +48,18 @@ public class Goomba extends Enemy {
 
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-		if(RandomRange.RandRange(100)<=10){
-			map.removeActor(this);
-		}
 
-		return super.playTurn(actions, lastAction, map, display);
+		return super.playTurn(actions, lastAction, map, display); // else return to parent class super loop for playTurn
 	}
 
 	@Override
 	public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
-		this.behaviours.put(1, new AttackBehaviour(otherActor,direction));
-		this.behaviours.put(2, new FollowBehaviour(otherActor));
+		if (!map.contains(otherActor))  {
+			if(RandomRange.RandRange(100)<=10){ // if chance hit this actor is less than this,
+				map.removeActor(this); // action in playTurn removes the actor
+			}
+		}
+
 		return super.allowableActions(otherActor, direction, map);
 	}
 }
