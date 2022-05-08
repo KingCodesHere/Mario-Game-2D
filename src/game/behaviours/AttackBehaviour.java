@@ -1,13 +1,17 @@
 package game.behaviours;
 
 import edu.monash.fit2099.engine.actions.Action;
+import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actions.MoveActorAction;
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.positions.NumberRange;
+import game.RandomRange;
 import game.action.AttackAction;
+import game.item.Coin;
 import game.roles.Status;
 
 import java.util.ArrayList;
@@ -23,38 +27,43 @@ import java.util.Random;
 
 public class AttackBehaviour extends Action implements Behaviour  {
 
-    private final Actor target;
-
-    private String direction;
     /**
-     * Random generator
-     *
-     * */
-    private final Random random = new Random();
+     * The Actor that is to be attacked
+     */
+    private Actor target;
 
-    public AttackBehaviour(Actor target,String direction) {
-        this.target = target;
-        this.direction = direction;
+    private String verb = "";
+
+    private int damage = 0;
+
+
+    public AttackBehaviour( int damage, String verb) {
+//        this.target = target;
+        this.damage = damage;
+        this.verb = verb;
     }
 
 
     @Override
     public Action getAction(Actor actor, GameMap map) {
-
-        ArrayList<Action> actions = new ArrayList<Action>();
         if(!map.contains(target) || !map.contains(actor))
             return null;
 
-        Location x = map.locationOf(target);
+        Location here = map.locationOf(actor);
+        Location there = map.locationOf(target);
 
-        for (Exit exit : x.getExits() ) {
+        for (Exit exit : here.getExits() ) {
             Location destination = exit.getDestination();
-            if (destination.canActorEnter(actor)) {
-                actions.add(new AttackAction(target,direction));
-
+/*            if (destination.canActorEnter(target)) {
+                target.hurt(damage);
+                return new MoveActorAction(here,exit.getName());*/
+            if (actor.hasCapability(Status.HOSTILE_TO_ENEMY)){
+                target.hurt(damage);
+                return new AttackBehaviour(damage,verb);
             }
-
         }
+
+
         return null;
     }
 
@@ -71,7 +80,21 @@ public class AttackBehaviour extends Action implements Behaviour  {
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        return actor + " " + target + " for " + " damage.";
+        String result=  actor+ " attacks " + target + " for " + damage + " damage.";
+
+        if (RandomRange.RandRange(100) <= 50) {
+            result = actor + " misses " + target + ".";
+        }
+
+        if (!target.isConscious()) {
+            ActionList dropActions = new ActionList();
+            for (Action drop : dropActions)
+                drop.execute(target, map);
+            // remove actor
+            map.removeActor(target);
+            result += System.lineSeparator() + target + " is killed.";
+        }
+        return result;
     }
 
     /**
@@ -81,6 +104,6 @@ public class AttackBehaviour extends Action implements Behaviour  {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " attacks " + target + " at " + direction;
+        return actor + verb + target ;
     }
 }

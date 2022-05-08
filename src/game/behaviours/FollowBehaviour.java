@@ -14,15 +14,15 @@ import edu.monash.fit2099.engine.positions.Location;
  */
 public class FollowBehaviour implements Behaviour {
 
-	private final Actor target;
+	private Actor target;
 
 	/**
 	 * Constructor.
 	 * 
-	 * @param subject the Actor to follow
+//	 * @param subject the Actor to follow
 	 */
-	public FollowBehaviour(Actor subject) {
-		this.target = subject;
+	public FollowBehaviour() {
+//		this.target = subject;
 	}
 
 	@Override
@@ -56,6 +56,7 @@ public class FollowBehaviour implements Behaviour {
 	private int distance(Location a, Location b) {
 		return Math.abs(a.x() - b.x()) + Math.abs(a.y() - b.y());
 	}
+
 
 
 }

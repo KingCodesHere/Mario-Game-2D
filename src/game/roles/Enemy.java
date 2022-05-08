@@ -97,6 +97,32 @@ public abstract class Enemy extends Actor implements Resettable {
         this.verb=verb;
         this.registerInstance();
     }
+    /**
+     * Returns a new collection of the Actions that the otherActor can do to the current Actor.
+     *
+     * @param otherActor the Actor that might be performing attack
+     * @param direction  String representing the direction of the other Actor
+     * @param map        current GameMap
+     * @return A collection of Actions.
+     */
+    @Override
+    public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
+        ActionList actions=new ActionList();
+
+        for (Exit exit : map.locationOf(this).getExits()) {
+            Location destination = exit.getDestination();
+            // if actor (Mario) has capability : Hostile to Enemy, action for Mario: add Attack
+            if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
+                actions.add(new AttackAction(this,direction));
+                return actions;
+            }
+            if (destination.canActorEnter(this) ) {
+                return actions;
+            }
+        }
+
+        return actions;
+    }
 
     /**
      * This playTurn is default for Enemies and can be overridden
@@ -109,8 +135,15 @@ public abstract class Enemy extends Actor implements Resettable {
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
         this.addCapability(Status.HOSTILE_TO_PLAYER);
+        this.behaviours.put(10,new WanderBehaviour());
+        this.behaviours.put(1,new AttackBehaviour(getAttackDamage(),getVerb()));
+        this.behaviours.put(5,new FollowBehaviour());
+
         for (Behaviour behaviour : behaviours.values()) {
             Action action = behaviour.getAction(this, map);
+            if(action != null)
+                return action;
+
             // reset
             if (this.checkStatus && this.resetTime == 1) {
                 map.removeActor(this);
@@ -121,49 +154,12 @@ public abstract class Enemy extends Actor implements Resettable {
                 map.removeActor(this);
             }
 
-            if (action != null)
-                return action;
         }
-
-        return new WanderBehaviour();
+//        display.println("(" + map.locationOf(this).x() + "," + map.locationOf(this).y() + ")");
+        return new DoNothingAction();
 
     }
 
-    /**
-     * Returns a new collection of the Actions that the otherActor can do to the current Actor.
-     *
-     * @param otherActor the Actor that might be performing attack
-     * @param direction  String representing the direction of the other Actor
-     * @param map        current GameMap
-     * @return A collection of Actions.
-     */
-    @Override
-    public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
-        ActionList actions=new ActionList();
-        this.behaviours.put(10,new WanderBehaviour());
-
-        if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
-            this.behaviours.put(2,new AttackBehaviour(otherActor,direction));
-            this.behaviours.put(2,new FollowBehaviour(otherActor));
-            actions.add(new AttackAction(this,direction));
-
-            return actions;
-        }
-        if (otherActor.hasCapability(Status.HOSTILE_TO_PLAYER)) {
-            actions.add(new WanderBehaviour());
-            return actions;
-        }
-
-        for (Exit exit : map.locationOf(this).getExits()) {
-            Location destination = exit.getDestination();
-            if (destination.canActorEnter(this) ) {
-                return actions;
-            }
-        }
-
-
-        return actions;
-    }
 
     /**
      * IntrinsicWeapon to retrieve child class damage level and verb of actions
