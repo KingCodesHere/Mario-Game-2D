@@ -48,12 +48,10 @@ public class ResetManager {
         for(Resettable reset: this.resettableList){
             reset.resetInstance();
         }
-        System.out.println(instance.resettableList);
     }
 
     /**
      * Add the Resettable instance to the list
-     * FIXME: it does nothing, you need to implement it :)
      */
     public void appendResetInstance(Resettable reset){
         this.resettableList.add(reset);

@@ -10,6 +10,7 @@ import game.action.ResetAction;
 import game.balance.ActorWallets;
 import game.balance.Wallet;
 import game.balance.WalletsManager;
+import game.bottles.Bottle;
 import game.reset.Resettable;
 
 
@@ -43,6 +44,7 @@ public class Player extends Actor implements ActorWallets, Resettable {
         super.addCapability(Status.HOSTILE_TO_ENEMY);
         this.addToWalletsManager();
         this.registerInstance();
+        this.addItemToInventory(new Bottle());
     }
 
     /**

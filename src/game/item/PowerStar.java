@@ -11,10 +11,26 @@ import game.roles.Status;
  * @version 1.0.0
  */
 public class PowerStar extends MagicalItem {
+    /**
+     * number of turns
+     */
     private int count = 0;
+
+    /**
+     * price of the item
+     */
     private int price = 600;
+
+    /**
+     * How many time can this item be consumed
+     */
     private int lifetime = 1;
+
+    /**
+     * Re new the powerStar turn when the user consumes it
+     */
     private boolean renewTime = true;
+
     Display display = new Display();
     /***
      * Constructor.

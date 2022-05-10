@@ -100,6 +100,16 @@ public class MagicalItem extends Item implements Consumable, Purchasable, Resett
     }
 
     /**
+     * name of this
+     * @return name of the item
+     */
+    @Override
+    public String description() {
+
+        return this.toString();
+    }
+
+    /**
      * get price
      *
      * @return 0 nothing for the abstruct class

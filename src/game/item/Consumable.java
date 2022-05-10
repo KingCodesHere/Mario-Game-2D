@@ -28,5 +28,16 @@ public interface Consumable {
      */
     void removeConsumableAction(Action action);
 
+    /**
+     * a description of the object
+     * @return
+     */
+    String description();
+
+    /**
+     * add to the actionlist
+     * @param newAction
+     */
+    void addSampleAction(Action newAction);
 
 }

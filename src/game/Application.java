@@ -9,6 +9,8 @@ import game.grounds.Dirt;
 import game.grounds.Floor;
 import game.grounds.Sprout;
 import game.grounds.Wall;
+import game.item.Coin;
+import game.item.PowerStar;
 import game.roles.Enemy;
 import game.roles.Player;
 import game.roles.Toad;
@@ -59,9 +61,15 @@ public class Application {
 			GameMap gameMap = new GameMap(groundFactory, map);
 			world.addGameMap(gameMap);
 			Actor mario = new Player("Player", 'm', 100);
+
 			world.addPlayer(mario, gameMap.at(42, 10));
 			gameMap.addActor(new Toad(),gameMap.at(43,11));
 
+
+			PowerStar powerStar = new PowerStar();
+			gameMap.at(43, 10).addItem(powerStar);
+			Coin coin = new Coin();
+			gameMap.at(42,11).addItem(coin);
 			world.run();
 
 
