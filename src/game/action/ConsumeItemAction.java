@@ -65,6 +65,6 @@ public class ConsumeItemAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " consumes the " + item;
+        return actor + " consumes the " + item.description();
     }
 }

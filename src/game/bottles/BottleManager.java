@@ -1,6 +1,10 @@
 package game.bottles;
+
+import game.balance.ActorWallets;
+import game.balance.Wallet;
+
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 /**
  * A global Singleton manager that store all the water on the instances.
@@ -10,7 +14,7 @@ public class BottleManager {
      * A list of resettable instances (any classes that implements drinkable,
      * such as Player fills water will be stored in here)
      */
-    private List<Drinkable> drinkableList;
+    private HashMap<Drinkable,Bottle> drinkableBottleHashMap;
 
     /**
      * A singleton reset manager instance
@@ -32,7 +36,7 @@ public class BottleManager {
      * Constructor
      */
     private BottleManager(){
-        drinkableList = new ArrayList<>();
+        drinkableBottleHashMap = new HashMap<>();
     }
 
     /**
@@ -40,18 +44,15 @@ public class BottleManager {
      * By doing this way, it will avoid using `instanceof` all over the place.
      */
     public void run(){
-        for(Drinkable drink: this.drinkableList){
-            drink.executeInstance();
-        }
-        System.out.println(instance.drinkableList);
+        BottleManager.getInstance().getDrinkableBottleHashMap().get(this).drinkBottle();
     }
 
     /**
      * Add the Resettable instance to the list
      * FIXME: it does nothing, you need to implement it :)
      */
-    public void appendResetInstance(Drinkable drink){
-        this.drinkableList.add(drink);
+    public void appendResetInstance(Drinkable actor,Bottle bottle){
+        this.drinkableBottleHashMap.put(actor, bottle);
     }
 
     /**
@@ -60,6 +61,14 @@ public class BottleManager {
      * FIXME: it does nothing, you need to implement it :)
      */
     public void cleanUp(Drinkable drink){
-        this.drinkableList.remove(drink);
+        this.drinkableBottleHashMap.remove(drink);
+
+    }
+    /**
+     * get the hashmap
+     * @return hashmap
+     */
+    public  HashMap<Drinkable, Bottle> getDrinkableBottleHashMap(){
+        return new  HashMap<Drinkable,Bottle>(this.drinkableBottleHashMap);
     }
 }

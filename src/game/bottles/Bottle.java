@@ -9,7 +9,7 @@ import game.item.Consumable;
 import game.item.Water;
 import java.util.List;
 
-public class Bottle extends Item implements Consumable, Drinkable {
+public class Bottle extends Item implements Consumable{
     /**
      * An array list to store the water
      */
@@ -26,9 +26,12 @@ public class Bottle extends Item implements Consumable, Drinkable {
      */
     public Bottle() {
         super("Bottle", 'b', false);
-        this.setInstance();
+
     }
 
+    public void drinkBottle(){
+        waterList.remove(0);
+    }
 
     /**
      * method from the interface to be overwritten
@@ -65,14 +68,9 @@ public class Bottle extends Item implements Consumable, Drinkable {
      */
     @Override
     public String description() {
-        return this.toString()+waterList;
+        return this.toString()+ waterList;
     }
 
-
-    @Override
-    public void executeInstance() {
-
-    }
 
     /**
      * add the action

@@ -11,6 +11,8 @@ import game.balance.ActorWallets;
 import game.balance.Wallet;
 import game.balance.WalletsManager;
 import game.bottles.Bottle;
+import game.bottles.BottleManager;
+import game.bottles.Drinkable;
 import game.reset.Resettable;
 
 
@@ -19,7 +21,7 @@ import game.reset.Resettable;
  * @author Junhao Li, Ashston Sequira
  * @version 1.0.0
  */
-public class Player extends Actor implements ActorWallets, Resettable {
+public class Player extends Actor implements ActorWallets, Resettable, Drinkable {
     private final Menu menu = new Menu();
     /**
      * Checking if the resetAction has execute yet
@@ -44,7 +46,9 @@ public class Player extends Actor implements ActorWallets, Resettable {
         super.addCapability(Status.HOSTILE_TO_ENEMY);
         this.addToWalletsManager();
         this.registerInstance();
-        this.addItemToInventory(new Bottle());
+        this.setInstance();
+        this.addItemToInventory(BottleManager.getInstance().getDrinkableBottleHashMap().get(this));
+
     }
 
     /**
@@ -114,4 +118,5 @@ public class Player extends Actor implements ActorWallets, Resettable {
         checkStatus = true;
         allowReset = false;
     }
+
 }
