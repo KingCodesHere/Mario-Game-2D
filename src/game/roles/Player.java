@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.displays.Menu;
 import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.action.ResetAction;
 import game.balance.ActorWallets;
 import game.balance.Wallet;
@@ -34,6 +35,8 @@ public class Player extends Actor implements ActorWallets, Resettable, Drinkable
     private int resetTime = 1;
 
     private boolean allowReset = true;
+
+    private int damage = 5;
     /**
      * Constructor.
      *
@@ -96,7 +99,7 @@ public class Player extends Actor implements ActorWallets, Resettable, Drinkable
         if (this.hasCapability(Status.INVINCIBLE)) {
             display.println(this + " is invincible!");
         }
-
+        display.println("intrinsic attack damage: " +String.valueOf(getIntrinsicWeapon().damage()));
         // return/print the console menu
         return menu.showMenu(this, actions, display);
     }
@@ -117,6 +120,16 @@ public class Player extends Actor implements ActorWallets, Resettable, Drinkable
     public void resetInstance() {
         checkStatus = true;
         allowReset = false;
+    }
+
+    @Override
+    protected IntrinsicWeapon getIntrinsicWeapon() {
+
+        if(this.hasCapability(Status.PowerWater)){
+            damage += 15;
+            this.removeCapability(Status.PowerWater);
+        }
+        return new IntrinsicWeapon(damage, "punches");
     }
 
 }

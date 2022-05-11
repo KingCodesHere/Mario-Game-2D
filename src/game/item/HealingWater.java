@@ -1,5 +1,6 @@
 package game.item;
 
+import edu.monash.fit2099.engine.actors.Actor;
 import game.bottles.Drinkable;
 
 public class HealingWater extends Water  {
@@ -15,7 +16,7 @@ public class HealingWater extends Water  {
      * implment the function of water
      */
     @Override
-    public void waterFunction() {
-
+    public void waterFunction(Actor actor) {
+        actor.heal(50);
     }
 }

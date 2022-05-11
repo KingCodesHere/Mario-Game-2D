@@ -106,7 +106,7 @@ public class Bottle extends Item implements Consumable{
 
     @Override
     public void consumeAffect(Actor actor) {
-        drinkBottle().waterFunction();
+        drinkBottle().waterFunction(actor);
     }
 
 
