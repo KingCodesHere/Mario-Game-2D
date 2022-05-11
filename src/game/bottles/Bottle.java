@@ -8,13 +8,15 @@ import game.bottles.BottleManager;
 import game.bottles.Drinkable;
 import game.item.Consumable;
 import game.item.Water;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Bottle extends Item implements Consumable{
     /**
      * An array list to store the water
      */
-    private List<Water> waterList;
+    private ArrayList<Water> waterList= new ArrayList<Water>();
 
     /**
      * Consumable time
@@ -31,9 +33,21 @@ public class Bottle extends Item implements Consumable{
 
     }
 
-    public void drinkBottle(){
+    /**
+     * get rip of the water
+     */
+    private void drinkBottle(){
         waterList.remove(0);
     }
+
+    /**
+     * refilling the water bottle
+     * @param water water from founatin
+     */
+    public void filledBottle(Water water){
+        waterList.add(water);
+    }
+
 
     /**
      * method from the interface to be overwritten
@@ -50,7 +64,9 @@ public class Bottle extends Item implements Consumable{
      * @param actor
      */
     @Override
-    public void checkItem(Actor actor, GameMap map) {BottleManager.getInstance().run();
+    public void checkItem(Actor actor, GameMap map) {
+        drinkBottle();
+        consumeAffect(actor);
     }
 
     /**
@@ -99,8 +115,8 @@ public class Bottle extends Item implements Consumable{
      */
     @Override
     public List<Action> getAllowableActions() {
-
-        if (isEmpty == false) {
+        System.out.println(waterList);
+        if (!waterList.isEmpty()) {
             this.addSampleAction(this.consumeItem());
         }
         return super.getAllowableActions();

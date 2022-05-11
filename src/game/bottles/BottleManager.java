@@ -39,13 +39,6 @@ public class BottleManager {
         drinkableBottleHashMap = new HashMap<>();
     }
 
-    /**
-     * Reset the game by traversing through all the list
-     * By doing this way, it will avoid using `instanceof` all over the place.
-     */
-    public void run(){
-        BottleManager.getInstance().getDrinkableBottleHashMap().get(this).drinkBottle();
-    }
 
     /**
      * Add the Resettable instance to the list

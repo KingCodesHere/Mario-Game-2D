@@ -2,7 +2,7 @@ package game.item;
 
 import game.bottles.Drinkable;
 
-public abstract class HealingWater extends Water  {
+public class HealingWater extends Water  {
     /***
      * Constructor.
      */

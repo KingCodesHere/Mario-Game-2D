@@ -5,10 +5,7 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
-import game.grounds.Dirt;
-import game.grounds.Floor;
-import game.grounds.Sprout;
-import game.grounds.Wall;
+import game.grounds.*;
 import game.item.Coin;
 import game.item.PowerStar;
 import game.roles.Enemy;
@@ -70,6 +67,10 @@ public class Application {
 			gameMap.at(43, 10).addItem(powerStar);
 			Coin coin = new Coin();
 			gameMap.at(42,11).addItem(coin);
+
+			gameMap.at(42,8).setGround(new HealthFountain());
+			gameMap.at(43,9).setGround(new PowerFountain());
+
 			world.run();
 
 
