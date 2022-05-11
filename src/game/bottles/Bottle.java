@@ -2,6 +2,7 @@ package game.bottles;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
+import edu.monash.fit2099.engine.positions.GameMap;
 import game.action.ConsumeItemAction;
 import game.bottles.BottleManager;
 import game.bottles.Drinkable;
@@ -18,7 +19,8 @@ public class Bottle extends Item implements Consumable{
     /**
      * Consumable time
      */
-    private int lifetime = 1;
+
+    private boolean isEmpty = true;
 
     /***
      * Constructor.
@@ -48,8 +50,7 @@ public class Bottle extends Item implements Consumable{
      * @param actor
      */
     @Override
-    public void itemFunction(Actor actor) {
-        BottleManager.getInstance().run();
+    public void checkItem(Actor actor, GameMap map) {BottleManager.getInstance().run();
     }
 
     /**
@@ -82,6 +83,12 @@ public class Bottle extends Item implements Consumable{
         this.addAction(newAction);
     }
 
+    @Override
+    public void consumeAffect(Actor actor) {
+        this.toString();
+    }
+
+
     /**
      * Getter.
      * <p>
@@ -93,9 +100,8 @@ public class Bottle extends Item implements Consumable{
     @Override
     public List<Action> getAllowableActions() {
 
-        if (lifetime == 1) {
+        if (isEmpty == false) {
             this.addSampleAction(this.consumeItem());
-            this.lifetime -= 1;
         }
         return super.getAllowableActions();
     }

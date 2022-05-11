@@ -67,6 +67,11 @@ public class Koopa extends Enemy{
 
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        // reset
+        if (super.getCheckStatus() && super.getResetTime() == 1) {
+            map.removeActor(this);
+            super.setResetTime(0) ;
+        }
         if(!super.isConscious()){
             this.setDisplayChar('D');
             this.addCapability(Status.DORMANT);

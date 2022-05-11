@@ -134,6 +134,11 @@ public abstract class Enemy extends Actor implements Resettable {
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        // reset
+        if (this.checkStatus && this.resetTime == 1) {
+            map.removeActor(this);
+            this.resetTime = 0;
+        }
         this.addCapability(Status.HOSTILE_TO_PLAYER);
         this.behaviours.put(10,new WanderBehaviour());
         this.behaviours.put(1,new AttackBehaviour(getAttackDamage(),getVerb()));
@@ -144,11 +149,7 @@ public abstract class Enemy extends Actor implements Resettable {
             if(action != null)
                 return action;
 
-            // reset
-            if (this.checkStatus && this.resetTime == 1) {
-                map.removeActor(this);
-                this.resetTime = 0;
-            }
+
 
             if (!this.isConscious() || this.getMaxHp() <= 0) {
                 map.removeActor(this);

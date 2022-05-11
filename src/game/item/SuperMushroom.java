@@ -28,7 +28,7 @@ public class SuperMushroom extends MagicalItem {
      * @param actor
      */
     @Override
-    public void itemFunction(Actor actor){
+    public void consumeAffect(Actor actor){
         actor.increaseMaxHp(50);
         actor.addCapability(Status.TALL); // the capability of the actor
 

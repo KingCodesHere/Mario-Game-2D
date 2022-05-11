@@ -37,20 +37,7 @@ public class Goomba extends Enemy {
 	public Goomba() {
 		super("Goomba", 'g', 20,10,"kicks");
 	}
-	/**
-	 * This playTurn override the parent class
-	 * @param actions    collection of possible Actions for this Actor
-	 * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
-	 * @param map        the map containing the Actor
-	 * @param display    the I/O object to which messages may be written
-	 * @return the parent class: Enemy playTurn
-	 */
 
-	@Override
-	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-
-		return super.playTurn(actions, lastAction, map, display); // else return to parent class super loop for playTurn
-	}
 
 	@Override
 	public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {

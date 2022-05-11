@@ -17,10 +17,7 @@ public class ConsumeItemAction extends Action {
      * Consumable item
      */
     private final Consumable item;
-    /**
-     * Checking if the item checks in actor inventory
-     */
-    private boolean isExist = false;
+
 
     /**
      * Constructor.
@@ -39,24 +36,9 @@ public class ConsumeItemAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        for (Item items : actor.getInventory()) {
-            if (items == this.item) {
-                isExist = true;
-            }
-        }
-        if (isExist) {
-
-            item.itemFunction(actor);
-            item.removeConsumableAction(this);
-            return menuDescription(actor);
-
-        } else {
-            actor.addItemToInventory((Item) this.item);
-            map.locationOf(actor).removeItem((Item) item);
-            item.itemFunction(actor);
-            item.removeConsumableAction(this);
-            return menuDescription(actor);
-        }
+        item.checkItem(actor,map);
+        item.removeConsumableAction(this);
+        return menuDescription(actor);
     }
     /**
      * return the actor consumes item sentence
