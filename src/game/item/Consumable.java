@@ -21,7 +21,7 @@ public interface Consumable {
      * implement the item function after consuming
      * @param actor
      */
-    void checkItem(Actor actor, GameMap map);
+    void checkItem(Actor actor, GameMap map,Action action);
 
     /**
      * remove the action

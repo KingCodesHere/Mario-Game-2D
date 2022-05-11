@@ -97,7 +97,7 @@ public class MagicalItem extends Item implements Consumable, Purchasable, Resett
      * @param actor
      */
     @Override
-    public void checkItem(Actor actor, GameMap map) {
+    public void checkItem(Actor actor, GameMap map,Action action) {
         for (Item items : actor.getInventory()) {
             if (items == this) {
                 isExist = true;
@@ -110,6 +110,7 @@ public class MagicalItem extends Item implements Consumable, Purchasable, Resett
             map.locationOf(actor).removeItem(this);
             this.consumeAffect(actor);
         }
+        this.removeConsumableAction(action);
     }
 
     /**

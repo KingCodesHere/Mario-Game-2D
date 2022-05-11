@@ -36,8 +36,7 @@ public class ConsumeItemAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        item.checkItem(actor,map);
-        item.removeConsumableAction(this);
+        item.checkItem(actor,map,this);
         return menuDescription(actor);
     }
     /**

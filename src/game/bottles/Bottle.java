@@ -22,7 +22,7 @@ public class Bottle extends Item implements Consumable{
      * Consumable time
      */
 
-    private boolean isEmpty = true;
+    private boolean  lifetime = true;
 
     /***
      * Constructor.
@@ -36,8 +36,10 @@ public class Bottle extends Item implements Consumable{
     /**
      * get rip of the water
      */
-    private void drinkBottle(){
-        waterList.remove(0);
+    private Water drinkBottle(){
+        Water water = waterList.get(waterList.size()-1); //working like a stack
+        waterList.remove(water);
+        return water;
     }
 
     /**
@@ -64,9 +66,12 @@ public class Bottle extends Item implements Consumable{
      * @param actor
      */
     @Override
-    public void checkItem(Actor actor, GameMap map) {
-        drinkBottle();
+    public void checkItem(Actor actor, GameMap map,Action action) {
         consumeAffect(actor);
+        if (waterList.isEmpty()){
+            removeConsumableAction(action);
+            lifetime = true; // setting the lifetime consumable action to be true again
+        }
     }
 
     /**
@@ -101,7 +106,7 @@ public class Bottle extends Item implements Consumable{
 
     @Override
     public void consumeAffect(Actor actor) {
-        this.toString();
+        drinkBottle().waterFunction();
     }
 
 
@@ -116,9 +121,11 @@ public class Bottle extends Item implements Consumable{
     @Override
     public List<Action> getAllowableActions() {
         System.out.println(waterList);
-        if (!waterList.isEmpty()) {
+        if (!waterList.isEmpty() && lifetime) {
             this.addSampleAction(this.consumeItem());
+            lifetime = false;
         }
+
         return super.getAllowableActions();
     }
 }
