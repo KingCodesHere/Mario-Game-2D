@@ -1,17 +1,13 @@
 package game.behaviours;
 
 import edu.monash.fit2099.engine.actions.Action;
-import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actions.MoveActorAction;
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.positions.NumberRange;
-import game.RandomRange;
 import game.action.AttackAction;
-import game.item.Coin;
 import game.roles.Status;
 
 import java.util.ArrayList;
@@ -25,85 +21,68 @@ import java.util.Random;
  * @version 1.0.0
  */
 
-public class AttackBehaviour extends Action implements Behaviour  {
+public class AttackBehaviour implements Behaviour  {
+    /**
+     * the actor being targeted
+     *
+     * */
+    private final Actor target;
+    /**
+     * String of direction the actor will attack on
+     *
+     * */
+    private String direction;
+    /**
+     * Random generator
+     *
+     * */
+    private final Random random = new Random();
 
     /**
-     * The Actor that is to be attacked
-     */
-    private Actor target;
-
-    private String verb = "";
-
-    private int damage = 0;
-
-
-    public AttackBehaviour( int damage, String verb) {
-//        this.target = target;
-        this.damage = damage;
-        this.verb = verb;
+     * Attack Behaviour constructor
+     *
+     * @param target the Actor to attack
+     * @param direction the direction to attack at
+     * */
+    public AttackBehaviour(Actor target,String direction) {
+        this.target = target;
+        this.direction = direction;
     }
 
+    /**
+     * Returns a action for player to return in display, if possible.
+     * If no action is possible, returns null.
+     *
+     * @param actor the Actor enacting the behaviour
+     * @param map the map that actor is currently on
+     * @return an Action, or null if no action is possible
+     */
 
     @Override
     public Action getAction(Actor actor, GameMap map) {
+
+        ArrayList<Action> actions = new ArrayList<Action>();
         if(!map.contains(target) || !map.contains(actor))
             return null;
 
-        Location here = map.locationOf(actor);
-        Location there = map.locationOf(target);
+        Location x = map.locationOf(target);
 
-        for (Exit exit : here.getExits() ) {
+        for (Exit exit : x.getExits() ) {
             Location destination = exit.getDestination();
-/*            if (destination.canActorEnter(target)) {
-                target.hurt(damage);
-                return new MoveActorAction(here,exit.getName());*/
-            if (actor.hasCapability(Status.HOSTILE_TO_ENEMY)){
-                target.hurt(damage);
-                return new AttackBehaviour(damage,verb);
+
+            if (destination.containsAnActor()) {
+                actions.add(new AttackAction(target,direction));
+
             }
+
         }
-
-
+        if (!actions.isEmpty()) {
+            return actions.get(random.nextInt(actions.size()));
+        }
         return null;
     }
 
 
 
 
-    /**
-     * execute the hotkey
-     * @param actor The actor performing the behaviour.
-     * @param map The map the actor is on.
-     * @return .
-     */
-
-
-    @Override
-    public String execute(Actor actor, GameMap map) {
-        String result=  actor+ " attacks " + target + " for " + damage + " damage.";
-
-        if (RandomRange.RandRange(100) <= 50) {
-            result = actor + " misses " + target + ".";
-        }
-
-        if (!target.isConscious()) {
-            ActionList dropActions = new ActionList();
-            for (Action drop : dropActions)
-                drop.execute(target, map);
-            // remove actor
-            map.removeActor(target);
-            result += System.lineSeparator() + target + " is killed.";
-        }
-        return result;
-    }
-
-    /**
-     * return the actor performing
-     * @param actor The actor performing the action.
-     * @return .
-     */
-    @Override
-    public String menuDescription(Actor actor) {
-        return actor + verb + target ;
-    }
 }

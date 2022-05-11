@@ -14,16 +14,27 @@ import edu.monash.fit2099.engine.positions.Location;
  */
 public class FollowBehaviour implements Behaviour {
 
-	private Actor target;
+	private final Actor target;
+
 
 	/**
 	 * Constructor.
 	 * 
-//	 * @param subject the Actor to follow
+	 * @param subject the Actor to follow
 	 */
-	public FollowBehaviour() {
-//		this.target = subject;
+	public FollowBehaviour(Actor subject) {
+		this.target = subject;
 	}
+
+
+	/**
+	 * Returns a MoveAction to wander towards the subject location, if possible.
+	 * If no movement is possible, returns null.
+	 *
+	 * @param actor the Actor enacting the behaviour
+	 * @param map the map that actor is currently on
+	 * @return an Action, or null if no MoveAction is possible
+	 */
 
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
