@@ -86,6 +86,11 @@ public abstract class Enemy extends Actor implements Resettable {
     /**
      * Constructor
      * the general Enemy constructor with set default behaviours
+     * @param name for this current Enemy name
+     * @param attackDamage the damage this enemy carries
+     * @param displayChar  the display of character on map this enemy carry
+     * @param hitPoints  the hit point of this enemy
+     * @param verb the verb that will display for the enemy when the attack occur
      */
     public Enemy(String name, char displayChar, int hitPoints, int attackDamage, String verb) {
         super(name, displayChar, hitPoints);

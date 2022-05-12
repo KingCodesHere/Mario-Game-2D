@@ -20,7 +20,7 @@ public class Wrench extends WeaponItem implements Purchasable{
 
     /**
      * Overwrite the method from purchasable method
-     * @return
+     * @return price
      */
     @Override
     public int getPrice() {

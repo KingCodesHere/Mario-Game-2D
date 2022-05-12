@@ -7,6 +7,9 @@ import game.roles.Status;
  */
 public class Dirt extends Ground {
 
+	/**
+	 * Constructor for Dirt Class
+	 */
 	public Dirt() {
 		super('.');
 		addCapability(Status.FERTILE);

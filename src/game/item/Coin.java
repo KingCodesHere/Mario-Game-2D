@@ -77,7 +77,7 @@ public class Coin extends Item implements Resettable {
     /**
      * call the pickupcoinaction method
      * @param coin
-     * @return
+     * @return Action to actor to pick up coin
      */
     public PickUpCoinAction getPickUp(Coin coin) {
         return new PickUpCoinAction(coin);

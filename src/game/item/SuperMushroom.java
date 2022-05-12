@@ -25,7 +25,7 @@ public class SuperMushroom extends MagicalItem {
 
     /**
      * This item's function
-     * @param actor
+     * @param actor the actor's updated HP and capability
      */
     @Override
     public void itemFunction(Actor actor){
@@ -36,7 +36,7 @@ public class SuperMushroom extends MagicalItem {
 
     /**
      * Overwrite the method from purchasable method
-     * @return
+     * @return price
      */
     @Override
     public int getPrice() {

@@ -65,7 +65,7 @@ public class Koopa extends Enemy{
 
     /**
      * This playTurn override the parent class
-     * Koopa Class requires changes to its status when the hp is <=0
+     * Koopa Class requires changes to its status when the hp is equal or less than 0
      * for Koopa class, the status will be set to dormant when this happens
      * @param actions    collection of possible Actions for this Actor
      * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()

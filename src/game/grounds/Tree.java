@@ -17,6 +17,7 @@ public abstract class Tree extends HighGround implements Resettable {
 
     /**
      * Constructor.
+     * @return displayChar
      */
     public Tree(char displayChar) {
         super(displayChar);
@@ -37,7 +38,7 @@ public abstract class Tree extends HighGround implements Resettable {
     /**
      * getter for checkStatus
      *
-     * @return
+     * @return true or false when checking status according to its constraints
      */
     public boolean getCheckStatus() {
         return this.checkStatus;
@@ -46,7 +47,7 @@ public abstract class Tree extends HighGround implements Resettable {
     /**
      * getter for resetTime
      *
-     * @return
+     * @return Reset times for resetting map
      */
     public int getResetTime() {
         return resetTime;
@@ -55,7 +56,7 @@ public abstract class Tree extends HighGround implements Resettable {
     /**
      * setter for resetTime
      *
-     * @param resetTime
+     * @param resetTime for time when resetting the map
      */
     public void setResetTime(int resetTime) {
         this.resetTime = resetTime;
