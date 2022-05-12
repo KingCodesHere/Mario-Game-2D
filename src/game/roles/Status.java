@@ -15,6 +15,6 @@ public enum Status {
     COIN, //use this status for Wallet to identify the Item type.
     DORMANT, // use this status for the Dormant State of Koopa, when it is Hiding in its shell.
     PowerWater, // use this status for the Player after consuming PowerWater.
-    Fire // use this status for the player after consuming Fire Flower.
+    FIRE // use this status for the player after consuming Fire Flower.
 
 }
