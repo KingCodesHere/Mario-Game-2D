@@ -8,7 +8,9 @@ import game.action.ConsumeItemAction;
 import game.reset.Resettable;
 
 import java.util.List;
-
+/**
+ * Magical Item for Item that has magic abilities
+ */
 public class MagicalItem extends Item implements Consumable, Purchasable, Resettable {
 
     /**

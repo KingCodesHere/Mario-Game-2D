@@ -5,8 +5,8 @@ import game.RandomRange;
 import game.roles.Goomba;
 
 /**
- * @author  Ashton Sequeira
  * Tree ground of Sprout type
+ * @author  Ashton Sequeira
  */
 public class Sprout extends Tree{
     private int count=0;

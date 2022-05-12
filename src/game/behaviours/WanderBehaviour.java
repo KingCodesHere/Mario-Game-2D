@@ -10,8 +10,11 @@ import edu.monash.fit2099.engine.positions.Location;
 
 import java.util.ArrayList;
 import java.util.Random;
-
-public class WanderBehaviour extends Action implements Behaviour {
+/**
+ * Wander Behaviour for non-playable Actors to inherit to act by wandering the map
+ *
+ */
+ public class WanderBehaviour extends Action implements Behaviour {
 	
 	private final Random random = new Random();
 

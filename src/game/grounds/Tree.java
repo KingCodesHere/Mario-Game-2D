@@ -4,6 +4,9 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.RandomRange;
 import game.reset.Resettable;
 
+/**
+  Tree ground of generic tree
+ */
 public abstract class Tree extends HighGround implements Resettable {
     /**
      * Checking if the resetAction has execute yet

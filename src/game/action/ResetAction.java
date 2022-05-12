@@ -5,6 +5,9 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.reset.ResetManager;
 
+/**
+ * Reset Action to control the overall inheritable reset run with its hot key for display
+ */
 public class ResetAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {

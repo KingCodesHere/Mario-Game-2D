@@ -10,7 +10,7 @@ import game.grounds.HighGround;
 import game.roles.Status;
 
 /**
- *
+ * JumpAction for actor to retrieve, when possible to Jump on a certain ground
  * @author Ashton Sequeira
  */
 public class JumpAction extends Action {

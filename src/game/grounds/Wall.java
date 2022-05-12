@@ -1,10 +1,13 @@
 package game.grounds;
 
 
-
+/**
+ * A class that represents walls which is within HigGround
+ */
 public class Wall extends HighGround {
+
 	/**
-	 * A class that represents walls which is within HigGround
+	 * Constructor
 	 */
 	public Wall() {
 		super('#');

@@ -7,8 +7,8 @@ import game.item.Coin;
 import java.util.Random;
 
 /**
- * @author  Ashton Sequeira
  * Tree ground of Sprout type
+ * @author  Ashton Sequeira
  */
 public class Sapling extends Tree{
     private int count=0;
