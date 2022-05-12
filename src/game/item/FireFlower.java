@@ -21,14 +21,12 @@ public class FireFlower extends Item implements Consumable {
      */
     private int count;
 
+    boolean renewTime;
     /***
      * Constructor.
-     *  @param name the name of this Item
-     * @param displayChar the character to use to represent this item if it is on the ground
-     * @param portable true if and only if the Item can be picked up
      */
-    public FireFlower(String name, char displayChar, boolean portable) {
-        super(name, displayChar, portable);
+    public FireFlower() {
+        super("Fire Flower", 'F', false);
     }
 
     @Override
@@ -38,7 +36,8 @@ public class FireFlower extends Item implements Consumable {
 
     @Override
     public void checkItem(Actor actor, GameMap map, Action action) {
-        consumeAffect(actor);
+        map.locationOf(actor).removeItem(this);
+        this.consumeAffect(actor);
     }
 
     @Override
@@ -59,6 +58,7 @@ public class FireFlower extends Item implements Consumable {
     @Override
     public void consumeAffect(Actor actor) {
         actor.addCapability(Status.FIRE);
+        actor.addItemToInventory(this);
     }
 
     /**
@@ -88,11 +88,8 @@ public class FireFlower extends Item implements Consumable {
      * @param actor The actor carrying this Item.
      */
     public void tick(Location currentLocation, Actor actor) {
-        if(super.isCheckStatus() && super.getResetTime()==1){
-            actor.removeItemFromInventory(this);
-            actor.removeCapability(Status.INVINCIBLE);
-            super.setResetTime(0);
-        }
+
+
         if(lifetime == 1 && renewTime == true ){
             this.count = 0;
             lifetime = 0;
@@ -101,8 +98,9 @@ public class FireFlower extends Item implements Consumable {
         new Display().println("Mario's FireAttack - " +(20-this.count)+ " turns remaining");
         if (this.count == 20) {
             actor.removeCapability(Status.FIRE);
+            actor.removeItemFromInventory(this);
         }
 
-
+        this.count += 1;
     }
 }
