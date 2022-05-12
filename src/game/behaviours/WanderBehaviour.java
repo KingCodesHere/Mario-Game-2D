@@ -23,7 +23,7 @@ public class WanderBehaviour extends Action implements Behaviour {
 	 * 
 	 * @param actor the Actor enacting the behaviour
 	 * @param map the map that actor is currently on
-	 * @return an Action, or null if no MoveAction is possible
+	 * @return an Action
 	 */
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
@@ -35,12 +35,7 @@ public class WanderBehaviour extends Action implements Behaviour {
 				actions.add(exit.getDestination().getMoveAction(actor, "around", exit.getHotKey()));
 			}
 		}
-
-		if (!actions.isEmpty()) {
-			return actions.get(random.nextInt(actions.size()));
-		}
-		return null;
-
+		return actions.get(random.nextInt(actions.size()));
 	}
 
 

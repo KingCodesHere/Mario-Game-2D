@@ -79,6 +79,7 @@ public class AttackBehaviour implements Behaviour  {
         if (!actions.isEmpty()) {
             return actions.get(random.nextInt(actions.size()));
         }
+
         return null;
     }
 

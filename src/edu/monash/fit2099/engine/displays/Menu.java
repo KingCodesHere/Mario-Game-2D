@@ -11,7 +11,7 @@ import java.util.HashMap;
 /**
  * A menu GUI implementations
  */
-public class Menu {
+public class Menu{
 
 	/**
 	 * Display a menu to the user and have them select an option.

@@ -3,6 +3,7 @@ package edu.monash.fit2099.demo.mars.actors;
 import java.util.*;
 
 import edu.monash.fit2099.demo.mars.actions.KickAction;
+import edu.monash.fit2099.demo.mars.behaviours.SpitBehaviour;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;

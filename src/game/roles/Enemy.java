@@ -55,7 +55,6 @@ public abstract class Enemy extends Actor implements Resettable {
         return verb;
     }
 
-
     /**
      * Getter for returnign damage lvl
      * @return attackDamage int
@@ -97,6 +96,7 @@ public abstract class Enemy extends Actor implements Resettable {
         this.registerInstance();
         this.addCapability(Status.HOSTILE_TO_PLAYER);
         this.behaviours.put(10,new WanderBehaviour());
+
     }
     /**
      * Returns a new collection of the Actions that the otherActor can do to the current Actor.
@@ -109,7 +109,7 @@ public abstract class Enemy extends Actor implements Resettable {
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
 
-        ActionList actions=new ActionList();
+        ActionList actions = new ActionList(); // possible a
 
         for (Exit exit : map.locationOf(this).getExits()) {
 
@@ -139,17 +139,17 @@ public abstract class Enemy extends Actor implements Resettable {
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        //resettable
+        if (this.checkStatus && this.resetTime == 1) {
+            map.removeActor(this);
+            this.resetTime = 0;
+        }
 
         for (Behaviour behaviour : behaviours.values()) {
             Action action = behaviour.getAction(this, map);
             if(action != null)
             return action;
 
-        }
-        // reset
-        if (this.checkStatus && this.resetTime == 1) {
-            map.removeActor(this);
-            this.resetTime = 0;
         }
 
 
