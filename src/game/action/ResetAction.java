@@ -9,13 +9,13 @@ public class ResetAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         ResetManager.getInstance().run();
-        return actor + "has reset the game";
+        return actor + " has reset the game";
     }
 
     @Override
     public String menuDescription(Actor actor) {
 
-        return actor+ " reset the game";
+        return actor+ " reset the game ";
     }
 
 

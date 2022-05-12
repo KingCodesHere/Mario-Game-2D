@@ -32,7 +32,7 @@ public class AttackAction extends Action {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param target the Actor to attack
 	 */
 	public AttackAction(Actor target, String direction) {
@@ -61,9 +61,11 @@ public class AttackAction extends Action {
 		if(target.hasCapability(Status.TALL)){
 			target.removeCapability(Status.TALL);
 		}
+
 		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 		target.hurt(damage);
-		if (!target.isConscious()) {
+
+		if (!target.isConscious() && !target.hasCapability(Status.DORMANT)) {
 			ActionList dropActions = new ActionList();
 			// drop all items
 			for (Item item : target.getInventory())
@@ -75,6 +77,7 @@ public class AttackAction extends Action {
 			result += System.lineSeparator() + target + " is killed.";
 		}
 
+
 		return result;
 	}
 
@@ -83,3 +86,4 @@ public class AttackAction extends Action {
 		return actor + " attacks " + target + " at " + direction;
 	}
 }
+

@@ -1,10 +1,11 @@
-
 package game.roles;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
+import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.action.AttackAction;
 import game.action.DestroyShellAction;
 import game.behaviours.Behaviour;
 
@@ -37,7 +38,8 @@ public class Koopa extends Enemy{
 
     /**
      * Returns a new collection of the Actions that the otherActor can do to the current Actor.
-     *
+     * Koopa class requires Dormant status and will not display attack action to player when standing next to it
+     * Koopa class will only display DestroyShellAction when player acquires WRENCH in its inventory.
      * @param otherActor the Actor that might be performing attack
      * @param direction  String representing the direction of the other Actor
      * @param map        current GameMap
@@ -45,19 +47,25 @@ public class Koopa extends Enemy{
      */
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
-        ActionList actions=super.allowableActions(otherActor,direction,map);
+        ActionList actions = super.allowableActions(otherActor,direction,map);
 
         if(this.hasCapability(Status.DORMANT)) {
             actions.clear();
+
+            if(otherActor.hasCapability(Status.WRENCH) ){
+                actions.add(new DestroyShellAction(this));
+            }
+
+            return actions;
         }
-        if(otherActor.hasCapability(Status.WRENCH) && this.hasCapability(Status.DORMANT)){
-            actions.add(new DestroyShellAction(this));
-        }
+
         return actions;
     }
 
     /**
      * This playTurn override the parent class
+     * Koopa Class requires changes to its status when the hp is <=0
+     * for Koopa class, the status will be set to dormant when this happens
      * @param actions    collection of possible Actions for this Actor
      * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
      * @param map        the map containing the Actor
@@ -67,18 +75,19 @@ public class Koopa extends Enemy{
 
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+
+        if (this.getMaxHp() <= 0) {
+            this.setDisplayChar('D');
+            this.addCapability(Status.DORMANT);
+        }
+
         // reset
         if (super.getCheckStatus() && super.getResetTime() == 1) {
             map.removeActor(this);
-            super.setResetTime(0) ;
+            super.setResetTime(0);
         }
-        if(!super.isConscious()){
-            this.setDisplayChar('D');
-            this.addCapability(Status.DORMANT);
 
-        }
-        return super.playTurn(actions,lastAction,map,display);
-
+        return super.playTurn(actions, lastAction, map, display); // else return to parent class super loop for playTurn
     }
 
 

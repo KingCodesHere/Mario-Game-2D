@@ -14,6 +14,7 @@ public enum Status {
     WRENCH, // use this status for Player when the item Wrench is able for this player when the Item Wrench is usable.
     COIN, //use this status for Wallet to identify the Item type.
     DORMANT, // use this status for the Dormant State of Koopa, when it is Hiding in its shell.
-    PowerWater,
+    PowerWater, // use this status for the Player after consuming PowerWater.
+    Fire // use this status for the player after consuming Fire Flower.
 
 }
