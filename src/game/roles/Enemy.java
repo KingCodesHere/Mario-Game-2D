@@ -1,6 +1,4 @@
 package game.roles;
-
-import edu.monash.fit2099.demo.mars.actions.KickAction;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
