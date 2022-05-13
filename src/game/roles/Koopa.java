@@ -84,11 +84,12 @@ public class Koopa extends Enemy{
         // reset
         if (super.getCheckStatus() && super.getResetTime() == 1) {
             map.removeActor(this);
+            this.behaviours.clear();
             super.setResetTime(0);
+            return new DoNothingAction();
+        } else {
+            return super.playTurn(actions, lastAction, map, display);
         }
 
-        return super.playTurn(actions, lastAction, map, display); // else return to parent class super loop for playTurn
     }
-
-
 }

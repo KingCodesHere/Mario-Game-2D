@@ -38,11 +38,12 @@ public class FireFlower extends Item implements Consumable {
     public void checkItem(Actor actor, GameMap map, Action action) {
         map.locationOf(actor).removeItem(this);
         this.consumeAffect(actor);
+        this.removeConsumableAction(action);
     }
 
     @Override
     public void removeConsumableAction(Action action) {
-        this.removeConsumableAction(action);
+        this.removeAction(action);
     }
 
     @Override

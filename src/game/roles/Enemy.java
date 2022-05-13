@@ -148,6 +148,7 @@ public abstract class Enemy extends Actor implements Resettable {
         // reset
         if (this.checkStatus && this.resetTime == 1) {
             map.removeActor(this);
+            this.behaviours.clear();
             this.resetTime = 0;
         }
 

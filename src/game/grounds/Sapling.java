@@ -3,6 +3,7 @@ package game.grounds;
 import edu.monash.fit2099.engine.positions.Location;
 import game.RandomRange;
 import game.item.Coin;
+import game.item.FireFlower;
 
 import java.util.Random;
 
@@ -45,6 +46,10 @@ public class Sapling extends Tree{
         Random random = new Random();
         if (count == 10) {
             location.setGround(new Mature()); //Every 10 turns ,sapling turns to mature
+            if ((RandomRange.RandRange(100) < 50)) {
+
+                location.addItem(new FireFlower()); //After every turn, 50% chance for fireflower to spawn
+            }
         }
         if (RandomRange.RandRange(100) <= 10) {
             location.addItem(new Coin(20)); //10% chance to drop coin

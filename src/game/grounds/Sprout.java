@@ -2,6 +2,7 @@ package game.grounds;
 
 import edu.monash.fit2099.engine.positions.Location;
 import game.RandomRange;
+import game.item.FireFlower;
 import game.roles.Goomba;
 
 /**
@@ -49,8 +50,11 @@ public class Sprout extends Tree{
         this.count += 1;
         if (this.count == 10) {  //After every 10 turns sprout grows to sapling
             location.setGround(new Sapling());
-        }
+            if ((RandomRange.RandRange(100) < 50)) {
 
+                location.addItem(new FireFlower()); //After every turn, 50% chance for fireflower to spawn
+            }
+        }
 
     }
 

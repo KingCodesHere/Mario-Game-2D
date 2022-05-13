@@ -3,6 +3,7 @@ package game.roles;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
+import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
@@ -66,15 +67,20 @@ public class Goomba extends Enemy {
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
 		if (!this.isConscious() || this.getMaxHp() <= 0) {
 			map.removeActor(this);
+			return new DoNothingAction();
 		}
 
 		// reset
 		if (super.getCheckStatus() && super.getResetTime() == 1) {
 			map.removeActor(this);
+			this.behaviours.clear();
 			super.setResetTime(0);
+			return new DoNothingAction();
 		}
-
-		return super.playTurn(actions, lastAction, map, display); // else return to parent class super loop for playTurn
+		else{
+		return super.playTurn(actions, lastAction, map, display);
+		}
+		// else return to parent class super loop for playTurn
 	}
 
 
