@@ -1,13 +1,16 @@
-package game.roles;
+package game.roles.Enemies;
 
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
+import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.RandomRange;
 import game.behaviours.Behaviour;
+import game.roles.Enemies.Enemy;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,10 +40,10 @@ public class Goomba extends Enemy {
 	 * Allowable Actions for the Player, display hotkeys and has the ability to check map if otherActor is present.
 	 * Goomba has to vanish from the map 10% of chance in every turn, this is to clean the map and not over-crowd it
 	 */
-	@Override
+
 	public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
 
-		if (!map.contains(otherActor))  {
+		if (!map.isAnActorAt(map.locationOf(otherActor)))  {
 			if(RandomRange.RandRange(100)<=10){ // if chance hit this actor is less than this,
 				map.removeActor(this); // action in playTurn removes the actor
 			}
@@ -57,19 +60,21 @@ public class Goomba extends Enemy {
 	 * @param display    the I/O object to which messages may be written
 	 * @return the parent class: Enemy playTurn
 	 */
-	@Override
+
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-		if (!this.isConscious() || this.getMaxHp() <= 0) {
-			map.removeActor(this);
-		}
+
 
 		// reset
 		if (super.getCheckStatus() && super.getResetTime() == 1) {
 			map.removeActor(this);
+			this.behaviours.clear();
 			super.setResetTime(0);
+			return new DoNothingAction();
 		}
 
-		return super.playTurn(actions, lastAction, map, display); // else return to parent class super loop for playTurn
+		else {
+			return super.playTurn(actions, lastAction, map, display); // else return to parent class super loop for playTurn
+		}
 	}
 
 

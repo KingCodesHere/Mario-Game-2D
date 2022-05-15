@@ -3,32 +3,33 @@ package game.grounds;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.Location;
 import game.RandomRange;
-import game.roles.Koopa;
+import game.roles.Enemies.FlyingKoopa;
+import game.roles.Enemies.Koopa;
 import game.roles.Status;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-/**Tree ground of Mature type
+/**Tree ground of MatureTree type
  * @author  Ashton Sequeira
  */
-public class Mature extends Tree{
+public class MatureTree extends Tree{
     private int count=0;
     /**
      * Constructor
      */
-    public Mature() {
+    public MatureTree() {
         super('T');
         this.addCapability(High.MATURE);
     }
 
     /**
      *
-     * @return String with Mature
+     * @return String with MatureTree
      */
     @Override
     public String getName() {
-        return "Mature";
+        return "MatureTree";
     }
 
     /**
@@ -61,7 +62,10 @@ public class Mature extends Tree{
         if ((RandomRange.RandRange(100)) <= 15 && !location.containsAnActor()) {
             location.addActor(new Koopa()); //After every turn,15% chance for Koopa to spawn and doesn't spawn if actor stands on it
         }
-        if (RandomRange.RandRange(100) <= 20) { //20% chance for Mature to turn to Dirt
+        if ((RandomRange.RandRange(100)) <= 50 && !location.containsAnActor()) {
+            location.addActor(new FlyingKoopa()); //After every turn,50% chance for FlyingKoopa to spawn and doesn't spawn if actor stands on it
+        }
+        if (RandomRange.RandRange(100) <= 20) { //20% chance for MatureTree to turn to Dirt
             location.setGround(new Dirt());
         }
     }

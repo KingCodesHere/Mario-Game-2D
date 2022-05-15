@@ -2,7 +2,6 @@ package game;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
@@ -11,9 +10,8 @@ import game.grounds.Floor;
 import game.grounds.Sprout;
 import game.grounds.Wall;
 import game.item.Coin;
-import game.roles.Enemy;
-import game.roles.Player;
-import game.roles.Toad;
+import game.roles.*;
+import game.roles.Allies.Toad;
 
 import java.util.Arrays;
 import java.util.List;

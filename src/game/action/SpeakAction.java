@@ -45,7 +45,7 @@ public class SpeakAction extends Action{
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        String speaks = friend+": ";
+        String speaks = friend+ ": ";
 
         statement.add(speaks+"The Princess is depending on you! You are our only hope.");
         statement.add(speaks+"Being imprisoned in these walls can drive a fungus crazy :( ");
@@ -75,7 +75,7 @@ public class SpeakAction extends Action{
      */
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " speak to " +friend;
+        return actor + " speak to " + friend;
     }
 
 }

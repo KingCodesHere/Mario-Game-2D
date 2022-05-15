@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.RandomRange;
 import game.item.SuperMushroom;
+import game.roles.Status;
 
 
 /**
@@ -21,15 +22,23 @@ public class DestroyShellAction extends Action {
      * */
     private Actor target;
 
+    /**
+     * The direction of incoming attack.
+     */
+    protected String direction;
+
 
     /**
      * Constructor
      *
      * @param target the target to be destroyed.
      * */
-    public DestroyShellAction(Actor target) {
+    public DestroyShellAction(Actor target, String direction) {
         this.target=target;
+        this.direction = direction;
     }
+
+
 
 
     /**
@@ -40,12 +49,13 @@ public class DestroyShellAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
+
         if(RandomRange.RandRange(100)<=80) {
             map.removeActor(target);
             map.locationOf(target).addItem(new SuperMushroom());
-            return "Destroyed Koopa's Shell";
+            return " Destroyed Koopa's Shell ";
         }
-        return actor+ " misses and couldn't destroy Koopa's Shell";
+        return actor+ "misses and couldn't destroy Koopa's Shell";
 
     }
 

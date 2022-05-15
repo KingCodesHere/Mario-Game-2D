@@ -45,13 +45,15 @@ public class AttackAction extends Action {
 	@Override
 	public String execute(Actor actor, GameMap map) {
 
-
 		Weapon weapon = actor.getWeapon();
+		int damage;
+		String result = "";
+
 
 		if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
 			return actor + " misses " + target + ".";
 		}
-		int damage;
+
 		if (target.hasCapability(Status.INVINCIBLE)){
 			damage=0;
 		}
@@ -61,11 +63,27 @@ public class AttackAction extends Action {
 		if(target.hasCapability(Status.TALL)){
 			target.removeCapability(Status.TALL);
 		}
-
-		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
+		if (target.hasCapability(Status.DORMANT)){
+			damage=0;
+			if (actor.hasCapability(Status.WRENCH)){
+				target.hurt(damage);
+			}
+		}
+		result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 		target.hurt(damage);
 
-		if (!target.isConscious() && !target.hasCapability(Status.DORMANT)) {
+
+		if (target.hasCapability(Status.KOOPA)){
+			if (!target.isConscious()){
+				target.addCapability(Status.DORMANT);
+				target.heal(50);
+				target.isConscious();
+			}
+			result += System.lineSeparator() + target+ " is Dormant. " ;
+		}
+
+
+		if (!target.isConscious() && !target.hasCapability(Status.KOOPA)) {
 			ActionList dropActions = new ActionList();
 			// drop all items
 			for (Item item : target.getInventory())

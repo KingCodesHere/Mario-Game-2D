@@ -1,12 +1,11 @@
-package game.roles;
+package game.roles.Enemies;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
-import edu.monash.fit2099.engine.positions.Exit;
+
 import edu.monash.fit2099.engine.positions.GameMap;
-import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.action.AttackAction;
 import game.behaviours.AttackBehaviour;
@@ -14,6 +13,8 @@ import game.behaviours.Behaviour;
 import game.behaviours.FollowBehaviour;
 import game.behaviours.WanderBehaviour;
 import game.reset.Resettable;
+import game.roles.Status;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -94,12 +95,10 @@ public abstract class Enemy extends Actor implements Resettable {
      */
     public Enemy(String name, char displayChar, int hitPoints, int attackDamage, String verb) {
         super(name, displayChar, hitPoints);
-        this.attackDamage=attackDamage;
+        this.attackDamage = attackDamage;
         this.verb=verb;
         this.registerInstance();
         this.addCapability(Status.HOSTILE_TO_PLAYER);
-        this.behaviours.put(10,new WanderBehaviour());
-
     }
     /**
      * Returns a new collection of the Actions that the otherActor can do to the current Actor.
@@ -114,19 +113,15 @@ public abstract class Enemy extends Actor implements Resettable {
 
         ActionList actions = new ActionList(); // possible a
 
-        for (Exit exit : map.locationOf(this).getExits()) {
+        if (this.isConscious()){
+            this.behaviours.put(10,new WanderBehaviour());
+        }
 
-            Location destination = exit.getDestination();
-            if (destination.containsAnActor()) {
-                if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
-                    this.behaviours.put(1,new AttackBehaviour(otherActor, direction));
-                    this.behaviours.put(2,new FollowBehaviour(otherActor));
-                    actions.add(new AttackAction(this,direction));
-                    return actions;
-                }
-
-            }
-
+        if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
+            this.behaviours.put(1,new AttackBehaviour(otherActor, direction));
+            this.behaviours.put(2,new FollowBehaviour(otherActor));
+            actions.add(new AttackAction(this,direction));
+            return actions;
         }
 
         return actions;
@@ -154,7 +149,9 @@ public abstract class Enemy extends Actor implements Resettable {
             return action;
 
         }
-
+        if (!this.isConscious() || this.getMaxHp() <= 0) {
+            map.removeActor(this);
+        }
 
         return new DoNothingAction();
 

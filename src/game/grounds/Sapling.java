@@ -43,10 +43,11 @@ public class Sapling extends Tree{
         }
         count += 1;
         Random random = new Random();
-        if (count == 10) {
-            location.setGround(new Mature()); //Every 10 turns ,sapling turns to mature
+        if (count == 10) { ;
+            location.setGround(new MatureTree()); //Every 10 turns ,sapling turns to mature
         }
         if (RandomRange.RandRange(100) <= 10) {
+            this.removeCapability(High.SAPLING);
             location.addItem(new Coin(20)); //10% chance to drop coin
         }
     }

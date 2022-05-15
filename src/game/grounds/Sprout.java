@@ -2,7 +2,7 @@ package game.grounds;
 
 import edu.monash.fit2099.engine.positions.Location;
 import game.RandomRange;
-import game.roles.Goomba;
+import game.roles.Enemies.Goomba;
 
 /**
  * Tree ground of Sprout type

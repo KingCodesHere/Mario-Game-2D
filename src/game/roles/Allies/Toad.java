@@ -1,4 +1,4 @@
-package game.roles;
+package game.roles.Allies;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
@@ -14,6 +14,7 @@ import game.item.PowerStar;
 import game.item.Purchasable;
 import game.item.SuperMushroom;
 import game.item.Wrench;
+import game.roles.Status;
 
 /**
  * Toad class: friendly guy who speaks to Mario and sells items
@@ -46,6 +47,8 @@ public class Toad extends Actor {
 
         return new DoNothingAction();
     }
+
+
 
     /**
      * Returns a new collection of the Actions that the otherActor can do to the current Actor.
@@ -88,6 +91,7 @@ public class Toad extends Actor {
             }
         }
     }
+
 
 
 }

@@ -72,7 +72,6 @@ public class AttackBehaviour implements Behaviour  {
 
             if (destination.containsAnActor()) {
                 actions.add(new AttackAction(target,direction));
-
             }
 
         }
