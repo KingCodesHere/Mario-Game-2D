@@ -11,10 +11,26 @@ import game.roles.Status;
  * @version 1.0.0
  */
 public class PowerStar extends MagicalItem {
+    /**
+     * number of turns
+     */
     private int count = 0;
+
+    /**
+     * price of the item
+     */
     private int price = 600;
+
+    /**
+     * How many time can this item be consumed
+     */
     private int lifetime = 1;
+
+    /**
+     * Re new the powerStar turn when the user consumes it
+     */
     private boolean renewTime = true;
+
     Display display = new Display();
     /***
      * Constructor.
@@ -47,13 +63,15 @@ public class PowerStar extends MagicalItem {
             actor.removeCapability(Status.INVINCIBLE);
             super.setResetTime(0);
         }
-        if(lifetime != 1 && renewTime == true ){
+        if(lifetime == 1 && renewTime == true ){
             this.count = 0;
+            lifetime = 0;
         }
 
         display.println("Mario consumes Power Star - " +(10-this.count)+ " turns remaining");
         if (this.count == 10) {
             actor.removeCapability(Status.INVINCIBLE);
+            actor.removeItemFromInventory(this);
         }
         this.count += 1;
     }
@@ -82,7 +100,7 @@ public class PowerStar extends MagicalItem {
      * @param actor
      */
     @Override
-    public void itemFunction(Actor actor) {
+    public void consumeAffect(Actor actor) {
         actor.heal(200);
         actor.addCapability(Status.INVINCIBLE);
         display.println(actor +" becomes invincible" ); // printout the actor status

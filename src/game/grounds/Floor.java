@@ -24,4 +24,3 @@ public class Floor extends Ground {
 	}
 }
 
-

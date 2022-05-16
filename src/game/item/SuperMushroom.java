@@ -28,7 +28,7 @@ public class SuperMushroom extends MagicalItem {
      * @param actor the actor's updated HP and capability
      */
     @Override
-    public void itemFunction(Actor actor){
+    public void consumeAffect(Actor actor){
         actor.increaseMaxHp(50);
         actor.addCapability(Status.TALL); // the capability of the actor
 
@@ -46,7 +46,7 @@ public class SuperMushroom extends MagicalItem {
 
     @Override
     /**
-     * Inform a carried Item of the passage of time.
+     * Accumulating the turn for resettable
      *
      * This method is called once per turn, if the Item is being carried.
      * @param currentLocation The location of the actor carrying this Item.

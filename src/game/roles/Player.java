@@ -6,10 +6,14 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.displays.Menu;
 import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.action.ResetAction;
 import game.balance.ActorWallets;
 import game.balance.Wallet;
 import game.balance.WalletsManager;
+import game.bottles.Bottle;
+import game.bottles.BottleManager;
+import game.bottles.Drinkable;
 import game.reset.Resettable;
 
 
@@ -18,7 +22,7 @@ import game.reset.Resettable;
  * @author Junhao Li, Ashston Sequira
  * @version 1.0.0
  */
-public class Player extends Actor implements ActorWallets, Resettable {
+public class Player extends Actor implements ActorWallets, Resettable, Drinkable {
     private final Menu menu = new Menu();
     /**
      * Checking if the resetAction has execute yet
@@ -31,6 +35,8 @@ public class Player extends Actor implements ActorWallets, Resettable {
     private int resetTime = 1;
 
     private boolean allowReset = true;
+
+    private int damage = 5;
     /**
      * Constructor.
      *
@@ -43,6 +49,9 @@ public class Player extends Actor implements ActorWallets, Resettable {
         super.addCapability(Status.HOSTILE_TO_ENEMY);
         this.addToWalletsManager();
         this.registerInstance();
+        this.setInstance();
+        this.addItemToInventory(BottleManager.getInstance().getDrinkableBottleHashMap().get(this));
+
     }
 
     /**
@@ -90,7 +99,7 @@ public class Player extends Actor implements ActorWallets, Resettable {
         if (this.hasCapability(Status.INVINCIBLE)) {
             display.println(this + " is invincible!");
         }
-
+        display.println("intrinsic attack damage: " +String.valueOf(getIntrinsicWeapon().damage()));
         // return/print the console menu
         return menu.showMenu(this, actions, display);
     }
@@ -112,4 +121,15 @@ public class Player extends Actor implements ActorWallets, Resettable {
         checkStatus = true;
         allowReset = false;
     }
+
+    @Override
+    protected IntrinsicWeapon getIntrinsicWeapon() {
+
+        if(this.hasCapability(Status.PowerWater)){
+            damage += 15;
+            this.removeCapability(Status.PowerWater);
+        }
+        return new IntrinsicWeapon(damage, "punches");
+    }
+
 }

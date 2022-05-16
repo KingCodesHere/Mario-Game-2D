@@ -6,10 +6,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
-import edu.monash.fit2099.engine.positions.NumberRange;
 import game.action.AttackAction;
-import game.roles.Status;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -21,7 +18,7 @@ import java.util.Random;
  * @version 1.0.0
  */
 
-public class AttackBehaviour implements Behaviour  {
+public class AttackBehaviour implements Behaviour {
     /**
      * the actor being targeted
      *
@@ -79,7 +76,6 @@ public class AttackBehaviour implements Behaviour  {
         if (!actions.isEmpty()) {
             return actions.get(random.nextInt(actions.size()));
         }
-
         return null;
     }
 
@@ -87,3 +83,4 @@ public class AttackBehaviour implements Behaviour  {
 
 
 }
+

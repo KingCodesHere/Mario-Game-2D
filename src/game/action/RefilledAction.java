@@ -2,30 +2,24 @@ package game.action;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
-import game.item.Consumable;
+import game.grounds.RefilledAble;
 
-/**
- * ConsumeItemAction class is a base class that allow the actor to consume item
- * @author Junhao Li
- * @version 1.0.0
- */
 
-public class ConsumeItemAction extends Action {
+public class RefilledAction extends Action {
     /**
-     * Consumable item
+     * refilled ground
      */
-    private final Consumable item;
+    private final RefilledAble ground;
 
 
     /**
      * Constructor.
      *
-     * @param item the item to consume
+     * @param ground the ground to refilled
      */
-    public ConsumeItemAction(Consumable item) {
-        this.item = item;
+    public RefilledAction(RefilledAble ground) {
+        this.ground = ground;
     }
 
     /**
@@ -36,7 +30,7 @@ public class ConsumeItemAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        item.checkItem(actor,map,this);
+        ground.groundAbility(actor,map);
         return menuDescription(actor);
     }
     /**
@@ -46,6 +40,6 @@ public class ConsumeItemAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " consumes the " + item.description();
+        return actor + " refill the " + ground.groundDescription();
     }
 }

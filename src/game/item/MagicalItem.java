@@ -3,6 +3,7 @@ package game.item;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
+import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.action.ConsumeItemAction;
 import game.reset.Resettable;
@@ -28,6 +29,11 @@ public class MagicalItem extends Item implements Consumable, Purchasable, Resett
      * only can be reset for one time
      */
     private int resetTime = 1;
+
+    /**
+     * Checking if the item checks in actor inventory
+     */
+    private boolean isExist = false;
 
     /***
      * Constructor.
@@ -72,6 +78,12 @@ public class MagicalItem extends Item implements Consumable, Purchasable, Resett
         this.addAction(newAction);
     }
 
+    @Override
+    public void consumeAffect(Actor actor) {
+
+    }
+
+
     /**
      * method from the interface to be overwritten
      *
@@ -83,12 +95,24 @@ public class MagicalItem extends Item implements Consumable, Purchasable, Resett
     }
 
     /**
-     * This item's function
+     * This check if the item is in the actor inventory
      * @param actor
      */
     @Override
-    public void itemFunction(Actor actor) {
-
+    public void checkItem(Actor actor, GameMap map,Action action) {
+        for (Item items : actor.getInventory()) {
+            if (items == this) {
+                isExist = true;
+            }
+        }
+        if (isExist) {
+            this.consumeAffect(actor);
+        } else {
+            actor.addItemToInventory(this);
+            map.locationOf(actor).removeItem(this);
+            this.consumeAffect(actor);
+        }
+        this.removeConsumableAction(action);
     }
 
     /**
@@ -99,6 +123,16 @@ public class MagicalItem extends Item implements Consumable, Purchasable, Resett
     @Override
     public void removeConsumableAction(Action action) {
         this.removeAction(action);
+    }
+
+    /**
+     * name of this
+     * @return name of the item
+     */
+    @Override
+    public String description() {
+
+        return this.toString();
     }
 
     /**

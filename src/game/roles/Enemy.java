@@ -1,4 +1,5 @@
 package game.roles;
+
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
@@ -53,6 +54,7 @@ public abstract class Enemy extends Actor implements Resettable {
         return verb;
     }
 
+
     /**
      * Getter for returnign damage lvl
      * @return attackDamage int
@@ -86,11 +88,6 @@ public abstract class Enemy extends Actor implements Resettable {
     /**
      * Constructor
      * the general Enemy constructor with set default behaviours
-     * @param name for this current Enemy name
-     * @param attackDamage the damage this enemy carries
-     * @param displayChar  the display of character on map this enemy carry
-     * @param hitPoints  the hit point of this enemy
-     * @param verb the verb that will display for the enemy when the attack occur
      */
     public Enemy(String name, char displayChar, int hitPoints, int attackDamage, String verb) {
         super(name, displayChar, hitPoints);
@@ -99,7 +96,6 @@ public abstract class Enemy extends Actor implements Resettable {
         this.registerInstance();
         this.addCapability(Status.HOSTILE_TO_PLAYER);
         this.behaviours.put(10,new WanderBehaviour());
-
     }
     /**
      * Returns a new collection of the Actions that the otherActor can do to the current Actor.
@@ -112,7 +108,7 @@ public abstract class Enemy extends Actor implements Resettable {
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
 
-        ActionList actions = new ActionList(); // possible a
+        ActionList actions=new ActionList();
 
         for (Exit exit : map.locationOf(this).getExits()) {
 
@@ -142,17 +138,18 @@ public abstract class Enemy extends Actor implements Resettable {
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-        //resettable
-        if (this.checkStatus && this.resetTime == 1) {
-            map.removeActor(this);
-            this.resetTime = 0;
-        }
 
         for (Behaviour behaviour : behaviours.values()) {
             Action action = behaviour.getAction(this, map);
             if(action != null)
-            return action;
+                return action;
 
+        }
+        // reset
+        if (this.checkStatus && this.resetTime == 1) {
+            map.removeActor(this);
+            this.behaviours.clear();
+            this.resetTime = 0;
         }
 
 
@@ -180,5 +177,6 @@ public abstract class Enemy extends Actor implements Resettable {
     }
 
 }
+
 
 

@@ -2,6 +2,7 @@ package game.item;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.positions.GameMap;
 import game.action.ConsumeItemAction;
 
 /**
@@ -20,7 +21,7 @@ public interface Consumable {
      * implement the item function after consuming
      * @param actor
      */
-    void itemFunction(Actor actor);
+    void checkItem(Actor actor, GameMap map,Action action);
 
     /**
      * remove the action
@@ -28,5 +29,17 @@ public interface Consumable {
      */
     void removeConsumableAction(Action action);
 
+    /**
+     * a description of the object
+     * @return
+     */
+    String description();
 
+    /**
+     * add to the actionlist
+     * @param newAction
+     */
+    void addSampleAction(Action newAction);
+
+    void consumeAffect(Actor actor);
 }

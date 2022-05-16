@@ -2,15 +2,13 @@ package game;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
-import game.grounds.Dirt;
-import game.grounds.Floor;
-import game.grounds.Sprout;
-import game.grounds.Wall;
+import game.grounds.*;
 import game.item.Coin;
+import game.item.FireFlower;
+import game.item.PowerStar;
 import game.roles.Enemy;
 import game.roles.Player;
 import game.roles.Toad;
@@ -60,12 +58,19 @@ public class Application {
 
 			GameMap gameMap = new GameMap(groundFactory, map);
 			world.addGameMap(gameMap);
-			Actor mario = new Player("Mario", 'm', 100);
+			Actor mario = new Player("Player", 'm', 100);
+
 			world.addPlayer(mario, gameMap.at(42, 10));
 			gameMap.addActor(new Toad(),gameMap.at(43,11));
 
-			Coin coin = new Coin(400);
-			gameMap.at(41,11).addItem(coin);
+
+			PowerStar powerStar = new PowerStar();
+			gameMap.at(43, 10).addItem(powerStar);
+			Coin coin = new Coin();
+			gameMap.at(42,7).addItem(coin);
+			gameMap.at(42,8).addItem(new FireFlower());
+			gameMap.at(42,8).setGround(new HealthFountain());
+			gameMap.at(43,9).setGround(new PowerFountain());
 
 			world.run();
 

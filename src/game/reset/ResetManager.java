@@ -5,7 +5,10 @@ import java.util.List;
 
 /**
  * A global Singleton manager that does soft-reset on the instances.
- * Wipes out the map, leaving coins and player instance on record.
+ * TODO: you may modify (add or remove) methods in this class if you think they are not necessary.
+ * HINT: refer to Bootcamp Week 5 about static factory method.
+ * A3: Think about how will you improve this implementation in the future assessment.
+ * What could be the drawbacks of this implementation?
  */
 public class ResetManager {
     /**
@@ -45,11 +48,10 @@ public class ResetManager {
         for(Resettable reset: this.resettableList){
             reset.resetInstance();
         }
-        System.out.println(instance.resettableList);
     }
 
     /**
-     * Adds the Resettable instance to the list
+     * Add the Resettable instance to the list
      */
     public void appendResetInstance(Resettable reset){
         this.resettableList.add(reset);
@@ -59,6 +61,7 @@ public class ResetManager {
     /**
      * Remove a Resettable instance from the list
      * @param resettable resettable object
+     * FIXME: it does nothing, you need to implement it :)
      */
     public void cleanUp(Resettable resettable){
         this.resettableList.remove(resettable);

@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.Weapon;
+import game.item.Fire;
 import game.roles.Status;
 
 import java.util.Random;
@@ -32,7 +33,7 @@ public class AttackAction extends Action {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param target the Actor to attack
 	 */
 	public AttackAction(Actor target, String direction) {
@@ -44,7 +45,9 @@ public class AttackAction extends Action {
 
 	@Override
 	public String execute(Actor actor, GameMap map) {
-
+		if(actor.hasCapability(Status.FIRE)){
+			map.locationOf(target).addItem(new Fire());
+		}
 
 		Weapon weapon = actor.getWeapon();
 
@@ -78,11 +81,16 @@ public class AttackAction extends Action {
 		}
 
 
+
 		return result;
 	}
 
 	@Override
 	public String menuDescription(Actor actor) {
+		if(actor.hasCapability(Status.FIRE)){
+			return actor + " attacks " + target + " at " + direction+ " with fire!";
+		}
 		return actor + " attacks " + target + " at " + direction;
 	}
 }
+
