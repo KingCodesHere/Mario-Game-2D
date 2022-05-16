@@ -11,7 +11,6 @@ import game.action.ResetAction;
 import game.balance.ActorWallets;
 import game.balance.Wallet;
 import game.balance.WalletsManager;
-import game.bottles.Bottle;
 import game.bottles.BottleManager;
 import game.bottles.Drinkable;
 import game.reset.Resettable;
@@ -55,6 +54,17 @@ public class Player extends Actor implements ActorWallets, Resettable, Drinkable
     }
 
     /**
+     * increasing the damage of actor after consuming powerwater
+     * @param playerdamage
+     */
+    private void increaseDamageOfPowerWater(int playerdamage){
+        if(this.hasCapability(Status.PowerWater)) {
+            damage += playerdamage;
+            this.removeCapability(Status.PowerWater);
+        }
+    }
+
+    /**
      * String of the HP
      * @return mario Hp
      */
@@ -85,23 +95,69 @@ public class Player extends Actor implements ActorWallets, Resettable, Drinkable
         if(allowReset){
             actions.add(new ResetAction());
         }
-        if(this.checkStatus && this.resetTime==1){
-            super.resetMaxHp(super.getMaxHp());
-//            resetCapability(capabilitiesList());
-            this.resetTime = 0;
-        }
+        resettingGame();
+        // checking if player consumes power star
+        isInvincible(display);
+        // coordinate
+        playerCoordinate(map, display);
+        // wallet
+        walletDetail(display);
+        // IntrinsicDamage
+        getIntrinsicDamage(display);
 
-        display.println(this.description() + " at (" + map.locationOf(this).x() + "," + map.locationOf(this).y() + ")");
-        display.println("wallet: $" + getPlayerWallet().getBalance()+ "\n" +"Inventory: " +this.getInventory());
+
         // Handle multi-turn Actions
         if (lastAction.getNextAction() != null)
             return lastAction.getNextAction();
+
+
+        // return/print the console menu
+        return menu.showMenu(this, actions, display);
+    }
+
+    /**
+     * reset the game
+     */
+    private void resettingGame() {
+        if(this.checkStatus && this.resetTime==1){
+            super.resetMaxHp(super.getMaxHp());
+            this.resetTime = 0;
+        }
+    }
+
+    /**
+     * printing the damage to intrinsic
+     * @param display
+     */
+    private void getIntrinsicDamage(Display display) {
+        display.println("intrinsic attack damage: " +String.valueOf(getIntrinsicWeapon().damage()));
+    }
+
+    /**
+     * printing the value of the wallet
+     * @param display
+     */
+    private void walletDetail(Display display) {
+        display.println("wallet: $" + getPlayerWallet().getBalance()+ "\n" +"Inventory: " +this.getInventory());
+    }
+
+    /**
+     * player's coordinate
+     * @param map map from game
+     * @param display print
+     */
+    private void playerCoordinate(GameMap map, Display display) {
+        display.println(this.description() + " at (" + map.locationOf(this).x() + "," + map.locationOf(this).y() + ")");
+    }
+
+    /**
+     * checking if player is invincible
+     * @param display
+     */
+    private void isInvincible(Display display) {
         if (this.hasCapability(Status.INVINCIBLE)) {
             display.println(this + " is invincible!");
         }
-        display.println("intrinsic attack damage: " +String.valueOf(getIntrinsicWeapon().damage()));
-        // return/print the console menu
-        return menu.showMenu(this, actions, display);
     }
 
     /**
@@ -124,12 +180,10 @@ public class Player extends Actor implements ActorWallets, Resettable, Drinkable
 
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
-
-        if(this.hasCapability(Status.PowerWater)){
-            damage += 15;
-            this.removeCapability(Status.PowerWater);
-        }
+            this.increaseDamageOfPowerWater(15);
         return new IntrinsicWeapon(damage, "punches");
     }
+
+
 
 }
