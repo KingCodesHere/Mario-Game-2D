@@ -68,7 +68,7 @@ public class Application {
 			gameMap.at(43, 10).addItem(powerStar);
 			Coin coin = new Coin();
 			gameMap.at(42,7).addItem(coin);
-			gameMap.at(42,8).addItem(new FireFlower());
+			gameMap.at(42,11).addItem(new FireFlower());
 			gameMap.at(42,8).setGround(new HealthFountain());
 			gameMap.at(43,9).setGround(new PowerFountain());
 
