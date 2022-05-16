@@ -8,7 +8,6 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.item.Fire;
 import game.roles.Status;
-
 import java.util.Random;
 
 /**
@@ -30,7 +29,10 @@ public class AttackAction extends Action {
 	 * Random number generator
 	 */
 	protected Random rand = new Random();
-
+	/**
+	 * result
+	 */
+	private String result;
 	/**
 	 * Constructor.
 	 *
@@ -45,15 +47,34 @@ public class AttackAction extends Action {
 
 	@Override
 	public String execute(Actor actor, GameMap map) {
-		if(actor.hasCapability(Status.FIRE)){
-			map.locationOf(target).addItem(new Fire());
-		}
+		//set fire checks actor and set fire on the location
+		new Fire().setFire(actor,map,target);
 
 		Weapon weapon = actor.getWeapon();
 
 		if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
 			return actor + " misses " + target + ".";
 		}
+
+		int damage = checkIfActorIsInvinsible(weapon);
+		checkSuperMushroom();
+
+		result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
+		target.hurt(damage);
+
+		result = getKilled(actor, map, result);
+
+		return result;
+	}
+
+
+
+	/**
+	 * checking if the actor is invinsible, otherwise actor will get hurt
+	 * @param weapon weapon damage
+	 * @return damage
+	 */
+	private int checkIfActorIsInvinsible(Weapon weapon) {
 		int damage;
 		if (target.hasCapability(Status.INVINCIBLE)){
 			damage=0;
@@ -61,13 +82,26 @@ public class AttackAction extends Action {
 		else{
 			damage = weapon.damage();
 		}
+		return damage;
+	}
+
+	/**
+	 * checking the actor has superMushroom
+	 */
+	private void checkSuperMushroom() {
 		if(target.hasCapability(Status.TALL)){
 			target.removeCapability(Status.TALL);
 		}
+	}
 
-		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
-		target.hurt(damage);
-
+	/**\
+	 * if the actor got killed it will be removed on the map
+	 * @param actor	actor
+	 * @param map	gamemap
+	 * @param sentence print sentence
+	 * @return a sentence that is saying actor has been killed
+	 */
+	private String getKilled(Actor actor, GameMap map, String sentence) {
 		if (!target.isConscious() && !target.hasCapability(Status.DORMANT)) {
 			ActionList dropActions = new ActionList();
 			// drop all items
@@ -77,20 +111,28 @@ public class AttackAction extends Action {
 				drop.execute(target, map);
 			// remove actor
 			map.removeActor(target);
-			result += System.lineSeparator() + target + " is killed.";
+			sentence += System.lineSeparator() + target + " is killed.";
 		}
-
-
-
-		return result;
+		return sentence;
 	}
 
 	@Override
 	public String menuDescription(Actor actor) {
-		if(actor.hasCapability(Status.FIRE)){
-			return actor + " attacks " + target + " at " + direction+ " with fire!";
-		}
+		String hasFire = checkActorHasFire(actor);
+		if (hasFire != null) return hasFire;
 		return actor + " attacks " + target + " at " + direction;
+	}
+
+	/**
+	 * checking if the actor has fire
+	 * @param actor
+	 * @return
+	 */
+	private String checkActorHasFire(Actor actor) {
+		if(actor.hasCapability(Status.FIRE)){
+			return actor + " attacks " + target + " at " + direction + " with fire!";
+		}
+		return null;
 	}
 }
 

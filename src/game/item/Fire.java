@@ -1,8 +1,11 @@
 package game.item;
 
+import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.items.Item;
+import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
+import game.roles.Status;
 
 public class Fire extends Item {
     /**
@@ -19,10 +22,22 @@ public class Fire extends Item {
     }
 
     /**
+     * setting the fire on ground
+     * @param actor actor
+     * @param map gamemap
+     */
+    public void setFire(Actor actor, GameMap map,Actor target) {
+        if(actor.hasCapability(Status.FIRE)){
+            map.locationOf(target).addItem(new Fire());
+        }
+    }
+
+    /**
      * Inform an Item on the ground of the passage of time.
      * This method is called once per turn, if the item rests upon the ground.
      * @param currentLocation The location of the ground on which we lie.
      */
+
 
     @Override
     public void tick(Location currentLocation){
@@ -35,4 +50,6 @@ public class Fire extends Item {
         }
         this.count +=1;
     }
+
+
 }
