@@ -7,5 +7,6 @@ public enum High {
     WALL,
     MATURE,
     SAPLING,
-    SPROUT
+    SPROUT,
+    WARPPIPE
 }

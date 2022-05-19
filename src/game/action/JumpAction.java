@@ -48,7 +48,7 @@ public class JumpAction extends Action {
     public String execute(Actor actor, GameMap map) {
         String statement = "";
         HighGround highGround= (HighGround) jumpToLocation.getGround();
-        if(actor.hasCapability(Status.TALL)){
+        if(actor.hasCapability(Status.TALL)|| jumpToLocation.getGround().hasCapability(High.WARPPIPE)){
             map.moveActor(actor, jumpToLocation);
             statement=actor + " jumped and is standing on top of " + highGround.getName()+" (" +jumpToLocation.x()+","+jumpToLocation.y()+")";
         }
