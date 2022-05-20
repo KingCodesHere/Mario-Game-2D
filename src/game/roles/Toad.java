@@ -22,7 +22,7 @@ import game.item.Wrench;
  * @version 1.0.0
  */
 
-public class Toad extends Actor {
+public class Toad extends NPC {
 
 
     /**
