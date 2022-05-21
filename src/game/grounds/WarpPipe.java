@@ -46,24 +46,28 @@ public class WarpPipe extends HighGround implements Resettable {
 
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction) {
-        //reset
-        if(this.checkStatus && this.resetTime==1){
-            PiranhaPlant piranhaPlant = new PiranhaPlant("Piranha Plant", 'Y', 200, 90, "chomps");
-            location.addActor(piranhaPlant);
-            this.resetTime = 0;
-        }
-        if(this.firstRound){
-            location.addActor(new PiranhaPlant("Piranha Plant", 'Y', 150, 90, "chomps"));
-
-            setFirstRound();
-        }
-        System.out.println("something");
         //gameMap.at(42,10).setGround(this);
         ActionList actionList=super.allowableActions(actor,location,direction);
         if(location.containsAnActor()){
             actionList.add(new TeleportAction(location));
         }
         return actionList;
+    }
+
+    @Override
+    public void tick(Location location) {
+        //reset
+        if(this.checkStatus && this.resetTime==1){
+            if(!location.containsAnActor()){
+            PiranhaPlant piranhaPlant = new PiranhaPlant("Piranha Plant", 'Y', 200, 90, "chomps");
+            location.addActor(piranhaPlant);
+            this.resetTime = 0;}
+        }
+        if(this.firstRound){
+            location.addActor(new PiranhaPlant("Piranha Plant", 'Y', 150, 90, "chomps"));
+
+            setFirstRound();
+        };
     }
 
     /**
