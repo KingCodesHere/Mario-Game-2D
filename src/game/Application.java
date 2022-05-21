@@ -7,7 +7,9 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
 import game.grounds.*;
 
-import game.roles.allies.Toad;
+import game.item.Coin;
+import game.item.FireFlower;
+import game.roles.Allies.Toad;
 import game.roles.Player;
 
 
@@ -78,7 +80,11 @@ public class Application {
 		Actor mario = new Player("Player", 'm', 100);
 		world.addPlayer(mario, gameMap.at(42, 10));
 		gameMap.addActor(new Toad(),gameMap.at(43,11));
-
+		Coin coin = new Coin();
+		gameMap.at(42, 7).addItem(coin);
+		gameMap.at(42, 11).addItem(new FireFlower());
+		gameMap.at(42, 8).setGround(new HealthFountain());
+		gameMap.at(43, 9).setGround(new PowerFountain());
 		world.run();
 
 
