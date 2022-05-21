@@ -120,7 +120,6 @@ public class Bottle extends Item implements Consumable{
      */
     @Override
     public List<Action> getAllowableActions() {
-        System.out.println(waterList);
         if (!waterList.isEmpty() && lifetime) {
             this.addSampleAction(this.consumeItem());
             lifetime = false;
