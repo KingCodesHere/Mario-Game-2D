@@ -72,16 +72,18 @@ public class PiranhaPlant extends Enemy{
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        // reset
+        if (super.getCheckStatus() && super.getResetTime() == 1) {
+            this.increaseMaxHp(50); //  adding 50
+            super.setResetTime(0);
+        }
+
         if (!this.isConscious() || this.getMaxHp() <= 0) {
             map.removeActor(this);
             return new DoNothingAction();
         }
 
-        // reset
-        if (super.getCheckStatus() && super.getResetTime() == 1) {
-            this.increaseMaxHp(50); // is this changing into 50 or adding 50 ?
-            super.setResetTime(0);
-        }
+
 
         return new DoNothingAction();
 

@@ -9,12 +9,27 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.positions.World;
 import game.action.TeleportAction;
+import game.reset.Resettable;
+import game.roles.enemies.PiranhaPlant;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class WarpPipe extends HighGround {
+public class WarpPipe extends HighGround implements Resettable {
+    /**
+     * Checking if the resetAction has execute yet
+     */
+    private boolean checkStatus = false;
 
+    /**
+     * Only for the first round of the game
+     */
+    private boolean firstRound = true;
+
+    /**
+     * only can be reset for one time
+     */
+    private int resetTime = 1;
     /**
      * Constructor.
      *
@@ -22,6 +37,7 @@ public class WarpPipe extends HighGround {
     public WarpPipe() {
         super('C');
         this.addCapability(High.WARPPIPE);
+        this.registerInstance();
     }
     @Override
     public String getName() {
@@ -30,6 +46,18 @@ public class WarpPipe extends HighGround {
 
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction) {
+        //reset
+        if(this.checkStatus && this.resetTime==1){
+            PiranhaPlant piranhaPlant = new PiranhaPlant("Piranha Plant", 'Y', 200, 90, "chomps");
+            location.addActor(piranhaPlant);
+            this.resetTime = 0;
+        }
+        if(this.firstRound){
+            location.addActor(new PiranhaPlant("Piranha Plant", 'Y', 150, 90, "chomps"));
+
+            setFirstRound();
+        }
+        System.out.println("something");
         //gameMap.at(42,10).setGround(this);
         ActionList actionList=super.allowableActions(actor,location,direction);
         if(location.containsAnActor()){
@@ -38,4 +66,18 @@ public class WarpPipe extends HighGround {
         return actionList;
     }
 
+    /**
+     * setting firstround to false
+     */
+    private void setFirstRound() {
+        this.firstRound = false;
+    }
+
+    /**
+     * call the resetInstance method the change the current status
+     */
+    @Override
+    public void resetInstance() {
+        this.checkStatus = true;
+    }
 }
