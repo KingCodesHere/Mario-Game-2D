@@ -9,8 +9,9 @@ import game.grounds.*;
 
 import game.item.Coin;
 import game.item.FireFlower;
-import game.roles.Allies.Toad;
+import game.roles.allies.Toad;
 import game.roles.Player;
+
 
 
 import java.util.Arrays;
