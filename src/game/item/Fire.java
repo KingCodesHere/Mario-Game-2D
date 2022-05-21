@@ -48,6 +48,7 @@ public class Fire extends Item {
         if(currentLocation.containsAnActor()){
             currentLocation.getActor().hurt(20);
         }
+
         this.count +=1;
     }
 

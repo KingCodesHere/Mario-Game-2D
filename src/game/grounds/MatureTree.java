@@ -3,7 +3,7 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.Location;
 import game.RandomRange;
 
-import game.roles.Enemies.Koopa;
+import game.roles.enemies.Koopa;
 import game.roles.Status;
 import java.util.ArrayList;
 import java.util.Random;

@@ -48,7 +48,7 @@ public class Sapling extends Tree{
             location.setGround(new MatureTree()); //Every 10 turns ,sapling turns to mature
             if ((RandomRange.RandRange(100) < 50)) {
 
-                location.addItem(new FireFlower()); //After every turn, 50% chance for fireflower to spawn
+                location.addItem(new FireFlower()); //After every turn, 50% chance for fireFlower to spawn
             }
         }
         if (RandomRange.RandRange(100) <= 10) {

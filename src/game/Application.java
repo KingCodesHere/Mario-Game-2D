@@ -7,7 +7,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
 import game.grounds.*;
 
-import game.roles.Allies.Toad;
+import game.roles.allies.Toad;
 import game.roles.Player;
 
 

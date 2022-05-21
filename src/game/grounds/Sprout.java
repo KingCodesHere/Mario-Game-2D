@@ -3,7 +3,7 @@ package game.grounds;
 import edu.monash.fit2099.engine.positions.Location;
 import game.RandomRange;
 import game.item.FireFlower;
-import game.roles.Enemies.Goomba;
+import game.roles.enemies.Goomba;
 
 
 /**

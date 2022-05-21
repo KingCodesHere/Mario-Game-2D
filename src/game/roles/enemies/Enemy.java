@@ -1,4 +1,4 @@
-package game.roles.Enemies;
+package game.roles.enemies;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
@@ -27,10 +27,7 @@ import java.util.Map;
  * @version 1.0.0
  */
 public abstract class Enemy extends Actor implements Resettable {
-    /**
-     * List of behaviours in hashmap, organising the priority level
-     */
-    private final Map<Integer, Behaviour> behaviours = new HashMap<>();
+
     /**
      * String of verb as the action verb
      */
@@ -58,7 +55,7 @@ public abstract class Enemy extends Actor implements Resettable {
 
 
     /**
-     * Getter for returnign damage lvl
+     * Getter for returning damage lvl
      * @return attackDamage int
      */
     public int getAttackDamage() {
@@ -97,68 +94,7 @@ public abstract class Enemy extends Actor implements Resettable {
         this.verb=verb;
         this.registerInstance();
         this.addCapability(Status.HOSTILE_TO_PLAYER);
-        this.behaviours.put(10,new WanderBehaviour());
     }
-    /**
-     * Returns a new collection of the Actions that the otherActor can do to the current Actor.
-     *
-     * @param otherActor the Actor that might be performing attack
-     * @param direction  String representing the direction of the other Actor
-     * @param map        current GameMap
-     * @return A collection of Actions.
-     */
-    @Override
-    public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
-
-        ActionList actions=new ActionList();
-
-        for (Exit exit : map.locationOf(this).getExits()) {
-
-            Location destination = exit.getDestination();
-            if (destination.containsAnActor()) {
-                if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
-                    this.behaviours.put(1,new AttackBehaviour(otherActor, direction));
-                    this.behaviours.put(2,new FollowBehaviour(otherActor));
-                    actions.add(new AttackAction(this,direction));
-                    return actions;
-                }
-
-            }
-
-        }
-
-        return actions;
-    }
-
-    /**
-     * This playTurn is default for Enemies and can be overridden
-     * @param actions    collection of possible Actions for this Actor
-     * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
-     * @param map        the map containing the Actor
-     * @param display    the I/O object to which messages may be written
-     * @return the parent class: Enemy playTurn
-     */
-    @Override
-    public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-
-        for (Behaviour behaviour : behaviours.values()) {
-            Action action = behaviour.getAction(this, map);
-            if(action != null)
-                return action;
-
-        }
-        // reset
-        if (this.checkStatus && this.resetTime == 1) {
-            map.removeActor(this);
-            this.behaviours.clear();
-            this.resetTime = 0;
-        }
-
-
-        return new DoNothingAction();
-
-    }
-
 
     /**
      * IntrinsicWeapon to retrieve child class damage level and verb of actions

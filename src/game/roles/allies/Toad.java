@@ -1,4 +1,4 @@
-package game.roles.Allies;
+package game.roles.allies;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
@@ -14,7 +14,6 @@ import game.item.PowerStar;
 import game.item.Purchasable;
 import game.item.SuperMushroom;
 import game.item.Wrench;
-import game.roles.Status;
 
 /**
  * Toad class: friendly guy who speaks to Mario and sells items
