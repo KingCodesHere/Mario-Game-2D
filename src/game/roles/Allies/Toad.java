@@ -23,7 +23,7 @@ import game.roles.Status;
  * @version 1.0.0
  */
 
-public class Toad extends NPC {
+public class Toad extends NPC{
 
 
     /**
@@ -31,7 +31,6 @@ public class Toad extends NPC {
      */
     public Toad() {
         super("Toad", 'O', 99999999);
-        this.addCapability(Status.NPC);
     }
 
     /**

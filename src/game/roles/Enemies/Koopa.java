@@ -1,13 +1,13 @@
-package game.roles;
+package game.roles.Enemies;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
-import game.action.AttackAction;
 import game.action.DestroyShellAction;
 import game.behaviours.Behaviour;
+import game.roles.Status;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,7 +19,7 @@ import java.util.Map;
  * @version 1.0.0
  *
  */
-public class Koopa extends Enemy{
+public class Koopa extends Enemy {
 
     /**
      * List of behaviours in hashmap, organising the priority level
@@ -53,7 +53,7 @@ public class Koopa extends Enemy{
             actions.clear();
 
             if(otherActor.hasCapability(Status.WRENCH) ){
-                actions.add(new DestroyShellAction(this));
+                actions.add(new DestroyShellAction(this,direction));
             }
 
             return actions;

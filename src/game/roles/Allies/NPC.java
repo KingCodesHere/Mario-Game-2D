@@ -1,6 +1,7 @@
-package game.roles;
+package game.roles.Allies;
 
 import edu.monash.fit2099.engine.actors.Actor;
+import game.roles.Status;
 
 public abstract class NPC extends Actor {
     /**
@@ -11,6 +12,8 @@ public abstract class NPC extends Actor {
      * @param hitPoints   the Actor's starting hit points
      */
     public NPC(String name, char displayChar, int hitPoints) {
+        //hitPoints will not be used for NPC, therefore they are always at 9999999
         super(name, displayChar, hitPoints);
+        this.addCapability(Status.NPC);
     }
 }

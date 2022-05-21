@@ -2,7 +2,8 @@ package game.grounds;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.Location;
 import game.RandomRange;
-import game.roles.Koopa;
+
+import game.roles.Enemies.Koopa;
 import game.roles.Status;
 import java.util.ArrayList;
 import java.util.Random;
@@ -10,12 +11,12 @@ import java.util.Random;
  * @author  Ashton Sequeira
  * Tree ground of Mature type
  */
-public class Mature extends Tree{
+public class MatureTree extends Tree{
     private int count=0;
     /**
      * Constructor
      */
-    public Mature() {
+    public MatureTree() {
         super('T');
         this.addCapability(High.MATURE);
     }

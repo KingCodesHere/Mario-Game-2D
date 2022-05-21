@@ -1,4 +1,4 @@
-package game.roles;
+package game.roles.Enemies;
 
 
 import edu.monash.fit2099.engine.actions.Action;
@@ -13,6 +13,7 @@ import game.behaviours.AttackBehaviour;
 import game.behaviours.Behaviour;
 import game.behaviours.FollowBehaviour;
 import game.behaviours.WanderBehaviour;
+import game.roles.Enemies.Enemy;
 
 import java.util.HashMap;
 import java.util.Map;
