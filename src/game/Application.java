@@ -11,7 +11,7 @@ import game.item.Coin;
 import game.item.FireFlower;
 import game.roles.allies.Toad;
 import game.roles.Player;
-
+import game.roles.enemies.Bowser;
 
 
 import java.util.Arrays;
@@ -86,6 +86,7 @@ public class Application {
 		gameMap.at(42, 11).addItem(new FireFlower());
 		gameMap.at(42, 8).setGround(new HealthFountain());
 		gameMap.at(43, 9).setGround(new PowerFountain());
+		gameMapLava.at(1,1).addActor(new Bowser(gameMapLava.at(1,1)));
 		world.run();
 
 

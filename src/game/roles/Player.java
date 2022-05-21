@@ -69,7 +69,7 @@ public class Player extends Actor implements ActorWallets, Resettable, Drinkable
      * @return mario Hp
      */
     public String description() {
-        return "Mario" + super.printHp();
+        return "Mario" + this.printHp();
     }
 
 

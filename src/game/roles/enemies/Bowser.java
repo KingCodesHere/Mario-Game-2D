@@ -5,7 +5,6 @@ import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
@@ -16,12 +15,14 @@ import game.behaviours.Behaviour;
 import game.behaviours.FollowBehaviour;
 import game.item.Fire;
 import game.item.GoldenKey;
+import game.reset.Resettable;
 import game.roles.Status;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Bowser extends Enemy {
+public class Bowser extends Enemy implements Resettable {
+    private final Location location;
     /**
      * List of behaviours in hashmap, organising the priority level
      */
@@ -29,15 +30,10 @@ public class Bowser extends Enemy {
     /**
      * Constructor
      * the general Enemy constructor with set default behaviours
-     *
-     * @param name         for this current Enemy name
-     * @param displayChar  the display of character on map this enemy carry
-     * @param hitPoints    the hit point of this enemy
-     * @param attackDamage the damage this enemy carries
-     * @param verb         the verb that will display for the enemy when the attack occur
      */
-    public Bowser(String name, char displayChar, int hitPoints, int attackDamage, String verb) {
+    public Bowser(Location location) {
         super("Bowser", 'B', 500, 80, "punches");
+        this.location = location;
     }
 
     /**
@@ -91,7 +87,15 @@ public class Bowser extends Enemy {
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        // reset
 
+        if (super.getCheckStatus() && super.getResetTime() == 1) {
+            super.resetMaxHp(super.getMaxHp());
+            map.removeActor(this);
+            map.addActor(this,this.location);
+            this.behaviours.clear();
+            super.setResetTime(0);
+        }
 
         for (Behaviour behaviour : behaviours.values()) {
             Action action = behaviour.getAction(this, map);
@@ -106,13 +110,7 @@ public class Bowser extends Enemy {
             return new DoNothingAction();
         }
 
-        // reset
-        if (super.getCheckStatus() && super.getResetTime() == 1) {
-            super.resetMaxHp(super.getMaxHp());
-            //need to reset to original position (Nick help!)
-            this.behaviours.clear();
-            super.setResetTime(0);
-        }
+
         return new DoNothingAction();
     }
 

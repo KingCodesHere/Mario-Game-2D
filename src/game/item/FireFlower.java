@@ -26,7 +26,7 @@ public class FireFlower extends Item implements Consumable {
      * Constructor.
      */
     public FireFlower() {
-        super("Fire Flower", 'F', false);
+        super("Fire Flower", 'f', false);
     }
 
     @Override

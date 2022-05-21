@@ -64,7 +64,7 @@ public class WarpPipe extends HighGround implements Resettable {
             this.resetTime = 0;}
         }
         if(this.firstRound){
-            location.addActor(new PiranhaPlant("Piranha Plant", 'Y', 150, 90, "chomps"));
+            //location.addActor(new PiranhaPlant("Piranha Plant", 'Y', 150, 90, "chomps"));
 
             setFirstRound();
         };
