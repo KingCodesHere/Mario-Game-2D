@@ -89,13 +89,7 @@ public class Bowser extends Enemy implements Resettable {
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
         // reset
 
-        if (super.getCheckStatus() && super.getResetTime() == 1) {
-            super.resetMaxHp(super.getMaxHp());
-            map.removeActor(this);
-            map.addActor(this,this.location);
-            this.behaviours.clear();
-            super.setResetTime(0);
-        }
+        resetMethod(map);
 
         for (Behaviour behaviour : behaviours.values()) {
             Action action = behaviour.getAction(this, map);
@@ -112,6 +106,21 @@ public class Bowser extends Enemy implements Resettable {
 
 
         return new DoNothingAction();
+    }
+
+    /**
+     * when user click the reset button
+     * @param map map of the game
+     */
+    private void resetMethod(GameMap map) {
+        if (super.getCheckStatus() && super.getResetTime() == 1) {
+            super.resetMaxHp(super.getMaxHp());
+            map.removeActor(this);
+            map.addActor(this,this.location);
+            this.resetMaxHp(super.getMaxHp());
+            this.behaviours.clear();
+            super.setResetTime(0);
+        }
     }
 
 

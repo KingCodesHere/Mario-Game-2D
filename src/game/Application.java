@@ -9,6 +9,7 @@ import game.grounds.*;
 
 import game.item.Coin;
 import game.item.FireFlower;
+import game.roles.allies.PrincessPeach;
 import game.roles.allies.Toad;
 import game.roles.Player;
 import game.roles.enemies.Bowser;
@@ -87,6 +88,7 @@ public class Application {
 		gameMap.at(42, 8).setGround(new HealthFountain());
 		gameMap.at(43, 9).setGround(new PowerFountain());
 		gameMapLava.at(1,1).addActor(new Bowser(gameMapLava.at(1,1)));
+		gameMapLava.at(1,2).addActor(new PrincessPeach());
 		world.run();
 
 
