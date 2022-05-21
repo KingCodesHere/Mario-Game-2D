@@ -88,6 +88,12 @@ public class Goomba extends Enemy {
 	 */
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+		// reset
+		if (super.getCheckStatus() && super.getResetTime() == 1) {
+			map.removeActor(this);
+			this.behaviours.clear();
+			super.setResetTime(0);
+		}
 
 		for (Behaviour behaviour : behaviours.values()) {
 			Action action = behaviour.getAction(this, map);
@@ -101,12 +107,7 @@ public class Goomba extends Enemy {
 			return new DoNothingAction();
 		}
 
-		// reset
-		if (super.getCheckStatus() && super.getResetTime() == 1) {
-			map.removeActor(this);
-			this.behaviours.clear();
-			super.setResetTime(0);
-		}
+
 		return new DoNothingAction();
 	}
 
