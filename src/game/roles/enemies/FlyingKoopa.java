@@ -110,30 +110,30 @@ public class FlyingKoopa extends Enemy implements SpeakCapable {
             this.getStatement(this,this.statements,display);
         }
         if (!this.isConscious() || this.getMaxHp() <= 0) {
-            map.removeActor(this);
+            this.removeCapability(Status.KOOPA);
+            this.addCapability(Status.DORMANT);
+            this.setDisplayChar('D');
             return new DoNothingAction();
         }
         // reset
         if (super.getCheckStatus() && super.getResetTime() == 1) {
-            this.increaseMaxHp(50);
+            map.removeActor(this);
             this.behaviours.clear();
             super.setResetTime(0);
             return new DoNothingAction();
 
         }
-
         for (Behaviour behaviour : behaviours.values()) {
             Action action = behaviour.getAction(this, map);
             if(action != null)
                 return action;
-            
 
         }
 
-        if (this.getMaxHp() <= 0) {
+        if (!this.hasCapability(Status.KOOPA)) {
             this.setDisplayChar('D');
+            this.heal(50);
             this.addCapability(Status.DORMANT);
-            this.isConscious();
         }
 
 

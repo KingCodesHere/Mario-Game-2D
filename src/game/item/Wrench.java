@@ -14,7 +14,7 @@ public class Wrench extends WeaponItem implements Purchasable{
      * Constructor.
      */
     public Wrench() {
-        super("Wrench", 'w', 50, "hits", 80);
+        super("Wrench", 'w', 150, "hits", 80);
         this.addCapability(Status.WRENCH);
     }
 

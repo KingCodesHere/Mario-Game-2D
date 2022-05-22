@@ -51,8 +51,8 @@ public class DestroyShellAction extends Action {
     public String execute(Actor actor, GameMap map) {
 
         if(RandomRange.RandRange(100)<=80) {
-            map.removeActor(target);
             map.locationOf(target).addItem(new SuperMushroom());
+            map.removeActor(target);
             return " Destroyed Koopa's Shell ";
         }
         return actor+ "misses and couldn't destroy Koopa's Shell";

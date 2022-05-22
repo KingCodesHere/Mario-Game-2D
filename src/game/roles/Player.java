@@ -36,7 +36,7 @@ public class Player extends Actor implements ActorWallets, Resettable, Drinkable
 
     private boolean allowReset = true;
 
-    private int damage = 100;
+    private int damage = 50;
     /**
      * Constructor.
      *

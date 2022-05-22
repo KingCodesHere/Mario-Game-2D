@@ -50,7 +50,7 @@ public class Bowser extends Enemy implements Resettable, SpeakCapable {
      *
      */
     public Bowser(Location location) {
-        super("Bowser", 'B', 1, 8, "punches");
+        super("Bowser", 'B', 500, 80, "punches");
         this.location = location;
         this.statements.add("What was that sound? Oh, just a fire.");
         this.statements.add("Princess Peach! You are formally invited... to the creation of my new kingdom!");
