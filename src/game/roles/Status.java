@@ -17,5 +17,6 @@ public enum Status {
     DORMANT, // use this status for the Dormant State of Koopa, when it is Hiding in its shell.
     PowerWater, // use this status for the Player after consuming PowerWater.
     FIRE, // use this status for the player after consuming Fire Flower.
-    KEY// use this status on the ground that Bowser is killed for Key to unlock PrincessPeach's handcuffs
+    KEY,// use this status on the ground that Bowser is killed for Key to unlock PrincessPeach's handcuffs
+    FLYINGKOOPA
 }

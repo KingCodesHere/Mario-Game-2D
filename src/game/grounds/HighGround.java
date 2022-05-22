@@ -75,7 +75,7 @@ public abstract class HighGround extends Ground {
      */
     @Override
     public boolean canActorEnter(Actor actor) {
-        if (actor.hasCapability(Status.INVINCIBLE)) { //checks for PowerStar
+        if (actor.hasCapability(Status.INVINCIBLE) || actor.hasCapability((Status.FLYINGKOOPA))) { //checks for PowerStar
             return true;
         } else {
             return false;
