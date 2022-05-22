@@ -20,7 +20,7 @@ public abstract class Water extends Item{
     }
 
     /***
-     * implment the function of water
+     * implement the function of water
      */
     public abstract void waterFunction(Actor actor);
 }

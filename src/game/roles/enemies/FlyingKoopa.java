@@ -11,9 +11,7 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.action.AttackAction;
 import game.action.DestroyShellAction;
 import game.behaviours.*;
-import game.item.GoldenKey;
 import game.roles.Status;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
