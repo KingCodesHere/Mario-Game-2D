@@ -34,23 +34,21 @@ public class PrincessPeach extends NPC implements SpeakCapable {
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
-
-        for (Exit exit : map.locationOf(this).getExits()) {
-
+        System.out.println("something");
+        for (Exit exit : map.locationOf(otherActor).getExits()) {
             Location destination = exit.getDestination();
             if (destination.containsAnActor()) {
-                if (otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
-                    if (otherActor.hasCapability(Status.KEY)) {
+                if (otherActor.hasCapability(Status.KEY)) {
                         actions.add(new VictoryEndGameAction());
-                    }
-                    return actions;
-                }
 
+                        return actions;
+
+                }
             }
 
         }
 
-        return actions;
+        return new ActionList();
     }
 
     @Override

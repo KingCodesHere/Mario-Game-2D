@@ -19,7 +19,7 @@ public class GoldenKey extends Item {
      */
     public GoldenKey() {
         super("GoldenKey", 'k', true);
-        this.hasCapability(Status.KEY);
+        this.addCapability(Status.KEY);
     }
 
 
