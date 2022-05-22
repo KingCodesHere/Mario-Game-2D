@@ -11,14 +11,13 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.RandomRange;
 import game.action.AttackAction;
-import game.behaviours.AttackBehaviour;
-import game.behaviours.Behaviour;
-import game.behaviours.FollowBehaviour;
-import game.behaviours.WanderBehaviour;
+import game.behaviours.*;
 import game.roles.Status;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * A little fungus guy.
@@ -27,13 +26,16 @@ import java.util.Map;
  * @version 1.0.0
  *
  */
-public class Goomba extends Enemy {
+public class Goomba extends Enemy implements SpeakCapable {
 
 	/**
 	 * List of behaviours in hashmap, organising the priority level
 	 */
-	private final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour
-
+	private final Map<Integer, Behaviour> behaviours = new HashMap<>();
+	// priority, behaviour
+	private ArrayList<String> statements = new ArrayList<>();
+	private Random random = new Random();
+	private int count=0;
 	/**
 	 * Constructor
 	 * returning super class: Enemy
@@ -41,6 +43,9 @@ public class Goomba extends Enemy {
 	public Goomba() {
 		super("Goomba", 'g', 20,10,"kicks");
 		this.behaviours.put(10,new WanderBehaviour());
+		this.statements.add("Mugga mugga!");
+		this.statements.add("Ugha ugha... (Never gonna run around and desert you...)");
+		this.statements.add("Ooga-Chaka Ooga-Ooga!");
 	}
 
 	/**
@@ -88,6 +93,10 @@ public class Goomba extends Enemy {
 	 */
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+		this.count+=1;
+		if(this.count%2==0){
+			this.getStatement(this,this.statements.get(statements.size()),display);
+		}
 		// reset
 		if (super.getCheckStatus() && super.getResetTime() == 1) {
 			map.removeActor(this);

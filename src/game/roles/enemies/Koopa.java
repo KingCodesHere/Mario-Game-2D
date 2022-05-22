@@ -9,14 +9,13 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.action.AttackAction;
 import game.action.DestroyShellAction;
-import game.behaviours.AttackBehaviour;
-import game.behaviours.Behaviour;
-import game.behaviours.FollowBehaviour;
-import game.behaviours.WanderBehaviour;
+import game.behaviours.*;
 import game.roles.Status;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * Koopa Troopa
@@ -25,12 +24,15 @@ import java.util.Map;
  * @version 1.0.0
  *
  */
-public class Koopa extends Enemy {
+public class Koopa extends Enemy implements SpeakCapable {
 
     /**
      * List of behaviours in hashmap, organising the priority level
      */
     private final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour
+    private ArrayList<String> statements = new ArrayList<>();
+    private Random random = new Random();
+    private int count=0;
     /**
      * Constructor
      * returning super class: Enemy
@@ -38,6 +40,8 @@ public class Koopa extends Enemy {
     public Koopa() {
         super("Koopa", 'K',100,30,"punches");
         this.behaviours.put(10,new WanderBehaviour());
+        this.statements.add("Never gonna make you cry!");
+        this.statements.add("Koopi koopi koopii~!");
     }
 
 
@@ -96,6 +100,10 @@ public class Koopa extends Enemy {
 
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        this.count+=1;
+        if(this.count%2==0){
+            this.getStatement(this,this.statements.get(statements.size()),display);
+        }
 
         for (Behaviour behaviour : behaviours.values()) {
             Action action = behaviour.getAction(this, map);
