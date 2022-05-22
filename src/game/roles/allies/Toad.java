@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.action.BuyAction;
+import game.behaviours.Behaviour;
 import game.behaviours.SpeakCapable;
 import game.item.PowerStar;
 import game.item.Purchasable;
@@ -17,6 +18,8 @@ import game.item.Wrench;
 import game.roles.Status;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -27,11 +30,19 @@ import java.util.Random;
  */
 
 public class Toad extends NPC implements SpeakCapable {
+
+    /**
+     * ArrayList to store speakable statements by this actor
+     */
     private ArrayList<String> statements = new ArrayList<>();
+    /**
+     * count to generate return int for speakable statement
+     */
     private int count=0;
 
 
     /**
+     * Constructor.
      * The player's name via the Actor super class.
      */
     public Toad() {

@@ -41,11 +41,18 @@ public class WarpPipe extends HighGround implements Resettable {
         this.addCapability(High.WARPPIPE);
         this.registerInstance();
     }
+    /**
+     * getName
+     * @return String of name
+     */
     @Override
     public String getName() {
         return "Warp Pipe";
     }
 
+    /**
+     * allowable actions for other actors
+     */
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction) {
         //gameMap.at(42,10).setGround(this);

@@ -15,17 +15,30 @@ import game.roles.Status;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
-public class FlyingKoopa extends Enemy implements FlyCapable,SpeakCapable {
+/**
+ * Flying Koopa is more dangerous than Koopa Troopa, they can attack Mario when he is at higher ground level.
+ * @author Kenda Wan
+ */
+public class FlyingKoopa extends Enemy implements SpeakCapable {
 
     /**
      * List of behaviours in hashmap, organising the priority level
      */
     private final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour
+    /**
+     * ArrayList to store speakable statements by this actor
+     */
     private ArrayList<String> statements = new ArrayList<>();
+    /**
+     * count to generate return int for speakable statement
+     */
     private int count=0;
 
+    /**
+     *
+     * Constructor.
+     */
     public FlyingKoopa() {
         super("FlyingKoopa", 'F', 150, 30 ,"punches");
         this.behaviours.put(10,new WanderBehaviour());
@@ -80,8 +93,9 @@ public class FlyingKoopa extends Enemy implements FlyCapable,SpeakCapable {
 
     /**
      * This playTurn override the parent class
-     * Koopa Class requires changes to its status when the hp is <=0
+     * Flying Koopa Class requires changes to its status when the hp is <=0
      * for Koopa class, the status will be set to dormant when this happens
+     * Statement prints at even count of the size
      * @param actions    collection of possible Actions for this Actor
      * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
      * @param map        the map containing the Actor

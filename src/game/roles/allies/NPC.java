@@ -3,6 +3,11 @@ package game.roles.allies;
 import edu.monash.fit2099.engine.actors.Actor;
 import game.roles.Status;
 
+/**
+ * Non Playable Characters, that are friendly toward Player
+ * A general abstract class containing the standard capability to be extended by child classes
+ * @author Kenda Wan
+ */
 public abstract class NPC extends Actor {
     /**
      * Constructor.

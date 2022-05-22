@@ -30,6 +30,9 @@ public class PowerFountain extends Fountain {
         BottleManager.getInstance().getDrinkableBottleHashMap().get(actor).filledBottle(new PowerWater());
     }
 
+    /**
+     * @return String of description
+     */
     @Override
     public String groundDescription() {
         return "Power water";

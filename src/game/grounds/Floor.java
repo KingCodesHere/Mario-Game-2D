@@ -12,7 +12,11 @@ public class Floor extends Ground {
 		super('_');
 
 	}
-
+	/**
+	 * checks if this actor can enter
+	 * @param actor this actor needs to be checked
+	 * @return false for actor cant enter
+	 */
 	@Override
 	public boolean canActorEnter(Actor actor) {
 		if (actor.hasCapability(Status.HOSTILE_TO_ENEMY)) {

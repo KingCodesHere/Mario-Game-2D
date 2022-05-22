@@ -5,7 +5,11 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.grounds.RefilledAble;
 
-
+/**
+ * Refilled Action for bottle to be refilled
+ *
+ * @author JunHao Li
+ */
 public class RefilledAction extends Action {
     /**
      * refilled ground

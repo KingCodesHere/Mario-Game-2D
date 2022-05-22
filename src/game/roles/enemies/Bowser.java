@@ -25,17 +25,29 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+/**
+ * Bowser, King of all Enemies, has captured Princess Peach!!
+ * Bowser awaits Mario's arrival in his castle located in the Lava Zone.
+ * @author Kenda Wan
+ */
 public class Bowser extends Enemy implements Resettable, SpeakCapable {
     private final Location location;
     /**
      * List of behaviours in hashmap, organising the priority level
      */
     private final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour
+    /**
+     * ArrayList to store speakable statements by this actor
+     */
     private ArrayList<String> statements = new ArrayList<>();
+    /**
+     * count to generate return int for speakable statement
+     */
     private int count=0;
+
     /**
      * Constructor
-     * the general Enemy constructor with set default behaviours
+     *
      */
     public Bowser(Location location) {
         super("Bowser", 'B', 1, 8, "punches");
@@ -83,7 +95,7 @@ public class Bowser extends Enemy implements Resettable, SpeakCapable {
     }
     /**
      * This playTurn override the parent class
-     * Goomba will have playTurn of removing actor by checking its HP level.
+     * Bowser will have playTurn of removing actor by checking its HP level.
      * @param actions    collection of possible Actions for this Actor
      * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
      * @param map        the map containing the Actor
@@ -116,6 +128,7 @@ public class Bowser extends Enemy implements Resettable, SpeakCapable {
 
     /**
      * when user click the reset button
+     * Bowser returns to his castle , where his throne sits.
      * @param map map of the game
      */
     private void resetMethod(GameMap map) {

@@ -9,8 +9,9 @@ import game.roles.Status;
 import java.util.ArrayList;
 import java.util.Random;
 /**
- * @author  Ashton Sequeira
  * Tree ground of Mature type
+ * @author  Ashton Sequeira
+ *
  */
 public class MatureTree extends Tree{
     private int count=0;

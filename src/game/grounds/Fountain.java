@@ -24,12 +24,20 @@ public class Fountain extends Ground implements RefilledAble{
     public Fountain(char displayChar) {
         super(displayChar);
     }
-
+    /**
+     * Refilled action added to actor action list
+     *
+     */
     @Override
     public RefilledAction refilledGround() {
         return new RefilledAction(this);
     }
 
+    /**
+     * Ground Ability for an instance of a bottle for the actor
+     * @param actor the actor acting
+     * @param map the map actor is on
+     */
     @Override
     public void groundAbility(Actor actor, GameMap map) {
     }

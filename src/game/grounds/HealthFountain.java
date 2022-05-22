@@ -20,10 +20,19 @@ public class HealthFountain extends Fountain {
         super('H');
     }
 
+    /**
+     * Ground Ability for an instance of a bottle for the actor
+     * @param actor the actor acting
+     * @param map the map actor is on
+     */
     @Override
     public void groundAbility(Actor actor, GameMap map) {
         BottleManager.getInstance().getDrinkableBottleHashMap().get(actor).filledBottle(new HealingWater());
     }
+    /**
+     * ground description
+     * @return String of description
+     */
     @Override
     public String groundDescription() {
         return "Healing water";

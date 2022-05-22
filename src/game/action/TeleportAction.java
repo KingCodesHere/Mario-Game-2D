@@ -1,16 +1,16 @@
 package game.action;
-
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
-
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
-
 import game.Maps;
 import game.grounds.*;
-
 import java.util.ArrayList;
 
+/**
+ * Teleport Action that uses warp pipe to move actor to a new map
+ * @author Ashton Sequiera
+ */
 public class TeleportAction extends Action {
     private WarpPipe warpPipe;
     private Location warpPipeLocation;

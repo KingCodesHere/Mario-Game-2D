@@ -3,8 +3,8 @@ package game;
 import java.util.Random;
 
 /**
- * @author Junhao Li
  * Generates Random Values whereever required
+ * @author Junhao Li
  */
 
 public class RandomRange {

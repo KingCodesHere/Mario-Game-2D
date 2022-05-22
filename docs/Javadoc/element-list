@@ -16,7 +16,10 @@ game
 game.action
 game.balance
 game.behaviours
+game.bottles
 game.grounds
 game.item
 game.reset
 game.roles
+game.roles.allies
+game.roles.enemies

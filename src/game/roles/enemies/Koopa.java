@@ -25,12 +25,17 @@ import java.util.Random;
  *
  */
 public class Koopa extends Enemy implements SpeakCapable {
-
     /**
      * List of behaviours in hashmap, organising the priority level
      */
     private final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour
+    /**
+     * ArrayList to store speakable statements by this actor
+     */
     private ArrayList<String> statements = new ArrayList<>();
+    /**
+     * count to generate return int for speakable statement
+     */
     private int count=0;
     /**
      * Constructor
