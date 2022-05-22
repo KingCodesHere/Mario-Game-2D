@@ -1,13 +1,11 @@
 package game.bottles;
 
-import game.balance.ActorWallets;
-import game.balance.Wallet;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
  * A global Singleton manager that store all the water on the instances.
+ * * @author Junhao Li
+ *  * @version 1.0.0
  */
 public class BottleManager {
     /**

@@ -10,7 +10,11 @@ import game.action.JumpAction;
 import game.action.RefilledAction;
 import game.bottles.BottleManager;
 import game.roles.Status;
-
+/**
+ * Fountain
+ * @author Junhao Li
+ * @version 1.0.0
+ */
 public class Fountain extends Ground implements RefilledAble{
     /**
      * Constructor.

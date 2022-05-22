@@ -1,9 +1,13 @@
 package game.grounds;
-import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.action.RefilledAction;
 
+/**
+ * the instant is able to be refilled
+ * @author Junhao Li
+ * @version 1.0.0
+ */
 public interface RefilledAble {
     /**
      * execute the action from item class

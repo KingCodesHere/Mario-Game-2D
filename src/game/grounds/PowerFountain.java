@@ -5,6 +5,11 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import game.bottles.BottleManager;
 import game.item.PowerWater;
 
+/**
+ * Power Fountain
+ * @author Junhao Li
+ * @version 1.0.0
+ */
 public class PowerFountain extends Fountain {
     /**
      * Constructor.

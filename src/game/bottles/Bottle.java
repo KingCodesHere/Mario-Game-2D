@@ -11,7 +11,11 @@ import game.item.Water;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Bottle contains water
+ * @author Junhao Li
+ * @version 1.0.0
+ */
 public class Bottle extends Item implements Consumable{
     /**
      * An array list to store the water

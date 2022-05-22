@@ -6,7 +6,11 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.roles.Status;
-
+/**
+ * Fire
+ * @author Junhao Li
+ * @version 1.0.0
+ */
 public class Fire extends Item {
     /**
      * counter

@@ -9,7 +9,11 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.action.ConsumeItemAction;
 import game.roles.Status;
 import java.util.List;
-
+/**
+ * FireFlower
+ * @author Junhao Li
+ * @version 1.0.0
+ */
 public class FireFlower extends Item implements Consumable {
     /**
      * Consumable time

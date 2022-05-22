@@ -5,7 +5,11 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import game.bottles.BottleManager;
 import game.item.HealingWater;
 
-
+/**
+ * Healing Fountain
+ * @author Junhao Li
+ * @version 1.0.0
+ */
 public class HealthFountain extends Fountain {
     /**
      * Constructor.

@@ -2,7 +2,11 @@ package game.item;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import game.bottles.Drinkable;
-
+/**
+ * Healing water
+ * @author Junhao Li
+ * @version 1.0.0
+ */
 public class HealingWater extends Water  {
     /***
      * Constructor.
