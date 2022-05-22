@@ -271,24 +271,5 @@ public abstract class Actor implements Capable, Printable {
 	 */
 	public List<Enum<?>> capabilitiesList() { return capabilitySet.capabilitiesList();	}
 
-	/**\
-	 * if the actor got killed it will be removed on the map
-	 * @param map    gamemap
-	 * @param sentence print sentence
-	 * @return a sentence that is saying actor has been killed
-	 */
-	public String getKilled(GameMap map, String sentence) {
-		if (!this.isConscious() && !this.hasCapability(Status.DORMANT)) {
-			ActionList dropActions = new ActionList();
-			// drop all items
-			for (Item item : this.getInventory())
-				dropActions.add(item.getDropAction(this));
-			for (Action drop : dropActions)
-				drop.execute(this, map);
-			// remove actor
-			map.removeActor(this);
-			sentence += System.lineSeparator() + this + " is killed.";
-		}
-		return sentence;
-	}
+
 }

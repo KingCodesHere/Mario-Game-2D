@@ -64,7 +64,11 @@ public class Bowser extends Enemy implements Resettable {
 
 
         }
+        if (!this.isConscious()) {
+            map.locationOf(this).addItem(new GoldenKey());
+            map.removeActor(this);
 
+        }
 
         return actions;
     }
@@ -91,12 +95,7 @@ public class Bowser extends Enemy implements Resettable {
 
         }
 
-        if (!this.isConscious()) {
-            map.locationOf(this).addItem(new GoldenKey());
-            map.removeActor(this);
-            System.out.println("something dies");
-            return new DoNothingAction();
-        }
+
 
         return new DoNothingAction();
     }
@@ -107,7 +106,6 @@ public class Bowser extends Enemy implements Resettable {
      */
     private void resetMethod(GameMap map) {
         if (super.getCheckStatus() && super.getResetTime() == 1) {
-            if (this.isConscious() || this.getMaxHp() > 0) {
                 System.out.println("something");
                 super.resetMaxHp(super.getMaxHp());
                 map.removeActor(this);
@@ -115,34 +113,10 @@ public class Bowser extends Enemy implements Resettable {
                 this.resetMaxHp(super.getMaxHp());
                 this.behaviours.clear();
                 super.setResetTime(0);
-            } else {
                 map.addActor(this, this.location);
-            }
+
 
         }
-    }
-
-    @Override
-    /**\
-     * if the actor got killed it will be removed on the map
-     * @param map    gamemap
-     * @param sentence print sentence
-     * @return a sentence that is saying actor has been killed
-     */
-    public String getKilled(GameMap map, String sentence) {
-        if (!this.isConscious()) {
-            ActionList dropActions = new ActionList();
-            // drop all items
-            for (Item item : this.getInventory())
-                dropActions.add(item.getDropAction(this));
-            for (Action drop : dropActions)
-                drop.execute(this, map);
-            // remove actor
-            map.locationOf(this).addItem(new GoldenKey());
-            map.removeActor(this);
-            sentence += System.lineSeparator() + this + " is killed.";
-        }
-        return sentence;
     }
 
 }

@@ -79,7 +79,7 @@ public class Application {
 		world.addGameMap(gameMap);
 		world.addGameMap(gameMapLava);
 		Maps.setMapList(gameMap,gameMapLava);
-		Actor mario = new Player("Player", 'm', 100);
+		Actor mario = new Player("Player", 'm', 100000);
 		world.addPlayer(mario, gameMap.at(42, 10));
 		gameMap.addActor(new Toad(),gameMap.at(43,11));
 		Coin coin = new Coin();
