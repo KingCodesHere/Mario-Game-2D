@@ -18,8 +18,19 @@ import java.util.ArrayList;
 public class Maps {
     private static ArrayList<GameMap> gameMaps;
     private static Location previousLocation;
+
+    /**
+     * Constructor
+     */
+
+
     public Maps() {
     }
+
+    /**
+     *  Stores all the maps in an array
+     * @param gameMapss Can receive multiples parameters of GameMap type
+     */
 
     public static void setMapList(GameMap... gameMapss){
         ArrayList<GameMap> maps= new ArrayList<>();
@@ -28,12 +39,28 @@ public class Maps {
         }
         gameMaps=maps;
     }
+
+    /**
+     *
+     * @return An arraylist containing the GameMaps
+     */
     public static ArrayList<GameMap> getMapList(){
         return gameMaps;
     }
+
+    /**
+     * Used for storing the previous location of the WarpPipe in the original
+     * GameMap so that the actor can teleport back the same WarpPipe location
+     * @param location
+     */
     public static void setPreviousLocation(Location location){
         previousLocation=location;
     }
+
+    /**
+     *
+     * @return the previous location of the WarpPipe
+     */
     public static Location getPreviousLocation(){
         return previousLocation;
     }
