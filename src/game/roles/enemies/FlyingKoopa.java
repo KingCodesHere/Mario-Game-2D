@@ -11,6 +11,7 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.action.AttackAction;
 import game.action.DestroyShellAction;
 import game.behaviours.*;
+import game.item.GoldenKey;
 import game.roles.Status;
 
 import java.util.HashMap;
@@ -65,6 +66,7 @@ public class FlyingKoopa extends Enemy implements FlyCapable {
 
             }
 
+
         }
 
         return actions;
@@ -83,6 +85,12 @@ public class FlyingKoopa extends Enemy implements FlyCapable {
 
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        // reset
+        if (super.getCheckStatus() && super.getResetTime() == 1) {
+            map.removeActor(this);
+            this.behaviours.clear();
+            super.setResetTime(0);
+        }
 
         for (Behaviour behaviour : behaviours.values()) {
             Action action = behaviour.getAction(this, map);
@@ -97,12 +105,7 @@ public class FlyingKoopa extends Enemy implements FlyCapable {
             this.isConscious();
         }
 
-        // reset
-        if (super.getCheckStatus() && super.getResetTime() == 1) {
-            map.removeActor(this);
-            this.behaviours.clear();
-            super.setResetTime(0);
-        }
+
         return new DoNothingAction();
 
     }

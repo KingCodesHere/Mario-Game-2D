@@ -1,9 +1,7 @@
 package game.action;
 
 import edu.monash.fit2099.engine.actions.Action;
-import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.item.Fire;
@@ -62,7 +60,7 @@ public class AttackAction extends Action {
 		result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 		target.hurt(damage);
 
-		result = getKilled(actor, map, result);
+		result = actor.getKilled(map, result);
 
 		return result;
 	}
@@ -92,28 +90,6 @@ public class AttackAction extends Action {
 		if(target.hasCapability(Status.TALL)){
 			target.removeCapability(Status.TALL);
 		}
-	}
-
-	/**\
-	 * if the actor got killed it will be removed on the map
-	 * @param actor	actor
-	 * @param map	gamemap
-	 * @param sentence print sentence
-	 * @return a sentence that is saying actor has been killed
-	 */
-	private String getKilled(Actor actor, GameMap map, String sentence) {
-		if (!target.isConscious() && !target.hasCapability(Status.DORMANT)) {
-			ActionList dropActions = new ActionList();
-			// drop all items
-			for (Item item : target.getInventory())
-				dropActions.add(item.getDropAction(actor));
-			for (Action drop : dropActions)
-				drop.execute(target, map);
-			// remove actor
-			map.removeActor(target);
-			sentence += System.lineSeparator() + target + " is killed.";
-		}
-		return sentence;
 	}
 
 	@Override

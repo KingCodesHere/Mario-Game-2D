@@ -32,7 +32,7 @@ public class Bowser extends Enemy implements Resettable {
      * the general Enemy constructor with set default behaviours
      */
     public Bowser(Location location) {
-        super("Bowser", 'B', 500, 80, "punches");
+        super("Bowser", 'B', 1, 8, "punches");
         this.location = location;
     }
 
@@ -45,13 +45,6 @@ public class Bowser extends Enemy implements Resettable {
         //attacks whenever possible, drops fire on ground lasting three turns, dealing 20 damage
         //if killed, a key will drop to unlock handcuffs, use KEY from STATUS ENUM
         ActionList actions = new ActionList();
-
-
-        if (!map.contains(otherActor))  {
-            if(RandomRange.RandRange(100)<=10){ // if chance hit this actor is less than this,
-                map.removeActor(this); // action in playTurn removes the actor
-            }
-        }
 
         for (Exit exit : map.locationOf(this).getExits()) {
             Location destination = exit.getDestination();
@@ -67,12 +60,10 @@ public class Bowser extends Enemy implements Resettable {
                 }
 
             }
-            if (!this.isConscious()|| this.getMaxHp() <= 0){
-                //drops keys
-                destination.addItem(new GoldenKey());
-            }
+
 
         }
+
 
         return actions;
     }
@@ -99,11 +90,12 @@ public class Bowser extends Enemy implements Resettable {
 
         }
 
-        if (!this.isConscious() || this.getMaxHp() <= 0) {
+        if (!this.isConscious()) {
+            map.locationOf(this).addItem(new GoldenKey());
             map.removeActor(this);
+            System.out.println("something dies");
             return new DoNothingAction();
         }
-
 
         return new DoNothingAction();
     }
@@ -114,12 +106,18 @@ public class Bowser extends Enemy implements Resettable {
      */
     private void resetMethod(GameMap map) {
         if (super.getCheckStatus() && super.getResetTime() == 1) {
-            super.resetMaxHp(super.getMaxHp());
-            map.removeActor(this);
-            map.addActor(this,this.location);
-            this.resetMaxHp(super.getMaxHp());
-            this.behaviours.clear();
-            super.setResetTime(0);
+            if (this.isConscious() || this.getMaxHp() > 0) {
+                System.out.println("something");
+                super.resetMaxHp(super.getMaxHp());
+                map.removeActor(this);
+                map.addActor(this, this.location);
+                this.resetMaxHp(super.getMaxHp());
+                this.behaviours.clear();
+                super.setResetTime(0);
+            } else {
+                map.addActor(this, this.location);
+            }
+
         }
     }
 

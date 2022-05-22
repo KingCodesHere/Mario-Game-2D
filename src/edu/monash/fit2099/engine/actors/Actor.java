@@ -11,6 +11,8 @@ import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.action.AttackAction;
+import game.roles.Status;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -268,4 +270,25 @@ public abstract class Actor implements Capable, Printable {
 	 * @return a list of unmodifiable capabilities
 	 */
 	public List<Enum<?>> capabilitiesList() { return capabilitySet.capabilitiesList();	}
+
+	/**\
+	 * if the actor got killed it will be removed on the map
+	 * @param map    gamemap
+	 * @param sentence print sentence
+	 * @return a sentence that is saying actor has been killed
+	 */
+	public String getKilled(GameMap map, String sentence) {
+		if (!this.isConscious() && !this.hasCapability(Status.DORMANT)) {
+			ActionList dropActions = new ActionList();
+			// drop all items
+			for (Item item : this.getInventory())
+				dropActions.add(item.getDropAction(this));
+			for (Action drop : dropActions)
+				drop.execute(this, map);
+			// remove actor
+			map.removeActor(this);
+			sentence += System.lineSeparator() + this + " is killed.";
+		}
+		return sentence;
+	}
 }

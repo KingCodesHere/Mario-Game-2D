@@ -105,6 +105,10 @@ public class Player extends Actor implements ActorWallets, Resettable, Drinkable
         // IntrinsicDamage
         getIntrinsicDamage(display);
 
+        // check if the player's hp is smaller than 0
+        if(!this.isConscious()){
+            map.removeActor(this);
+        }
 
         // Handle multi-turn Actions
         if (lastAction.getNextAction() != null)
