@@ -3,9 +3,17 @@ package game.roles.allies;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
+import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
+import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.positions.Location;
+import game.action.AttackAction;
+import game.action.VictoryEndGameAction;
+import game.behaviours.AttackBehaviour;
+import game.behaviours.FollowBehaviour;
 import game.behaviours.SpeakCapable;
+import game.roles.Status;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -24,11 +32,34 @@ public class PrincessPeach extends NPC implements SpeakCapable {
     }
 
     @Override
+    public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
+        ActionList actions = new ActionList();
+
+        for (Exit exit : map.locationOf(this).getExits()) {
+
+            Location destination = exit.getDestination();
+            if (destination.containsAnActor()) {
+                if (otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
+                    if (otherActor.hasCapability(Status.KEY)) {
+                        actions.add(new VictoryEndGameAction());
+                    }
+                    return actions;
+                }
+
+            }
+
+        }
+
+        return actions;
+    }
+
+    @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
         this.count+=1;
         if(this.count%2==0){
             this.getStatement(this,this.statements,display);
         }
+
         return new DoNothingAction();
     }
 }

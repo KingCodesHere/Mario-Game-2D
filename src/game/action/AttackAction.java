@@ -7,6 +7,8 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.item.Fire;
+import game.item.SuperMushroom;
+import game.item.Wrench;
 import game.roles.Status;
 import java.util.Random;
 
@@ -52,12 +54,24 @@ public class AttackAction extends Action {
 
 		Weapon weapon = actor.getWeapon();
 
+
 		if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
 			return actor + " misses " + target + ".";
 		}
 
-		int damage = checkIfActorIsInvinsible(weapon);
+		int damage = checkIfActorIsInvincible(weapon);
 		checkSuperMushroom();
+
+		if (target.hasCapability(Status.DORMANT)){
+			damage=0;
+			if (actor.hasCapability(Status.WRENCH)){
+				target.hurt(damage);
+				if (!target.isConscious()){
+					map.locationOf(target).addItem(new SuperMushroom());
+					map.removeActor(target);
+				}
+			}
+		}
 
 		result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 		target.hurt(damage);
@@ -70,11 +84,11 @@ public class AttackAction extends Action {
 
 
 	/**
-	 * checking if the actor is invinsible, otherwise actor will get hurt
+	 * checking if the actor is invincible, otherwise actor will get hurt
 	 * @param weapon weapon damage
 	 * @return damage
 	 */
-	private int checkIfActorIsInvinsible(Weapon weapon) {
+	private int checkIfActorIsInvincible(Weapon weapon) {
 		int damage;
 		if (target.hasCapability(Status.INVINCIBLE)){
 			damage=0;
@@ -84,6 +98,7 @@ public class AttackAction extends Action {
 		}
 		return damage;
 	}
+
 
 	/**
 	 * checking the actor has superMushroom
@@ -102,7 +117,19 @@ public class AttackAction extends Action {
 	 * @return a sentence that is saying actor has been killed
 	 */
 	private String getKilled(Actor actor, GameMap map, String sentence) {
-		if (!target.isConscious() && !target.hasCapability(Status.DORMANT)) {
+		if (target.hasCapability(Status.KOOPA)) {
+
+			if (!target.isConscious()) {
+				target.addCapability(Status.DORMANT);
+				target.heal(50);
+				target.isConscious();
+				result += System.lineSeparator() + target + " is Dormant. ";
+
+			}
+
+		}
+
+			if (!target.isConscious() && !target.hasCapability(Status.DORMANT)) {
 			ActionList dropActions = new ActionList();
 			// drop all items
 			for (Item item : target.getInventory())

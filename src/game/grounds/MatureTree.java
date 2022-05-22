@@ -3,6 +3,7 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.Location;
 import game.RandomRange;
 
+import game.roles.enemies.FlyingKoopa;
 import game.roles.enemies.Koopa;
 import game.roles.Status;
 import java.util.ArrayList;
@@ -59,7 +60,12 @@ public class MatureTree extends Tree{
         }
         if ((RandomRange.RandRange(100)) <= 15 && !location.containsAnActor()) {
             location.addActor(new Koopa()); //After every turn,15% chance for Koopa to spawn and doesn't spawn if actor stands on it
+
         }
+        if ((RandomRange.RandRange(100)) <= 50 && !location.containsAnActor()) {
+            location.addActor(new FlyingKoopa()); //After every turn,50% chance for FlyingKoopa to spawn and doesn't spawn if actor stands on it
+        }
+
         if (RandomRange.RandRange(100) <= 20) { //20% chance for Mature to turn to Dirt
             location.setGround(new Dirt());
         }
