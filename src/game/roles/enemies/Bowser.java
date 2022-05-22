@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
+import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
@@ -121,5 +122,27 @@ public class Bowser extends Enemy implements Resettable {
         }
     }
 
+    @Override
+    /**\
+     * if the actor got killed it will be removed on the map
+     * @param map    gamemap
+     * @param sentence print sentence
+     * @return a sentence that is saying actor has been killed
+     */
+    public String getKilled(GameMap map, String sentence) {
+        if (!this.isConscious()) {
+            ActionList dropActions = new ActionList();
+            // drop all items
+            for (Item item : this.getInventory())
+                dropActions.add(item.getDropAction(this));
+            for (Action drop : dropActions)
+                drop.execute(this, map);
+            // remove actor
+            map.locationOf(this).addItem(new GoldenKey());
+            map.removeActor(this);
+            sentence += System.lineSeparator() + this + " is killed.";
+        }
+        return sentence;
+    }
 
 }
