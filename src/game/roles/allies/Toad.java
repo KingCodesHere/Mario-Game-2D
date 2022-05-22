@@ -9,11 +9,15 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.action.BuyAction;
-import game.action.SpeakAction;
+import game.behaviours.SpeakCapable;
 import game.item.PowerStar;
 import game.item.Purchasable;
 import game.item.SuperMushroom;
 import game.item.Wrench;
+import game.roles.Status;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Toad class: friendly guy who speaks to Mario and sells items
@@ -22,7 +26,10 @@ import game.item.Wrench;
  * @version 1.0.0
  */
 
-public class Toad extends NPC{
+public class Toad extends NPC implements SpeakCapable {
+    private ArrayList<String> statements = new ArrayList<>();
+    private Random random=new Random();
+    private int count=0;
 
 
     /**
@@ -30,6 +37,9 @@ public class Toad extends NPC{
      */
     public Toad() {
         super("Toad", 'O', 99999999);
+        this.statements.add("The Princess is depending on you! You are our only hope.");
+        this.statements.add("Being imprisoned in these walls can drive a fungus crazy :( ");
+
     }
 
     /**
@@ -42,6 +52,22 @@ public class Toad extends NPC{
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        this.count+=1;
+        if(this.count%2==0){
+            if (this.hasCapability(Status.WRENCH)) {
+                this.statements.add("You better get back to finding the Power Stars.");
+                this.getStatement(this,this.statements.get(this.statements.size()),display);
+
+            }else if (this.hasCapability(Status.INVINCIBLE)) {
+                this.statements.add("You might need a wrench to smash Koopa's hard shells.");
+                this.getStatement(this,this.statements.get(this.statements.size()),display);
+
+            }else {
+                this.statements.add("You better get back to finding the Power Stars.");
+                this.statements.add("You might need a wrench to smash Koopa's hard shells.");
+                this.getStatement(this,this.statements.get(this.statements.size()),display);
+            }
+        }
 
         return new DoNothingAction();
     }
@@ -65,7 +91,6 @@ public class Toad extends NPC{
         for (Exit exit : map.locationOf(otherActor).getExits()) {
             Location destination = exit.getDestination();
             if (destination.containsAnActor()) {
-                actions.add(new SpeakAction("Toad"));
                 items(actions,new Wrench(),new SuperMushroom(),new PowerStar());
 
                 return actions;

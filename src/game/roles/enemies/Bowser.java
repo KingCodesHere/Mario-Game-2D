@@ -14,20 +14,26 @@ import game.action.AttackAction;
 import game.behaviours.AttackBehaviour;
 import game.behaviours.Behaviour;
 import game.behaviours.FollowBehaviour;
+import game.behaviours.SpeakCapable;
 import game.item.Fire;
 import game.item.GoldenKey;
 import game.reset.Resettable;
 import game.roles.Status;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
-public class Bowser extends Enemy implements Resettable {
+public class Bowser extends Enemy implements Resettable, SpeakCapable {
     private final Location location;
     /**
      * List of behaviours in hashmap, organising the priority level
      */
     private final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour
+    private ArrayList<String> statements = new ArrayList<>();
+    private Random random = new Random();
+    private int count=0;
     /**
      * Constructor
      * the general Enemy constructor with set default behaviours
@@ -35,6 +41,10 @@ public class Bowser extends Enemy implements Resettable {
     public Bowser(Location location) {
         super("Bowser", 'B', 1, 8, "punches");
         this.location = location;
+        this.statements.add("What was that sound? Oh, just a fire.");
+        this.statements.add("Princess Peach! You are formally invited... to the creation of my new kingdom!");
+        this.statements.add("Never gonna let you down!");
+        this.statements.add("Wrrrrrrrrrrrrrrrryyyyyyyyyyyyyy!!!!");
     }
 
     /**
@@ -83,6 +93,10 @@ public class Bowser extends Enemy implements Resettable {
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        this.count+=1;
+        if(this.count%2==0){
+            this.getStatement(this,this.statements.get(statements.size()),display);
+        }
         // reset
 
         resetMethod(map);

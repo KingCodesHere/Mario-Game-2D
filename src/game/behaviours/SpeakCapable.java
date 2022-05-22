@@ -1,12 +1,10 @@
 package game.behaviours;
 
+import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.displays.Display;
+
 public interface SpeakCapable {
-
-    default String speak(String name, String sentence) {
-        return name + ": " +sentence;
+    default void getStatement(Actor actor,String statement,Display display){
+        display.println(actor+": \""+ statement + "\"");
     }
-
-    String sentence = " ";
-
-
 }

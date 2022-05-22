@@ -13,16 +13,22 @@ import game.action.AttackAction;
 import game.behaviours.AttackBehaviour;
 import game.behaviours.Behaviour;
 import game.behaviours.FollowBehaviour;
+import game.behaviours.SpeakCapable;
 import game.roles.Status;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
-public class PiranhaPlant extends Enemy{
+public class PiranhaPlant extends Enemy implements SpeakCapable {
     /**
      * List of behaviours in hashmap, organising the priority level
      */
     private final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour
+    private ArrayList<String> statements = new ArrayList<>();
+    private Random random = new Random();
+    private int count=0;
     /**
      * Constructor
      * the general Enemy constructor with set default behaviours
@@ -35,6 +41,8 @@ public class PiranhaPlant extends Enemy{
      */
     public PiranhaPlant(String name, char displayChar, int hitPoints, int attackDamage, String verb) {
         super("Piranha Plant", 'Y', 150, 90, "chomps");
+        this.statements.add("Slsstssthshs~! (Never gonna say goodbye~)");
+        this.statements.add("Ohmnom nom nom nom.");
 
     }
 
@@ -72,6 +80,10 @@ public class PiranhaPlant extends Enemy{
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        this.count+=1;
+        if(this.count%2==0){
+            this.getStatement(this,this.statements.get(statements.size()),display);
+        }
         // reset
         if (super.getCheckStatus() && super.getResetTime() == 1) {
             this.increaseMaxHp(50); //  adding 50

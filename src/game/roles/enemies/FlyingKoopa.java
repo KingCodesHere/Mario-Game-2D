@@ -14,20 +14,29 @@ import game.behaviours.*;
 import game.item.GoldenKey;
 import game.roles.Status;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
-public class FlyingKoopa extends Enemy implements FlyCapable {
+public class FlyingKoopa extends Enemy implements FlyCapable,SpeakCapable {
 
     /**
      * List of behaviours in hashmap, organising the priority level
      */
     private final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour
+    private ArrayList<String> statements = new ArrayList<>();
+    private Random random = new Random();
+    private int count=0;
 
     public FlyingKoopa() {
         super("FlyingKoopa", 'F', 150, 30 ,"punches");
         this.behaviours.put(10,new WanderBehaviour());
         this.addCapability(Status.KOOPA);
+        this.statements.add("Never gonna make you cry!");
+        this.statements.add("Koopi koopi koopii~!");
+        this.statements.add("Pam pam pam!");
+
 
     }
     /**
@@ -85,6 +94,10 @@ public class FlyingKoopa extends Enemy implements FlyCapable {
 
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        this.count+=1;
+        if(this.count%2==0){
+            this.getStatement(this,this.statements.get(statements.size()),display);
+        }
         // reset
         if (super.getCheckStatus() && super.getResetTime() == 1) {
             map.removeActor(this);
