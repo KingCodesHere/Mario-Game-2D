@@ -1,40 +1,42 @@
 WORK BREAKDOWN AGREEMENT
 
 Task allocation: The process for allocating tasks was undertaken during the group meeting.
-Requirements 1-7:
-JavaDoc:
-Q1~Q2 Ashton Sequeira
-Q3: Kenda Wan (Special Consideration:12th May 11:55 pm)
-Q4~Q5 Junhao Li
-Q6: Team Task(Ashton Sequeira,Kenda Wan,Junhao Li)(Special Consideration:12th May 11:55 pm)
-Q7: Kenda Wan (Special Consideration:12th May 11:55 pm)
 
-Kenda responses to generate the Javadoc once everything has been completed.
+REQ 1-5:
+    JavaDoc:
+        JunHao Li, Kenda Wan
 
-#UML and Rationale
-Q1~Q2 Ashton Sequeira
-Q3:Kenda Wan (Special Consideration:12th May 11:55 pm)
-Q4~Q5 Junhao Li
-Q6:Team Task(Ashton Sequeira,Kenda Wan, Junhao Li) (Special Consideration:12th May 11:55 pm)
-Q7:Kenda Wan (Special Consideration:12th May 11:55 pm)
+    Implementations:
+        Q1: Ashton Sequeira         (New Map, WarpPipe, Blazing Fire, Maps, TeleportAction)
+        Q2: Kenda Wan, JunHao Li    (NPC: Princess Peach, Enemy: Bowser, FlyingKoopa, PiranhaPlant)
+        Q3: JunHao Li               (Bottle, Fountains)
+        Q4: JunHao Li               (FireFlower, FireAttack)
+        Q5: Ashton Sequeira         (Speakable, Statements )
 
-#Code
-Ashton Sequeira: Q1~Q2 abstract Tree,Sprout,Sapling,Mature,abstract HighGround,JumpAction
-Junhao Li: Q4~Q5 Player,SuperMushroom, PowerStar,Wrench, Coin, BuyAction, Building Wallet System, Consumable.
-Kenda: Q3,Q7 (Special Consideration:12th May 11:55 pm)
-Team Task: Q6 (Special Consideration:12th May 11:55 pm)
+    UML and Rationale:
+        Q1: Ashton Sequeira, Kenda Wan
+        Q2: Kenda Wan
+        Q3: JunHao Li
+        Q4: JunHao Li
+        Q5: Kenda Wan
 
-Diagram developer: Designs diagram to satisfy features and stories from the tasks. They are
-responsible for their designed diagram that meets the requirements of the tasks appropriately.
-They need to provide the reasons why they use Interface, Abstract, Class, and Enum under different
-situations. Attends group meetings in any forms to update the progress to team.
 
-Diagram reviewer: Reviews and checks the diagram that is designed for quality assurance. The
-diagram reviewer needs to review diagram designed by other diagram developer. Hence, a new
-perspective will be likely discovered so that the diagram can be improved.
-Currently, assigned to: Everyone (Each person responses to different questions)
+Diagram developer:
+   Designs diagrams to satisfy features and stories from the tasks. They are
+   responsible for their designed diagram that meets the requirements of the tasks appropriately.
+   They need to provide the reasons why they use Interface, Abstract, Class, and Enum under different
+   situations. Attends group meetings in any form to update the progress of the team.
+
+Diagram reviewer:
+   Reviews and checks the diagram that is designed for quality assurance. The
+   A diagram reviewer needs to review diagrams designed by other diagram developers. Hence, a new
+   perspective will be likely discovered so that the diagram can be improved.
+   Currently, assigned to: Everyone (Each person responses to different questions)
+
 
 By signing below, we agree to the WBA stated above:
 Junhao Li
 Kenda Wan
 Ashton Sequeira
+
+22/05/2022
