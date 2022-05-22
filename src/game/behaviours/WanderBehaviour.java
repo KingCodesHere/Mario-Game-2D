@@ -38,13 +38,12 @@ public class WanderBehaviour extends Action implements Behaviour {
 				actions.add(exit.getDestination().getMoveAction(actor, "around", exit.getHotKey()));
 			}
 		}
-		int check = random.nextInt(actions.size());
 
-		if (check <=0){
+		if (actions.size()<=0){
 			return new DoNothingAction();
 		}
-
-		return actions.get(check);
+		else{
+		return actions.get(random.nextInt(actions.size()));}
 	}
 
 
