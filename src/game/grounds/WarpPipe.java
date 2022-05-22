@@ -8,10 +8,12 @@ import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.positions.World;
+import game.Maps;
 import game.action.TeleportAction;
 import game.reset.Resettable;
 import game.roles.enemies.PiranhaPlant;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -65,8 +67,8 @@ public class WarpPipe extends HighGround implements Resettable {
         }
         if(this.firstRound){
             location.addActor(new PiranhaPlant("Piranha Plant", 'Y', 150, 90, "chomps"));
-
             setFirstRound();
+
         };
     }
 

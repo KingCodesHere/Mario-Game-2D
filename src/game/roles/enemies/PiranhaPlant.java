@@ -93,13 +93,6 @@ public class PiranhaPlant extends Enemy implements SpeakCapable {
             super.setResetTime(0);
         }
 
-        if (!this.isConscious() || this.getMaxHp() <= 0) {
-            map.removeActor(this);
-            return new DoNothingAction();
-        }
-
-
-
         return new DoNothingAction();
 
     }

@@ -27,14 +27,23 @@ public class TeleportAction extends Action {
         GameMap gameMapOriginal= gameMaps.get(0);
         GameMap gameMapLava=gameMaps.get(1);
         if (map==gameMapOriginal){
-            map.moveActor(actor,gameMapLava.at(0,0));
-            statement="Transporting to Lava Zone!";
+            if (gameMapLava.at(0,0).containsAnActor()) {
+                Actor otherActor = gameMapLava.at(0, 0).getActor();
+                gameMapLava.removeActor(otherActor);
+            }
+            map.moveActor(actor, gameMapLava.at(0, 0));
+            statement = "Transporting to Lava Zone!";
             Maps.setPreviousLocation(this.warpPipeLocation);
+
         }
         else{
             this.tempWarpPipeLocation=Maps.getPreviousLocation();
-            map.moveActor(actor,gameMapOriginal.at(tempWarpPipeLocation.x(), tempWarpPipeLocation.y()));
-            statement="Going Back!!";
+            if (gameMapOriginal.at(tempWarpPipeLocation.x(), tempWarpPipeLocation.y()).containsAnActor()) {
+                Actor otherActor = gameMapOriginal.at(tempWarpPipeLocation.x(), tempWarpPipeLocation.y()).getActor();
+                gameMapOriginal.removeActor(otherActor);
+            }
+            map.moveActor(actor, gameMapOriginal.at(tempWarpPipeLocation.x(), tempWarpPipeLocation.y()));
+            statement = "Going Back!!";
         }
         return statement;
     }
