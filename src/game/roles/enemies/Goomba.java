@@ -49,6 +49,10 @@ public class Goomba extends Enemy {
 	 */
 	@Override
 	public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
+		// check if the player's hp is smaller than 0
+		if(!this.isConscious()){
+			map.removeActor(this);
+		}
 		ActionList actions = new ActionList();
 
 
@@ -88,11 +92,16 @@ public class Goomba extends Enemy {
 	 */
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+		if (!this.isConscious()) {
+			map.removeActor(this);
+			return new DoNothingAction();
+		}
 		// reset
 		if (super.getCheckStatus() && super.getResetTime() == 1) {
 			map.removeActor(this);
 			this.behaviours.clear();
 			super.setResetTime(0);
+			return new DoNothingAction();
 		}
 
 		for (Behaviour behaviour : behaviours.values()) {
@@ -102,13 +111,10 @@ public class Goomba extends Enemy {
 
 		}
 
-		if (!this.isConscious() || this.getMaxHp() <= 0) {
-			map.removeActor(this);
-			return new DoNothingAction();
-		}
 
 
 		return new DoNothingAction();
+
 	}
 
 
