@@ -120,14 +120,12 @@ public class Bowser extends Enemy implements Resettable, SpeakCapable {
      */
     private void resetMethod(GameMap map) {
         if (super.getCheckStatus() && super.getResetTime() == 1) {
-                System.out.println("something");
+                if (map.contains(this))
                 super.resetMaxHp(super.getMaxHp());
                 map.removeActor(this);
                 map.addActor(this, this.location);
-                this.resetMaxHp(super.getMaxHp());
                 this.behaviours.clear();
                 super.setResetTime(0);
-                map.addActor(this, this.location);
 
 
         }
