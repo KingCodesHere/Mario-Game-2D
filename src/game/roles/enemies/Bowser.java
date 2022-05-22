@@ -95,7 +95,7 @@ public class Bowser extends Enemy implements Resettable, SpeakCapable {
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
         this.count+=1;
         if(this.count%2==0){
-            this.getStatement(this,this.statements.get(statements.size()),display);
+            this.getStatement(this,this.statements.get(this.random.nextInt(this.statements.size())),display);
         }
         // reset
 

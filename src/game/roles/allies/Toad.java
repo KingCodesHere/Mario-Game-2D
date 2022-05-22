@@ -56,16 +56,16 @@ public class Toad extends NPC implements SpeakCapable {
         if(this.count%2==0){
             if (this.hasCapability(Status.WRENCH)) {
                 this.statements.add("You better get back to finding the Power Stars.");
-                this.getStatement(this,this.statements.get(this.statements.size()),display);
+                this.getStatement(this,this.statements.get(this.random.nextInt(this.statements.size())),display);
 
             }else if (this.hasCapability(Status.INVINCIBLE)) {
                 this.statements.add("You might need a wrench to smash Koopa's hard shells.");
-                this.getStatement(this,this.statements.get(this.statements.size()),display);
+                this.getStatement(this,this.statements.get(this.random.nextInt(this.statements.size())),display);
 
             }else {
                 this.statements.add("You better get back to finding the Power Stars.");
                 this.statements.add("You might need a wrench to smash Koopa's hard shells.");
-                this.getStatement(this,this.statements.get(this.statements.size()),display);
+                this.getStatement(this,this.statements.get(this.random.nextInt(this.statements.size())),display);
             }
         }
 
