@@ -18,7 +18,7 @@ public final class IntrinsicWeapon implements Weapon{
 	public IntrinsicWeapon(int damage, String verb) {
 		this.damage = damage;
 		this.verb = verb;
-		this.hitRate = 100; // 50% chance to hit
+		this.hitRate = 50; // 50% chance to hit
 	}
 
     /**
