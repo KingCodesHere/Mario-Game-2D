@@ -103,7 +103,17 @@ public class Koopa extends Enemy implements SpeakCapable {
         if(this.count%2==0){
             this.getStatement(this,this.statements,display);
         }
+        if (!this.isConscious() || this.getMaxHp() <= 0) {
+            map.removeActor(this);
+            return new DoNothingAction();
+        }
+        // reset
+        if (super.getCheckStatus() && super.getResetTime() == 1) {
+            map.removeActor(this);
+            this.behaviours.clear();
+            super.setResetTime(0);
 
+        }
         for (Behaviour behaviour : behaviours.values()) {
             Action action = behaviour.getAction(this, map);
             if(action != null)
@@ -117,13 +127,7 @@ public class Koopa extends Enemy implements SpeakCapable {
             this.isConscious();
         }
 
-        // reset
-        if (super.getCheckStatus() && super.getResetTime() == 1) {
-            map.removeActor(this);
-            this.behaviours.clear();
-            super.setResetTime(0);
 
-        }
         return new DoNothingAction();
 
     }

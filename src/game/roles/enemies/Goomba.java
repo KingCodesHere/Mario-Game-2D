@@ -97,6 +97,10 @@ public class Goomba extends Enemy implements SpeakCapable {
 		if(this.count%2==0){
 			this.getStatement(this,this.statements,display);
 		}
+		if (!this.isConscious() || this.getMaxHp() <= 0) {
+			map.removeActor(this);
+			return new DoNothingAction();
+		}
 		// reset
 		if (super.getCheckStatus() && super.getResetTime() == 1) {
 			map.removeActor(this);
@@ -109,11 +113,6 @@ public class Goomba extends Enemy implements SpeakCapable {
 			if(action != null)
 				return action;
 
-		}
-
-		if (!this.isConscious() || this.getMaxHp() <= 0) {
-			map.removeActor(this);
-			return new DoNothingAction();
 		}
 
 

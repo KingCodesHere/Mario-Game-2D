@@ -96,6 +96,10 @@ public class Bowser extends Enemy implements Resettable, SpeakCapable {
         if(this.count%2==0){
             this.getStatement(this,this.statements,display);
         }
+        if (!this.isConscious() || this.getMaxHp() <= 0) {
+            map.removeActor(this);
+            return new DoNothingAction();
+        }
         // reset
 
         resetMethod(map);
