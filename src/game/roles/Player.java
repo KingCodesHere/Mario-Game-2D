@@ -2,6 +2,7 @@ package game.roles;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
+import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.displays.Menu;
@@ -91,6 +92,11 @@ public class Player extends Actor implements ActorWallets, Resettable, Drinkable
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        // check if the player's hp is smaller than 0
+        if (!this.isConscious() || this.getMaxHp() <= 0) {
+            map.removeActor(this);
+            return new DoNothingAction();
+        }
         // Only reset for one time
         if(allowReset){
             actions.add(new ResetAction());
@@ -105,10 +111,7 @@ public class Player extends Actor implements ActorWallets, Resettable, Drinkable
         // IntrinsicDamage
         getIntrinsicDamage(display);
 
-        // check if the player's hp is smaller than 0
-        if(!this.isConscious()){
-            map.removeActor(this);
-        }
+
 
         // Handle multi-turn Actions
         if (lastAction.getNextAction() != null)
