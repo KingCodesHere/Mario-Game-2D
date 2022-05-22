@@ -66,10 +66,6 @@ public class AttackAction extends Action {
 			damage=0;
 			if (actor.hasCapability(Status.WRENCH)){
 				target.hurt(damage);
-				if (!target.isConscious()){
-					map.locationOf(target).addItem(new SuperMushroom());
-					map.removeActor(target);
-				}
 			}
 		}
 

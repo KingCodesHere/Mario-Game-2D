@@ -11,10 +11,13 @@ import edu.monash.fit2099.engine.positions.GameMap;
  * @author Kenda Wan
  */
 public class VictoryEndGameAction extends Action {
+
     @Override
     public String execute(Actor actor, GameMap map) {
-        return actor+ "rescued Princess Peach and are now heading back to the Mushroom Kingdom !" + "Victory!";
+        map.removeActor(actor);
+        return actor+ " rescued Princess Peach and are now heading back to the Mushroom Kingdom !" + "Victory!";
     }
+
 
     @Override
     public String menuDescription(Actor actor) {
