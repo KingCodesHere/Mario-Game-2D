@@ -41,8 +41,8 @@ public class PiranhaPlant extends Enemy implements SpeakCapable {
      */
     public PiranhaPlant(String name, char displayChar, int hitPoints, int attackDamage, String verb) {
         super("Piranha Plant", 'Y', 150, 90, "chomps");
-        this.statements.add("Never gonna make you cry!");
-        this.statements.add("Koopi koopi koopii~!");
+        this.statements.add("Slsstssthshs~! (Never gonna say goodbye~)");
+        this.statements.add("Ohmnom nom nom nom.");
 
     }
 
