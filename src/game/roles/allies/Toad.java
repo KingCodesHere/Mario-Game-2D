@@ -28,7 +28,6 @@ import java.util.Random;
 
 public class Toad extends NPC implements SpeakCapable {
     private ArrayList<String> statements = new ArrayList<>();
-    private Random random=new Random();
     private int count=0;
 
 
@@ -56,16 +55,16 @@ public class Toad extends NPC implements SpeakCapable {
         if(this.count%2==0){
             if (this.hasCapability(Status.WRENCH)) {
                 this.statements.add("You better get back to finding the Power Stars.");
-                this.getStatement(this,this.statements.get(this.random.nextInt(this.statements.size())),display);
+                this.getStatement(this,this.statements,display);
 
             }else if (this.hasCapability(Status.INVINCIBLE)) {
                 this.statements.add("You might need a wrench to smash Koopa's hard shells.");
-                this.getStatement(this,this.statements.get(this.random.nextInt(this.statements.size())),display);
+                this.getStatement(this,this.statements,display);
 
             }else {
                 this.statements.add("You better get back to finding the Power Stars.");
                 this.statements.add("You might need a wrench to smash Koopa's hard shells.");
-                this.getStatement(this,this.statements.get(this.random.nextInt(this.statements.size())),display);
+                this.getStatement(this,this.statements,display);
             }
         }
 

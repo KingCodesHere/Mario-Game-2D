@@ -26,7 +26,6 @@ public class FlyingKoopa extends Enemy implements FlyCapable,SpeakCapable {
      */
     private final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour
     private ArrayList<String> statements = new ArrayList<>();
-    private Random random = new Random();
     private int count=0;
 
     public FlyingKoopa() {
@@ -96,8 +95,7 @@ public class FlyingKoopa extends Enemy implements FlyCapable,SpeakCapable {
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
         this.count+=1;
         if(this.count%2==0){
-            this.getStatement(this,this.statements.get(this.random.nextInt(this.statements.size()))8
-                    ,display);
+            this.getStatement(this,this.statements,display);
         }
         // reset
         if (super.getCheckStatus() && super.getResetTime() == 1) {
