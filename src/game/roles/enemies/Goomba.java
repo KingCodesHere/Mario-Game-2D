@@ -56,7 +56,6 @@ public class Goomba extends Enemy implements SpeakCapable {
 	public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
 		ActionList actions = new ActionList();
 
-
 		if (!map.contains(otherActor))  {
 			if(RandomRange.RandRange(100)<=10){ // if chance hit this actor is less than this,
 				map.removeActor(this); // action in playTurn removes the actor
@@ -75,8 +74,6 @@ public class Goomba extends Enemy implements SpeakCapable {
 				}
 
 			}
-
-
 
 		}
 
