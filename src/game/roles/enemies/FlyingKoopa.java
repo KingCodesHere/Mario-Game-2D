@@ -103,7 +103,7 @@ public class FlyingKoopa extends Enemy implements FlyCapable,SpeakCapable {
         }
         // reset
         if (super.getCheckStatus() && super.getResetTime() == 1) {
-            map.removeActor(this);
+            this.increaseMaxHp(50);
             this.behaviours.clear();
             super.setResetTime(0);
             return new DoNothingAction();
@@ -114,6 +114,7 @@ public class FlyingKoopa extends Enemy implements FlyCapable,SpeakCapable {
             Action action = behaviour.getAction(this, map);
             if(action != null)
                 return action;
+            
 
         }
 

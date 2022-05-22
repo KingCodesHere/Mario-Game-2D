@@ -112,6 +112,7 @@ public class Koopa extends Enemy implements SpeakCapable {
             map.removeActor(this);
             this.behaviours.clear();
             super.setResetTime(0);
+            return new DoNothingAction();
 
         }
         for (Behaviour behaviour : behaviours.values()) {

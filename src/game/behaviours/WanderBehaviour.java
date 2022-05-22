@@ -2,6 +2,7 @@ package game.behaviours;
 
 import edu.monash.fit2099.engine.actions.Action;
 
+import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
@@ -37,7 +38,13 @@ public class WanderBehaviour extends Action implements Behaviour {
 				actions.add(exit.getDestination().getMoveAction(actor, "around", exit.getHotKey()));
 			}
 		}
-		return actions.get(random.nextInt(actions.size()));
+		int check = random.nextInt(actions.size());
+
+		if (check <=0){
+			return new DoNothingAction();
+		}
+
+		return actions.get(check);
 	}
 
 
