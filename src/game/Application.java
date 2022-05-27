@@ -89,7 +89,7 @@ public class Application {
 		gameMap.at(43, 9).setGround(new PowerFountain());
 		gameMapLava.at(1,1).addActor(new Bowser(gameMapLava.at(1,1)));
 		gameMapLava.at(1,2).addActor(new PrincessPeach());
-		world.run()
+		world.run();
 
 
 
